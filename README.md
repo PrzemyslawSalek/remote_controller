@@ -18,7 +18,7 @@
 - Android Emulator
 - Arduino + module bluetooth
 - Arduino IDE
-### Version control / Project management system
+#### Version control / Project management system
 - Git
 - Jira
 
