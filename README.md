@@ -13,11 +13,14 @@
 ## Technology
 - Android Studio 
 - SQLite
+- StarUML
 #### Testing environment
 - Android Emulator
 - Arduino + module bluetooth
 - Arduino IDE
+### Version control / Project management system
+- Git
+- Jira
 
-## Version control 
-- Git - distributed version control system
+
 
