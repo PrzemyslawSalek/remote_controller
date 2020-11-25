@@ -13,7 +13,7 @@
 ## Technology
 - Android Studio 
 - SQLite
-	## Testing environment
+	### Testing environment
 	- Android Emulator
 	- Arduino + module bluetooth
 	- Arduino IDE
