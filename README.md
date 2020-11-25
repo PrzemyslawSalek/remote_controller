@@ -14,4 +14,4 @@
 - Android Studio 
 
 ## Version control 
-Git - distributed version control system
+- Git - distributed version control system
