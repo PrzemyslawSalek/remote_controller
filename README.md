@@ -12,6 +12,12 @@
 
 ## Technology
 - Android Studio 
+- SQLite
+	## Testing environment
+	- Android Emulator
+	- Arduino + module bluetooth
+	- Arduino IDE
 
 ## Version control 
 - Git - distributed version control system
+
