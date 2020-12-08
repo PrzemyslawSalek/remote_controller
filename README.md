@@ -8,7 +8,7 @@
 - Janek Starosta (engineer)
 
 ## Description
-Android application for creating and using microcontrollers. The main assumption is the ability to create your own button layouts with their full configuration. Communication between devices via bluetooth transmission.
+Android application for creating remote controllers. The main assumption is the ability to create your own button layouts with their full configuration. Communication between devices via bluetooth transmission.
 
 ## Technology
 - Android Studio (Android Emulator)
