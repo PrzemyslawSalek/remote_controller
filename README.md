@@ -9,7 +9,7 @@
   - https://pasjm.atlassian.net/jira/people/5f8061d725fbdf006892ce04
 - Maciej Rydzak (engineer/tester) 
   - https://pasjm.atlassian.net/jira/people/5f806169837bb8006879b097
-- Janek Starosta (engineer) 
+- Jan Starosta (engineer) 
   - https://pasjm.atlassian.net/jira/people/5f80596395fe8e0069b4380b
 
 ## Description
