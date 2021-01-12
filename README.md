@@ -3,7 +3,7 @@
 ## Team
 - Szymon Sala (project leader/DevOps/engineer/tester) 
   - https://pasjm.atlassian.net/jira/people/5f7ae0fc287870006a262e75
-- Przemysław Sałek (engineer/tester) 
+- Przemysław Sałek (front-end engineer/tester) 
   - https://pasjm.atlassian.net/jira/people/5f7f3850b61f66006f4fee30
 - Aleksander Pitucha (engineer/tester) 
   - https://pasjm.atlassian.net/jira/people/5f8061d725fbdf006892ce04
