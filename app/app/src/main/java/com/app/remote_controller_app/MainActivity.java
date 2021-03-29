@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Clicked");
         TextView text = (TextView) findViewById(R.id.textview_first);
         number_of_clicks++;
-
+        //test
         text.setText("Button clicked! " + number_of_clicks + " times...");
     }
 
