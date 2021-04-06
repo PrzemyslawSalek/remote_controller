@@ -39,4 +39,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-android
+    implementation group: 'com.j256.ormlite', name: 'ormlite-android', version: '4.48'
 }
