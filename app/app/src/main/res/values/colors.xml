@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="settings_icons">#353535</color>
+    <color name="icon_more_more">#95a5a6</color>
 
 <!--    -->
     <color name="purple_200">#FFBB86FC</color>

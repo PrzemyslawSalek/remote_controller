@@ -1,3 +1,4 @@
+<!--
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,4 +9,32 @@
         android:orderInCategory="0"
         android:title="@string/action_settings"
         app:showAsAction="ifRoom" />
+</menu>
+-->
+
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Main Menu"
+        app:showAsAction="always"
+        android:icon="@drawable/icon_more_vert1">
+
+        <menu>
+            <item
+                android:id="@+id/settingsFragment"
+                android:icon="@drawable/ic_baseline_settings_24"
+                android:orderInCategory="0"
+                android:title="@string/action_settings"
+                app:showAsAction="ifRoom" />
+            <item
+                android:title="Bluetooth"
+                android:icon="@drawable/icon_bluetooth1"
+                android:id="@+id/bluetooth"
+                app:showAsAction="never"/>
+        </menu>
+
+    </item>
 </menu>

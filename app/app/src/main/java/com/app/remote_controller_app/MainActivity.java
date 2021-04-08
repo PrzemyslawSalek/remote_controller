@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if ( id == R.id.bluetooth ) {
+            Toast.makeText(this, "Bluetooth", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.settingsFragment) {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
