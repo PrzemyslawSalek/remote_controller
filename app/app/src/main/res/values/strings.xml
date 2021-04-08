@@ -34,4 +34,7 @@
     <string name="polish_entries">Polish</string>
     <string name="english_values">english</string>
     <string name="polish_values">polish</string>
+
+<!-- Controller View -->
+    <string name="controller_edit">Edit Mode</string>
 </resources>
