@@ -25,4 +25,8 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.app.remote_controller_app.SettingsFragment"
+        android:label="@string/action_settings" />
 </navigation>

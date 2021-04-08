@@ -2,11 +2,18 @@ package com.app.remote_controller_app;
 
 import android.os.Bundle;
 
+import com.app.remote_controller_app.examples.FirstFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHost;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.view.View;
 
@@ -24,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -54,17 +65,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            System.out.println("Settings clicked!");
-            return true;
+        if (id == R.id.settingsFragment) {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            return NavigationUI.onNavDestinationSelected(item, navController)
+                    || super.onOptionsItemSelected(item);
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
