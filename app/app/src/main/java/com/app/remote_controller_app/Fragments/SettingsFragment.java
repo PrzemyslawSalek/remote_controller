@@ -1,8 +1,10 @@
-package com.app.remote_controller_app;
+package com.app.remote_controller_app.Fragments;
 
 import android.os.Bundle;
 
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.app.remote_controller_app.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

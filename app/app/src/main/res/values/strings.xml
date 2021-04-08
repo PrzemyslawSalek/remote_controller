@@ -35,6 +35,9 @@
     <string name="english_values">english</string>
     <string name="polish_values">polish</string>
 
-<!-- Controller View -->
+    <!-- Controller View -->
     <string name="controller_edit">Edit Mode</string>
+
+<!-- Opening View -->
+    <string name="opening_addnew">Add new controller</string>
 </resources>

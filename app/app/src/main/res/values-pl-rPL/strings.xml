@@ -19,4 +19,7 @@
 
 <!-- Controller View -->
     <string name="controller_edit">Tryb Edycji</string>
+
+<!-- Opening View -->
+    <string name="opening_addnew">Dodaj Nowy Pilot</string>
 </resources>

@@ -9,10 +9,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.app.remote_controller_app.R;
-import com.app.remote_controller_app.examples.FirstFragment;
 
 public class Controller extends Fragment {
 
@@ -25,7 +23,7 @@ public class Controller extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.controller_button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.controller_button_edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(Controller.this)
