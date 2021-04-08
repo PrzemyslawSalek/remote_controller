@@ -2,4 +2,18 @@
 <resources>
     <string name="app_name">remote_controller_app</string>
     <string name="next">następny</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="first_fragment_label">Pierwszy fragment</string>
+    <string name="second_fragment_label">Drugi fragment</string>
+    <string name="previous">poprzedni</string>
+    <string name="hello_first_fragment">Witam</string>
+    <string name="hello_second_fragment">Dzień Dobry</string>
+    <string name="size_colon">Rozmiar:</string>
+    <string name="color_colon">Kolor:</string>
+    <string name="language_header">Język</string>
+    <string name="language_title">Wybierz język</string>
+    <string name="english_entries">Angielski</string>
+    <string name="polish_entries">Polski</string>
+    <string name="english_values">angielski</string>
+    <string name="polish_values">polski</string>
 </resources>
