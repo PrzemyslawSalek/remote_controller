@@ -14,6 +14,10 @@
     <string name="language_title">Wybierz język</string>
     <string name="english_entries">Angielski</string>
     <string name="polish_entries">Polski</string>
-    <string name="english_values">angielski</string>
-    <string name="polish_values">polski</string>
+
+    <!-- Controller View -->
+    <string name="controller_edit">Tryb Edycji</string>
+
+<!-- Opening View -->
+    <string name="opening_addnew">Dodaj Nowy Pilot</string>
 </resources>

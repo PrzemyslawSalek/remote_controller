@@ -27,6 +27,6 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.app.remote_controller_app.SettingsFragment"
+        android:name="com.app.remote_controller_app.Fragments.Settings"
         android:label="@string/action_settings" />
 </navigation>
