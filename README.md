@@ -25,5 +25,5 @@ Communication between devices via bluetooth transmission.
 ## Technology
 - Android Studio (Android Emulator)
 - Arduino (Arduino IDE, module bluetooth)
-- SQLite
+- SQLite with OrmLite
 - StarUML
