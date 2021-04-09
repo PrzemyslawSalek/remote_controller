@@ -32,8 +32,8 @@
     <string name="language_title">Select the language</string>
     <string name="english_entries">English</string>
     <string name="polish_entries">Polish</string>
-    <string name="english_values">english</string>
-    <string name="polish_values">polish</string>
+    <string name="english_values" translatable="false">en</string>
+    <string name="polish_values" translatable="false">pl</string>
 
     <!-- Controller View -->
     <string name="controller_edit">Edit Mode</string>
