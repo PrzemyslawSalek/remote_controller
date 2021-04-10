@@ -20,4 +20,5 @@
 
 <!-- Opening View -->
     <string name="opening_addnew">Dodaj Nowy Pilot</string>
+    <string name="device_entries">Język urządzenia</string>
 </resources>

@@ -1,25 +1,15 @@
 <resources>
 
     <string-array name="language_entries">
+        <item>@string/device_entries</item>
         <item>@string/english_entries</item>
         <item>@string/polish_entries</item>
     </string-array>
 
     <string-array name="language_values">
+        <item>@string/device_values</item>
         <item>@string/english_values</item>
         <item>@string/polish_values</item>
     </string-array>
-
-
-    <!-- Reply Preference -->
-<!--    <string-array name="reply_entries">-->
-<!--        <item>Reply</item>-->
-<!--        <item>Reply to all</item>-->
-<!--    </string-array>-->
-
-<!--    <string-array name="reply_values">-->
-<!--        <item>reply</item>-->
-<!--        <item>reply_all</item>-->
-<!--    </string-array>-->
 
 </resources>

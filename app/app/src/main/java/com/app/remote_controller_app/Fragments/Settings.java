@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.preference.PreferenceFragmentCompat;
 import com.app.remote_controller_app.R;
+import java.util.Locale;
 
 
 public class Settings extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -16,23 +17,25 @@ public class Settings extends PreferenceFragmentCompat implements SharedPreferen
     @Override
     public void onResume() {
         super.onResume();
-
-        getPreferenceScreen().getSharedPreferences()
-                .registerOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-        getPreferenceScreen().getSharedPreferences()
-                .unregisterOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
 
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,String key) {
+    /* Metoda reagująca na wybranie nowej wartości w preferencjach */
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals("language_key")) {
-            System.out.println("Wybrano język: " + sharedPreferences.getString("language_key", "en"));
-            getActivity().recreate();
+            if(sharedPreferences.getString("language_key", "device").equals("device")) {
+                if (!(Locale.getDefault().getLanguage()).equals(getResources().getConfiguration().locale.toString()))
+                    getActivity().recreate();
+            } else {
+                if(!sharedPreferences.getString("language_key", "device").equals(getResources().getConfiguration().locale.toString()))
+                    getActivity().recreate();
+            }
         }
     }
 

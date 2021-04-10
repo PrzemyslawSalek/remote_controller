@@ -15,8 +15,10 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.lang.reflect.Method;
 import java.util.Locale;
 
 
@@ -28,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /* Wybranie i ustawienie odpowiedniego języka aplikacji */
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        setAppLocale(settings.getString("language_key", "en"));
+        setAppLocale(settings.getString("language_key", "device"));
 
         setContentView(R.layout.activity_main);
 
@@ -42,15 +45,21 @@ public class MainActivity extends AppCompatActivity {
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            conf.setLocale(new Locale(localeCode.toLowerCase()));
+            if(localeCode.equals("device"))
+                conf.setLocale(new Locale(Locale.getDefault().getLanguage()));
+            else
+                conf.setLocale(new Locale(localeCode.toLowerCase()));
         } else {
-            conf.locale = new Locale(localeCode.toLowerCase());
+            if(localeCode.equals("device"))
+                conf.locale = new Locale(Locale.getDefault().getLanguage());
+            else
+                conf.locale = new Locale(localeCode.toLowerCase());
         }
         res.updateConfiguration(conf, dm);
 
-        System.out.println("Język urządzenia: " + Locale.getDefault().getLanguage() +
-                " | Język aplikacji: " + (conf.locale).toString());
+        System.out.println("Język urządzenia: " + Locale.getDefault().getLanguage() + " | Język aplikacji: " + (conf.locale).toString());
     }
 
     // for presentation
@@ -62,35 +71,46 @@ public class MainActivity extends AppCompatActivity {
         text.setText("Button clicked! " + number_of_clicks + " times...");
     }
 
-    // Dodanie menu do aktywności
+    /* -------------- Menu ------------------ */
+
+    /* Dodawanie elementów do menu (Action Bar) */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    /* Akcje wykonywane po wybraniu odpowiedniego elementu z menu */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if ( id == R.id.bluetooth ) {
-            Toast.makeText(this, "Bluetooth", Toast.LENGTH_SHORT).show();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.bluetooth:
+                Toast.makeText(this, "Bluetooth", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.settingsFragment:
+                NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+                return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
         }
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.settingsFragment) {
-            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-            return NavigationUI.onNavDestinationSelected(item, navController)
-                    || super.onOptionsItemSelected(item);
-
-        }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    /* Gdy menu jest otwarte... Wyświetla ikony obok elementów z listy */
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        if((featureId & Window.FEATURE_ACTION_BAR) == Window.FEATURE_ACTION_BAR && menu != null){
+            if(menu.getClass().getSimpleName().equals("MenuBuilder")){
+                try {
+                    Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(menu, true);
+                } catch(NoSuchMethodException e){
+                    //Log.e(TAG, "onMenuOpened", e);
+                } catch(Exception e){
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
     }
 
 

@@ -2,7 +2,8 @@
 <resources>
 <!-- Icons -->
     <color name="settings_icons">#353535</color>
-    <color name="icon_more_more">#95a5a6</color>
+    <color name="menuList_icons">#95a5a6</color>
+    <color name="menu_icons">#FFFFFF</color>
 
 <!--  -->
     <color name="buttons_button">#1abc9c</color>
