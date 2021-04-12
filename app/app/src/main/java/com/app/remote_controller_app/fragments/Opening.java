@@ -1,4 +1,4 @@
-package com.app.remote_controller_app.Fragments;
+package com.app.remote_controller_app.fragments;
 
 import android.os.Bundle;
 

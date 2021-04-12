@@ -1,14 +1,13 @@
-package com.app.remote_controller_app;
+package com.app.remote_controller_app.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.app.remote_controller_app.Fragments.Controller;
+import com.app.remote_controller_app.Controller;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,7 +16,6 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 0;
 
     private Dao controllerDao = null;
-    private Dao componentDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -25,23 +23,21 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
-//        try {
-//            TableUtils.createTable(connectionSource, Controller.class);
-//            TableUtils.createTable(connectionSource, Component.class);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            TableUtils.createTable(connectionSource, SerializedControllers.class);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
-//        try {
-//            TableUtils.dropTable(connectionSource, Controller.class, true);
-//            TableUtils.dropTable(connectionSource, Component.class, true);
-//            onCreate(database, connectionSource);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            TableUtils.dropTable(connectionSource, SerializedControllers.class, true);
+            onCreate(database, connectionSource);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addController(Controller c){
@@ -52,7 +48,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public void updateNameController(Controller c){
+    public void updateNameController(SerializedControllers c){
         try {
             controllerDao.update(c);
         } catch (SQLException e) {
@@ -60,7 +56,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public void removeController(Controller c){
+    public void removeController(SerializedControllers c){
         try {
             controllerDao.delete(c);
         } catch (SQLException e) {
@@ -68,7 +64,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public List<Controller> listController(){
+    public List<SerializedControllers> listOfController(){
         try {
             return controllerDao.queryForAll();
         } catch (SQLException e) {
