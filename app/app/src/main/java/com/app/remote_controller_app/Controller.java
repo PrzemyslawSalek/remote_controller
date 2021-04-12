@@ -2,6 +2,7 @@ package com.app.remote_controller_app;
 
 import com.app.remote_controller_app.components.Component;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class Controller {
     private String favoriteMAC;
     private List<Component> listOfComponents;
 
+    @JsonCreator
     public Controller(@JsonProperty("name") String name, @JsonProperty("favoriteDeviceMAC") String favoriteMAC, @JsonProperty("listOfComponents") List<Component> listOfComponents) {
         this.name = name;
         this.favoriteMAC = favoriteMAC;

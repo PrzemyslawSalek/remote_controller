@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.View;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Button extends Component{
 
+    @JsonCreator
     public Button(@JsonProperty("sizeX")float sizeX, @JsonProperty("sizeY")float sizeY, @JsonProperty("posX")float posX, @JsonProperty("posY")float posY, @JsonProperty("isLocal")boolean isLocal) {
         super(sizeX, sizeY, posX, posY, isLocal);
     }
