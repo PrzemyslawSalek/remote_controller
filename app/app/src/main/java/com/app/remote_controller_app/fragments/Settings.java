@@ -2,9 +2,7 @@ package com.app.remote_controller_app.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.preference.PreferenceFragmentCompat;
-
 import com.app.remote_controller_app.R;
 import java.util.Locale;
 

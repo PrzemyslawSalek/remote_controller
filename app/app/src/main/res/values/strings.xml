@@ -29,9 +29,11 @@
     <!-- Controller View -->
     <string name="controller_edit">Edit Mode</string>
 
-<!-- Opening View -->
+    <!-- Opening View -->
     <string name="opening_addnew">Add new controller</string>
     <string name="action_bluetooth" translatable="false">Bluetooth</string>
     <string name="device_entries">Device language</string>
     <string name="device_values" translatable="false">device</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

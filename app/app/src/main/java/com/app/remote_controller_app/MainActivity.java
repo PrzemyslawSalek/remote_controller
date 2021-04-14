@@ -12,19 +12,15 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.TextView;
 import android.widget.Toast;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    int number_of_clicks = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +58,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Język urządzenia: " + Locale.getDefault().getLanguage() + " | Język aplikacji: " + (conf.locale).toString());
     }
 
-    // for presentation
-    public void testAction(View view) {
-        System.out.println("Clicked");
-        TextView text = (TextView) findViewById(R.id.textview_first);
-        number_of_clicks++;
-        //test test
-        text.setText("Button clicked! " + number_of_clicks + " times...");
-    }
 
     /* -------------- Menu ------------------ */
 

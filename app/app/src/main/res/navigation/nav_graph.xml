@@ -3,30 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/opening">
 
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.app.remote_controller_app.examples.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.app.remote_controller_app.examples.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.app.remote_controller_app.fragments.Settings"
         android:label="@string/action_settings" />
+    <fragment
+        android:id="@+id/opening"
+        android:name="com.app.remote_controller_app.fragments.Opening"
+        android:label="fragment_opening"
+        tools:layout="@layout/fragment_opening" >
+        <action
+            android:id="@+id/action_opening_to_controllerMenu"
+            app:destination="@id/controllerMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/controllerMenu"
+        android:name="com.app.remote_controller_app.fragments.ControllerMenu"
+        android:label="fragment_controller_menu"
+        tools:layout="@layout/fragment_controller_menu" />
 </navigation>
