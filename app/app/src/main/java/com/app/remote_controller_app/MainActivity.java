@@ -5,26 +5,37 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.Window;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
-import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.Window;
-import android.widget.Toast;
+
+import com.app.remote_controller_app.database.DatabaseHelper;
+import com.app.remote_controller_app.database.SerializedControllers;
+import com.j256.ormlite.dao.Dao;
+
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    DatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*Inicjalizacja obiektów*/
+        db = new DatabaseHelper(this);
 
         /* Wybranie i ustawienie odpowiedniego języka aplikacji */
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -99,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.onMenuOpened(featureId, menu);
+    }
+
+    public void add(String name) throws SQLException {
+        Dao d = db.getSerializedControllerDao();
+        Controller c = new Controller(name, "sds");
+        d.create(new SerializedControllers(c));
     }
 
 

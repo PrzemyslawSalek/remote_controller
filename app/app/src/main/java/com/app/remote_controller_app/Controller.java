@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -20,11 +21,26 @@ public class Controller {
         this.listOfComponents = listOfComponents;
     }
 
+    public Controller(String name, String favoriteMAC) {
+        this.listOfComponents = new LinkedList<Component>();
+        this.name = name;
+        this.favoriteMAC = favoriteMAC;
+    }
+
     public void addComponent(Component c){
         listOfComponents.add(c);
     }
 
     public void removeComponent(Component c){
         listOfComponents.remove(c);
+    }
+
+    @Override
+    public String toString() {
+        return "Controller{" +
+                "name='" + name + '\'' +
+                ", favoriteMAC='" + favoriteMAC + '\'' +
+                ", listOfComponents=" + listOfComponents +
+                '}';
     }
 }

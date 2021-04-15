@@ -23,4 +23,15 @@ public class Button extends Component{
 
         return btn;
     }
+
+    @Override
+    public String toString() {
+        return "Button{" +
+                "sizeX=" + sizeX +
+                ", sizeY=" + sizeY +
+                ", posX=" + posX +
+                ", posY=" + posY +
+                ", isLocal=" + isLocal +
+                '}';
+    }
 }
