@@ -33,12 +33,13 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         /*Inicjalizacja obiektów*/
-        db = new DatabaseHelper(this);
+        //db = new DatabaseHelper(this);
 
         /* Wybranie i ustawienie odpowiedniego języka aplikacji */
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/opening">
+    app:startDestination="@id/controllerMenu">
 
     <fragment
         android:id="@+id/settingsFragment"
@@ -12,7 +12,7 @@
     <fragment
         android:id="@+id/opening"
         android:name="com.app.remote_controller_app.fragments.Opening"
-        android:label="fragment_opening"
+        android:label="@string/label_Opening"
         tools:layout="@layout/fragment_opening" >
         <action
             android:id="@+id/action_opening_to_controllerMenu"
@@ -21,6 +21,40 @@
     <fragment
         android:id="@+id/controllerMenu"
         android:name="com.app.remote_controller_app.fragments.ControllerMenu"
-        android:label="fragment_controller_menu"
-        tools:layout="@layout/fragment_controller_menu" />
+        android:label="@string/label_ControllerMenu"
+        tools:layout="@layout/fragment_controller_menu" >
+        <action
+            android:id="@+id/action_controllerMenu_to_editMode"
+            app:destination="@id/editMode" />
+        <action
+            android:id="@+id/action_controllerMenu_to_usageMode"
+            app:destination="@id/usageMode" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMode"
+        android:name="com.app.remote_controller_app.fragments.EditMode"
+        android:label="@string/label_EditMode"
+        tools:layout="@layout/fragment_edit_mode" >
+        <action
+            android:id="@+id/action_editMode_to_componentSelection"
+            app:destination="@id/componentSelection" />
+        <action
+            android:id="@+id/action_editMode_to_componentOptions"
+            app:destination="@id/componentOptions" />
+    </fragment>
+    <fragment
+        android:id="@+id/usageMode"
+        android:name="com.app.remote_controller_app.fragments.UsageMode"
+        android:label="@string/label_UsageMode"
+        tools:layout="@layout/fragment_usage_mode" />
+    <fragment
+        android:id="@+id/componentSelection"
+        android:name="com.app.remote_controller_app.fragments.ComponentSelection"
+        android:label="@string/componentSelection"
+        tools:layout="@layout/fragment_component_selection" />
+    <fragment
+        android:id="@+id/componentOptions"
+        android:name="com.app.remote_controller_app.fragments.ComponentOptions"
+        android:label="@string/label_ComponentOptions"
+        tools:layout="@layout/fragment_component_options" />
 </navigation>
