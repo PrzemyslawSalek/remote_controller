@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">remote_controller_app</string>
-    <string name="next">następny</string>
     <string name="action_settings">Ustawienia</string>
-    <string name="first_fragment_label">Pierwszy fragment</string>
-    <string name="second_fragment_label">Drugi fragment</string>
-    <string name="previous">poprzedni</string>
-    <string name="hello_first_fragment">Witam</string>
-    <string name="hello_second_fragment">Dzień Dobry</string>
     <string name="size_colon">Rozmiar:</string>
     <string name="color_colon">Kolor:</string>
     <string name="language_header">Język</string>
@@ -21,4 +15,15 @@
 <!-- Opening View -->
     <string name="opening_addnew">Dodaj Nowy Pilot</string>
     <string name="device_entries">Język urządzenia</string>
+    <string name="action_usageMode">Tryb użycia</string>
+    <string name="action_editMode">Tryb edycji</string>
+    <string name="action_delete">Usuń</string>
+    <string name="action_sampleButton">Przykładowy przycisk</string>
+    <string name="componentSelection">Wybór komponentów</string>
+    <string name="label_UsageMode">Tryb użycia</string>
+    <string name="label_Opening">Otwarcie</string>
+    <string name="label_EditMode">Tryb użycia</string>
+    <string name="label_ControllerMenu">Menu kontrolera</string>
+    <string name="label_ComponentSelection">Wybór komponentu</string>
+    <string name="label_ComponentOptions">Opcje komponentu</string>
 </resources>
