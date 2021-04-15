@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "remote_controller.db";
-    private static final int DATABASE_VERSION = 0;
+    private static final int DATABASE_VERSION = 1;
 
     private Dao serializedControllerDao = null;
 
@@ -46,36 +46,4 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
         return serializedControllerDao;
     }
-
-//    public void addController(Controller c){
-//        try {
-//            controllerDao.create(c);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    public void updateNameController(SerializedControllers c){
-//        try {
-//            controllerDao.update(c);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    public void removeController(SerializedControllers c){
-//        try {
-//            controllerDao.delete(c);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    public List<SerializedControllers> listOfController(){
-//        try {
-//            return controllerDao.queryForAll();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 }

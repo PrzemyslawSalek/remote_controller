@@ -52,4 +52,8 @@ public class SerializedControllers {
     public String getSerializedController() {
         return serializedController;
     }
+
+    public long getId() {
+        return id;
+    }
 }

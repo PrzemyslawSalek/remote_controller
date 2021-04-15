@@ -10,6 +10,7 @@ import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Controller {
+    private long id;
     private String name;
     private String favoriteMAC;
     private List<Component> listOfComponents;
@@ -43,4 +44,14 @@ public class Controller {
                 ", listOfComponents=" + listOfComponents +
                 '}';
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
 }

@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -16,7 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import androidx.preference.PreferenceManager;
+import android.preference.PreferenceManager;
 
 import com.app.remote_controller_app.database.DatabaseHelper;
 import com.app.remote_controller_app.database.SerializedControllers;
@@ -24,6 +25,8 @@ import com.j256.ormlite.dao.Dao;
 
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -112,11 +115,51 @@ public class MainActivity extends AppCompatActivity {
         return super.onMenuOpened(featureId, menu);
     }
 
-    public void add(String name) throws SQLException {
-        Dao d = db.getSerializedControllerDao();
-        Controller c = new Controller(name, "sds");
-        d.create(new SerializedControllers(c));
+    public Controller addController(String name){
+        try{
+            Dao d = db.getSerializedControllerDao();
+            SerializedControllers sc=new SerializedControllers(new Controller(name, ""));
+            d.create(sc);
+            sc.getObject().setId(sc.getId());
+            d.update(sc);
+            return sc.getObject();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    public void updateController(Controller c){
+        try {
+            Dao d = db.getSerializedControllerDao();
+            SerializedControllers SController= (SerializedControllers) d.queryForId(c.getId());
+            SController.setSerializedController(c);
+            d.update(SController);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public void removeController(Controller c){
+        try {
+            Dao d = db.getSerializedControllerDao();
+            d.deleteById(c.getId());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Controller> listOfController(){
+        try {
+            Dao d = db.getSerializedControllerDao();
+            List<SerializedControllers> listS=d.queryForAll();
+            List<Controller> listC = new ArrayList<>();
+            for(int i=0; i<listS.size(); i++){
+                listC.add(listS.get(i).getObject());
+                listC.get(i).setId(listS.get(i).getId());
+            }
+            return listC;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
