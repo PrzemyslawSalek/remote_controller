@@ -13,6 +13,7 @@
     <string name="controller_edit">Tryb Edycji</string>
 
 <!-- Opening View -->
+    <string name="enter_controller_name">Wprowadź Nazwę Pilota</string>
     <string name="opening_addnew">Dodaj Nowy Pilot</string>
     <string name="device_entries">Język urządzenia</string>
     <string name="action_usageMode">Tryb użycia</string>

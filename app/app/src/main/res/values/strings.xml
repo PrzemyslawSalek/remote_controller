@@ -23,6 +23,7 @@
     <string name="controller_edit">Edit Mode</string>
 
     <!-- Opening View -->
+    <string name="enter_controller_name">Enter Controller Name</string>
     <string name="opening_addnew">Add new controller</string>
     <string name="action_bluetooth" translatable="false">Bluetooth</string>
     <string name="device_entries">Device language</string>
