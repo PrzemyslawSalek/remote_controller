@@ -13,6 +13,10 @@ import com.app.remote_controller_app.R;
 
 public class ControllerMenu extends Fragment {
 
+    Button btnEditMode;
+    Button btnUsageMode;
+    Button btnDelete;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,31 +26,37 @@ public class ControllerMenu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_controller_menu, container, false);
 
-        Button btnEditMode = (Button) view.findViewById(R.id.button_editMode);
-        btnEditMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_editMode);
-            }
-        });
+        btnEditMode = (Button) view.findViewById(R.id.button_editMode);
+        btnEditMode.setOnClickListener(listenerEditMode);
 
-        Button btnUsageMode = (Button) view.findViewById(R.id.button_usageMode);
-        btnUsageMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_usageMode);
-            }
-        });
+        btnUsageMode = (Button) view.findViewById(R.id.button_usageMode);
+        btnUsageMode.setOnClickListener(listenerUsageMode);
 
-        Button btnDelete = (Button) view.findViewById(R.id.button_delete);
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Delete", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        btnDelete = (Button) view.findViewById(R.id.button_delete);
+        btnDelete.setOnClickListener(listenerDelete);
 
         return view;
     }
+
+    View.OnClickListener listenerEditMode = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_editMode);
+        }
+    };
+
+    View.OnClickListener listenerUsageMode = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_usageMode);
+        }
+    };
+
+    View.OnClickListener listenerDelete = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getActivity(), "Delete", Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }

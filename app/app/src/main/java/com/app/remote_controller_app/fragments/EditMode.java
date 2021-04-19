@@ -15,6 +15,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EditMode extends Fragment {
 
+    Button btnSampleEdit;
+    FloatingActionButton btnComponentSelection;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,22 +27,26 @@ public class EditMode extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_mode, container, false);
 
-        Button btnSampleEdit = (Button) view.findViewById(R.id.button_sampleEdit);
-        btnSampleEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(EditMode.this).navigate(R.id.action_editMode_to_componentOptions);
-            }
-        });
+        btnSampleEdit = (Button) view.findViewById(R.id.button_sampleEdit);
+        btnSampleEdit.setOnClickListener(listenerSampleEdit);
 
-        FloatingActionButton btnComponentSelection = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_componentSelection);
-        btnComponentSelection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(EditMode.this).navigate(R.id.action_editMode_to_componentSelection);
-            }
-        });
+        btnComponentSelection = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_componentSelection);
+        btnComponentSelection.setOnClickListener(listenerComponentSelection);
 
         return view;
     }
+
+    View.OnClickListener listenerSampleEdit = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            NavHostFragment.findNavController(EditMode.this).navigate(R.id.action_editMode_to_componentOptions);
+        }
+    };
+
+    View.OnClickListener listenerComponentSelection = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            NavHostFragment.findNavController(EditMode.this).navigate(R.id.action_editMode_to_componentSelection);
+        }
+    };
 }

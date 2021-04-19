@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -80,7 +81,7 @@ public class Opening extends Fragment {
             textButtonName = dialogLayout.findViewById(R.id.dialog_add_controller_edit_name);
             Controller newController = ((MainActivity) getActivity() ).addController(String.valueOf(textButtonName.getText()));
             controllerList.add(newController);
-
+            NavHostFragment.findNavController(Opening.this).navigate(R.id.action_opening_to_controllerMenu);
         }
     };
 
