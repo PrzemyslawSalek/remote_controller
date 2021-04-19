@@ -40,4 +40,5 @@
     <string name="label_ControllerMenu">Controller Menu</string>
     <string name="label_ComponentSelection">Component Selection</string>
     <string name="label_ComponentOptions">Component Options</string>
+
 </resources>
