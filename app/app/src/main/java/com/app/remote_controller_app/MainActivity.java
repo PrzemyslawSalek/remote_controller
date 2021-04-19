@@ -33,13 +33,14 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper db;
+    Controller currentSelectedController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         /*Inicjalizacja obiektów*/
-        //db = new DatabaseHelper(this);
+        db = new DatabaseHelper(this);
 
         /* Wybranie i ustawienie odpowiedniego języka aplikacji */
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -149,18 +150,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public List<Controller> listOfController(){
+    public ArrayList<Controller> listOfController(){
         try {
             Dao d = db.getSerializedControllerDao();
             List<SerializedControllers> listS=d.queryForAll();
-            List<Controller> listC = new ArrayList<>();
-            for(int i=0; i<listS.size(); i++){
-                listC.add(listS.get(i).getObject());
-                listC.get(i).setId(listS.get(i).getId());
+            ArrayList<Controller> listC = new ArrayList<>();
+            for(SerializedControllers sc : listS){
+                listC.add(sc.getObject());
             }
+//
+//            for(int i=0; i<listS.size(); i++){
+//                listC.add(listS.get(i).getObject());
+//                listC.get(i).setId(listS.get(i).getId());
+//            }
             return listC;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setCurrentSelectedController(Controller c){
+        Log.v("SetCurrentController", c.toString());
+        currentSelectedController = c;
     }
 }

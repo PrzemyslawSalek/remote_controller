@@ -38,11 +38,7 @@ public class Controller {
 
     @Override
     public String toString() {
-        return "Controller{" +
-                "name='" + name + '\'' +
-                ", favoriteMAC='" + favoriteMAC + '\'' +
-                ", listOfComponents=" + listOfComponents +
-                '}';
+        return name;
     }
 
     public long getId() {

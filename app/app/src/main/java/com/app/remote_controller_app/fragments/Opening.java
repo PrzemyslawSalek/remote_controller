@@ -5,21 +5,20 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.app.remote_controller_app.Controller;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,13 +32,14 @@ public class Opening extends Fragment {
     EditText textButtonName;
     FloatingActionButton buttonAddController;
     View dialogLayout;
-    ArrayAdapter<String> arrayAdapter;
+    ArrayAdapter<Controller> arrayAdapter;
 
-    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayList<Controller> controllerList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restoreFromDatabase();
     }
 
     // Avoid passing null as the view of root
@@ -47,16 +47,12 @@ public class Opening extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_opening, container, false);
-
         listView = (ListView) view.findViewById(R.id.list_view_layout);
-
 
         buttonAddController = (FloatingActionButton) view.findViewById(R.id.button_addController);
         buttonAddController.setOnClickListener(listenerAddController);
 
-        arrayList.add("sample");
-
-        arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, arrayList);
+        arrayAdapter = new ArrayAdapter<Controller>(getContext(), android.R.layout.simple_list_item_1, controllerList);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(listenerGetController);
@@ -82,14 +78,22 @@ public class Opening extends Fragment {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             textButtonName = dialogLayout.findViewById(R.id.dialog_add_controller_edit_name);
-            arrayList.add( String.valueOf(textButtonName.getText()) );
+            Controller newController = ((MainActivity) getActivity() ).addController(String.valueOf(textButtonName.getText()));
+            controllerList.add(newController);
+
         }
     };
 
     AdapterView.OnItemClickListener listenerGetController = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(getContext(), arrayList.get(position), Toast.LENGTH_SHORT).show();
+            ((MainActivity) getActivity() ).setCurrentSelectedController(controllerList.get(position));
+            NavHostFragment.findNavController(Opening.this).navigate(R.id.action_opening_to_controllerMenu);
         }
     };
+
+    public void restoreFromDatabase(){
+        controllerList = new ArrayList<>();
+        controllerList = ((MainActivity) getActivity() ).listOfController();
+    }
 }
