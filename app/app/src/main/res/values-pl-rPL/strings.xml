@@ -28,4 +28,6 @@
     <string name="label_ComponentSelection">Wybór komponentu</string>
     <string name="label_ComponentOptions">Opcje komponentu</string>
     <string name="label_availableDevices">Dostępne urządzenia</string>
+    <string name="label_none">Żadne</string>
+    <string name="action_cancel">Anuluj</string>
 </resources>

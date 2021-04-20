@@ -64,8 +64,8 @@ public class Opening extends Fragment {
             dialogLayout = getLayoutInflater().inflate(R.layout.dialog_add_controller_layout, null);
 
             builder.setView(dialogLayout);
-            builder.setPositiveButton("OK", listenerButtonCreation);
-            builder.setNegativeButton("Cancel", null);
+            builder.setPositiveButton(getString(R.string.action_ok), listenerButtonCreation);
+            builder.setNegativeButton(getString(R.string.action_cancel), null);
 
             AlertDialog dialog = builder.create();
             dialog.show();

@@ -38,6 +38,7 @@ public class ControllerMenu extends Fragment {
         return view;
     }
 
+    /* Co się dzieje po wybraniu Edit Mode */
     View.OnClickListener listenerEditMode = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -45,6 +46,7 @@ public class ControllerMenu extends Fragment {
         }
     };
 
+    /* Co się dzieje po wybraniu Usage Mode */
     View.OnClickListener listenerUsageMode = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -52,6 +54,7 @@ public class ControllerMenu extends Fragment {
         }
     };
 
+    /* Co się dzieje po wybraniu Delete */
     View.OnClickListener listenerDelete = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

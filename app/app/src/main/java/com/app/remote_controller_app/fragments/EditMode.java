@@ -43,6 +43,7 @@ public class EditMode extends Fragment {
         }
     };
 
+    /* Co się dzieje po kliknięciu przycisku do wyboru komponentów */
     View.OnClickListener listenerComponentSelection = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

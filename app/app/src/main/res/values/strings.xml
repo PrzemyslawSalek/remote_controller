@@ -40,5 +40,8 @@
     <string name="label_ComponentSelection">Component Selection</string>
     <string name="label_ComponentOptions">Component Options</string>
     <string name="label_availableDevices">Available devices</string>
+    <string name="label_none">None</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok" translatable="false">Ok</string>
 
 </resources>
