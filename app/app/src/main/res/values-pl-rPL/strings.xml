@@ -27,4 +27,5 @@
     <string name="label_ControllerMenu">Menu kontrolera</string>
     <string name="label_ComponentSelection">Wybór komponentu</string>
     <string name="label_ComponentOptions">Opcje komponentu</string>
+    <string name="label_availableDevices">Dostępne urządzenia</string>
 </resources>

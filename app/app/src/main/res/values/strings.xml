@@ -28,7 +28,6 @@
     <string name="action_bluetooth" translatable="false">Bluetooth</string>
     <string name="device_entries">Device language</string>
     <string name="device_values" translatable="false">device</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="action_usageMode">Usage Mode</string>
     <string name="action_editMode">Edit Mode</string>
     <string name="action_delete">Delete</string>
@@ -40,5 +39,6 @@
     <string name="label_ControllerMenu">Controller Menu</string>
     <string name="label_ComponentSelection">Component Selection</string>
     <string name="label_ComponentOptions">Component Options</string>
+    <string name="label_availableDevices">Available devices</string>
 
 </resources>

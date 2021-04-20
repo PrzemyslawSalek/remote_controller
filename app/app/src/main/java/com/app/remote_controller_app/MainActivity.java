@@ -1,5 +1,7 @@
 package com.app.remote_controller_app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -16,11 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import android.preference.PreferenceManager;
 
 import com.app.remote_controller_app.database.DatabaseHelper;
 import com.app.remote_controller_app.database.SerializedControllers;
+import com.app.remote_controller_app.fragments.Opening;
 import com.j256.ormlite.dao.Dao;
 
 import java.lang.reflect.Method;
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper db;
     Controller currentSelectedController;
+    String[] devices = {"none", "one", "two"};
+    int checkedDevice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +95,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bluetooth:
-                Toast.makeText(this, "Bluetooth", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(getString(R.string.label_availableDevices));
+                builder.setSingleChoiceItems(devices, checkedDevice, listenerDeviceChoice);
+                builder.setPositiveButton("OK", listenerDeviceOkButton);
+                builder.setNegativeButton("Cancel", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return true;
             case R.id.settingsFragment:
                 NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -97,6 +109,19 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    DialogInterface.OnClickListener listenerDeviceChoice= new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+        }
+    };
+
+    DialogInterface.OnClickListener listenerDeviceOkButton= new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+        }
+    };
 
     /* Gdy menu jest otwarte... Wyświetla ikony obok elementów z listy */
     @Override
@@ -116,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onMenuOpened(featureId, menu);
     }
+
+    /* -------------- Controller  ------------------ */
 
     public Controller addController(String name){
         try{
