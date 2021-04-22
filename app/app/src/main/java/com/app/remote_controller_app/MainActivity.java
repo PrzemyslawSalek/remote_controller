@@ -3,6 +3,7 @@ package com.app.remote_controller_app;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -26,19 +27,23 @@ import com.app.remote_controller_app.database.DatabaseHelper;
 import com.app.remote_controller_app.database.SerializedControllers;
 import com.j256.ormlite.dao.Dao;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper db;
     Controller currentSelectedController;
-    int checkedDevice = 0;
+    BluetoothService bluetoothService;
+    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         /*Inicjalizacja obiektów*/
         db = new DatabaseHelper(this);
+        bluetoothService = new BluetoothService();
 
         /* Wybranie i ustawienie odpowiedniego języka aplikacji */
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -115,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.bluetooth:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(getString(R.string.label_availableDevices));
-                builder.setSingleChoiceItems(getDevicesList(), checkedDevice, listenerDeviceChoice);
+                builder.setSingleChoiceItems(bluetoothService.getNameList(), -1, listenerDeviceChoice);
                 builder.setPositiveButton(getString(R.string.action_ok), listenerDeviceOkButton);
                 builder.setNegativeButton(getString(R.string.action_cancel), null);
                 AlertDialog dialog = builder.create();
@@ -128,22 +134,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /* Metoda zwracająca tablice sparowanych urządzeń */
-    private String[] getDevicesList() {
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-
-        List<String> devicesList = new ArrayList<String>();
-        devicesList.add(getString(R.string.label_none));
-        for(BluetoothDevice bt : pairedDevices)
-            devicesList.add(bt.getName());
-        return devicesList.toArray(new String[devicesList.size()]);
-    }
-
     /* Co się dzieje gdy wybierzesz opcje z listy urządzeń */
     DialogInterface.OnClickListener listenerDeviceChoice = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            bluetoothService.setCurrentDevice(which);
         }
     };
 
@@ -151,7 +146,20 @@ public class MainActivity extends AppCompatActivity {
     DialogInterface.OnClickListener listenerDeviceOkButton = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            Log.v("BLUETOOTH", String.valueOf(bluetoothService.currentDevice.getName()));
+            BluetoothSocket tmp = null;
+            BluetoothSocket mmSocket = null;
+            BluetoothDevice mmDevice = bluetoothService.getBluetoothAdapter().getRemoteDevice(bluetoothService.getCurrentAddress());
 
+            //create socket
+            try {
+                tmp = mmDevice.createRfcommSocketToServiceRecord(MY_UUID);
+                mmSocket = tmp;
+                mmSocket.connect();
+                Log.i("[BLUETOOTH]","Connected to: "+mmDevice.getName());
+            }catch(IOException e){
+                try{mmSocket.close();}catch(IOException c){return;}
+            }
         }
     };
 

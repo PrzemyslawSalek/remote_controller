@@ -3,6 +3,7 @@ package com.app.remote_controller_app.components;
 import android.content.Context;
 import android.view.View;
 
+import com.app.remote_controller_app.ConnectedThread;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -11,15 +12,17 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         include = JsonTypeInfo.As.PROPERTY,
         property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type( value = Button.class)
+        @JsonSubTypes.Type( value = Button.class),
+        @JsonSubTypes.Type( value = LED.class)
 })
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public abstract class Component {
+public class Component {
     protected float sizeX;
     protected float sizeY;
     protected float posX;
     protected float posY;
     protected boolean isLocal;
+    protected ConnectedThread ct;
 
     public Component(float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
         this.sizeX = sizeX;
@@ -28,5 +31,11 @@ public abstract class Component {
         this.posY = posY;
     }
 
-    public abstract View getView(Context context);
+    public View getView(Context context){
+        return null;
+    }
+
+    public void setConnectedThread(ConnectedThread ct) {
+        this.ct = ct;
+    }
 }

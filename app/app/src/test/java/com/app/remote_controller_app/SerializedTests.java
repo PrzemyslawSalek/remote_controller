@@ -13,7 +13,7 @@ public class SerializedTests {
     public void serializeControllerWithoutComponents() {
         Controller c = new Controller("nama", "12345");
         SerializedControllers sc = new SerializedControllers(c);
-        assertEquals("{\"name\":\"nama\",\"listOfComponents\":[],\"favoriteMAC\":\"12345\"}", sc.getSerializedController());
+        assertEquals("{\"name\":\"nama\",\"listOfComponents\":[],\"id\":0,\"favoriteMAC\":\"12345\"}", sc.getSerializedController());
     }
 
     @Test
@@ -31,6 +31,6 @@ public class SerializedTests {
         SerializedControllers sc = new SerializedControllers(c);
         System.out.println(sc.getSerializedController());
         System.out.println(c.toString());
-        assertEquals("{\"name\":\"nama\",\"listOfComponents\":[{\"type\":\"com.app.remote_controller_app.components.Button\",\"sizeX\":1.2,\"sizeY\":13.0,\"posX\":2.2,\"posY\":11.0,\"isLocal\":false}],\"favoriteMAC\":\"12345\"}", sc.getSerializedController());
+        assertEquals("{\"name\":\"nama\",\"listOfComponents\":[{\"type\":\"com.app.remote_controller_app.components.Button\",\"sizeX\":1.2,\"sizeY\":13.0,\"posX\":2.2,\"posY\":11.0,\"isLocal\":false}],\"id\":0,\"favoriteMAC\":\"12345\"}", sc.getSerializedController());
     }
 }
