@@ -10,6 +10,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -42,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper db;
     Controller currentSelectedController;
     BluetoothService bluetoothService;
-    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
 
     @Override
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setTitle(getString(R.string.label_availableDevices));
                 builder.setSingleChoiceItems(bluetoothService.getNameList(), -1, listenerDeviceChoice);
                 builder.setPositiveButton(getString(R.string.action_ok), listenerDeviceOkButton);
-                builder.setNegativeButton(getString(R.string.action_cancel), null);
+                builder.setNegativeButton(getString(R.string.action_cancel), listenerDeviceCancelButton);
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 return true;
@@ -146,20 +148,14 @@ public class MainActivity extends AppCompatActivity {
     DialogInterface.OnClickListener listenerDeviceOkButton = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            Log.v("BLUETOOTH", String.valueOf(bluetoothService.currentDevice.getName()));
-            BluetoothSocket tmp = null;
-            BluetoothSocket mmSocket = null;
-            BluetoothDevice mmDevice = bluetoothService.getBluetoothAdapter().getRemoteDevice(bluetoothService.getCurrentAddress());
+        }
+    };
 
-            //create socket
-            try {
-                tmp = mmDevice.createRfcommSocketToServiceRecord(MY_UUID);
-                mmSocket = tmp;
-                mmSocket.connect();
-                Log.i("[BLUETOOTH]","Connected to: "+mmDevice.getName());
-            }catch(IOException e){
-                try{mmSocket.close();}catch(IOException c){return;}
-            }
+    /* Co się dzieje gdy anulujesz wybór z listy urządzeń */
+    DialogInterface.OnClickListener listenerDeviceCancelButton = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            bluetoothService.setCurrentDevice(-1);
         }
     };
 
@@ -206,11 +202,6 @@ public class MainActivity extends AppCompatActivity {
             for(SerializedControllers sc : listS){
                 listC.add(sc.getObject());
             }
-//
-//            for(int i=0; i<listS.size(); i++){
-//                listC.add(listS.get(i).getObject());
-//                listC.get(i).setId(listS.get(i).getId());
-//            }
             return listC;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -220,5 +211,13 @@ public class MainActivity extends AppCompatActivity {
     public void setCurrentSelectedController(Controller c){
         Log.v("SetCurrentController", c.toString());
         currentSelectedController = c;
+    }
+
+    public Controller getCurrentSelectedController() {
+        return currentSelectedController;
+    }
+
+    public BluetoothService getBluetoothService() {
+        return bluetoothService;
     }
 }
