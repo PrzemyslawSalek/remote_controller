@@ -5,12 +5,14 @@ import android.view.View;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Button extends Component implements OutputComponent{
-    String msg = "dupa";
+    String msg = "dziala?";
 
+    @JsonIgnore
     android.widget.Button btn;
 
     @JsonCreator
@@ -37,7 +39,7 @@ public class Button extends Component implements OutputComponent{
 
     @Override
     public void send() {
-        ct.write(msg.getBytes());
+        //bluetoothService.send(msg);
     }
 
     @Override

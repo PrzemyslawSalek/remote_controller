@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -54,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
         /*Inicjalizacja obiektów*/
         db = new DatabaseHelper(this);
         bluetoothService = new BluetoothService();
+
+        if(!bluetoothService.isEnabled()){
+            Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBTIntent, 1);
+        }
 
         /* Wybranie i ustawienie odpowiedniego języka aplikacji */
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -121,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bluetooth:
+                bluetoothService.refreshDevices();
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(getString(R.string.label_availableDevices));
                 builder.setSingleChoiceItems(bluetoothService.getNameList(), -1, listenerDeviceChoice);
@@ -148,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
     DialogInterface.OnClickListener listenerDeviceOkButton = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            bluetoothService.pairWithSelectedDevice();
         }
     };
 

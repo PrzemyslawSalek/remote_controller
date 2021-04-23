@@ -40,8 +40,8 @@ public class UsageMode extends Fragment {
             }
         };
 
-        bluetoothService.initializeBluetooth(handler);
-        bluetoothService.send("DUPA ALA SIEMA ENIU");
+        bluetoothService.startTransmission(handler);
+        bluetoothService.send("SIEMA ENIU");
     }
 
     @Override

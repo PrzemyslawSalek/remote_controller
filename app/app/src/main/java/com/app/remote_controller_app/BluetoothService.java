@@ -19,11 +19,16 @@ public class BluetoothService {
 
     ConnectedThread connectedThread;
     BluetoothSocket bluetoothSocket;
+
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
     public BluetoothService() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         pairedDevices = new ArrayList<>();
+        refreshDevices();
+    }
+
+    public void refreshDevices(){
         for(BluetoothDevice bt : mBluetoothAdapter.getBondedDevices()){
             pairedDevices.add(bt);
         }
@@ -62,24 +67,23 @@ public class BluetoothService {
         return mBluetoothAdapter;
     }
 
-    public void initializeBluetooth(Handler handler){
-        Log.v("[BLUETOOTH]", "Initialize bluetooth");
+    public void pairWithSelectedDevice() {
         try {
             bluetoothSocket = currentDevice.createRfcommSocketToServiceRecord(MY_UUID);
             bluetoothSocket.connect();
-            Log.i("[BLUETOOTH]","Connected to: " + currentDevice.getName());
-        }catch(IOException e){
-            try{
-                bluetoothSocket.close();
-            }catch(IOException c){
-                return;
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        Log.i("[BLUETOOTH]","Connected to: " + currentDevice.getName());
 
+    }
 
-        Log.i("[BLUETOOTH]", "Creating and running Thread");
-        connectedThread = new ConnectedThread(bluetoothSocket,handler);
-        connectedThread.start();
+    public void startTransmission(Handler handler){
+        if(bluetoothSocket != null){
+            Log.i("[BLUETOOTH]", "Creating and running Thread");
+            connectedThread = new ConnectedThread(bluetoothSocket, handler);
+            connectedThread.start();
+        }
     }
 
     public void send(String s){
@@ -90,4 +94,9 @@ public class BluetoothService {
         connectedThread.cancel();
         bluetoothSocket.close();
     }
+
+    public boolean isEnabled(){
+        return mBluetoothAdapter.isEnabled();
+    }
+
 }

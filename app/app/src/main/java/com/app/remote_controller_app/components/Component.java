@@ -3,8 +3,10 @@ package com.app.remote_controller_app.components;
 import android.content.Context;
 import android.view.View;
 
+import com.app.remote_controller_app.BluetoothService;
 import com.app.remote_controller_app.ConnectedThread;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -15,14 +17,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type( value = Button.class),
         @JsonSubTypes.Type( value = LED.class)
 })
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.PROTECTED_AND_PUBLIC)
 public class Component {
     protected float sizeX;
     protected float sizeY;
     protected float posX;
     protected float posY;
     protected boolean isLocal;
-    protected ConnectedThread ct;
+
+    @JsonIgnore
+    protected BluetoothService bluetoothService;
 
     public Component(float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
         this.sizeX = sizeX;
@@ -35,7 +39,7 @@ public class Component {
         return null;
     }
 
-    public void setConnectedThread(ConnectedThread ct) {
-        this.ct = ct;
+    public void setBluetoothService(BluetoothService bluetoothService) {
+        this.bluetoothService = bluetoothService;
     }
 }
