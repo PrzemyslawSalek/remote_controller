@@ -19,7 +19,7 @@ Communication between devices via bluetooth transmission.
 - <a href="https://github.com/PrzemyslawSalek/remote_controller/blob/main/doc/final/Design%20document.pdf">Design document</a>
 - <a href="https://docs.google.com/spreadsheets/d/16EjRT1l22sCxBDKyGIyB2vIYR4lbtyRaIoxJBE9BvMo/edit#gid=0">Test scenarios</a>
 - <a href="https://github.com/PrzemyslawSalek/remote_controller/blob/main/doc/final/Database%20schema.pdf">Database schema</a>
-- <a href="https://github.com/PrzemyslawSalek/remote_controller/blob/main/doc/final/Diagrams%20document.pdf">Diagrams document</a>
+- <a href="https://github.com/PrzemyslawSalek/remote_controller/blob/main/doc/final/Diagrams%20document.pdf">Diagrams document</a> (<a href="https://github.com/PrzemyslawSalek/remote_controller/blob/main/doc/final/NewDiagramClasses.jpg">Class diagram</a>)
 - <a href="https://github.com/PrzemyslawSalek/remote_controller/blob/main/doc/final/MoSCoW.pdf">MoSCoW</a>
 
 ## Technology
