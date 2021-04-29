@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.UsageMode">
 
+    <LinearLayout
+        android:id="@+id/test_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

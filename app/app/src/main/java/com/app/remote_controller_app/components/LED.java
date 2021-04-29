@@ -5,12 +5,17 @@ import android.view.View;
 
 public class LED extends Component implements InputComponent{
 
-    public LED(float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
-        super(sizeX, sizeY, posX, posY, isLocal);
+    public LED(String name, float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
+        super(name, sizeX, sizeY, posX, posY, isLocal);
     }
 
     @Override
-    public View getView(Context context) {
+    public View getEditView(Context context) {
+        return null;
+    }
+
+    @Override
+    public View getUsageView(Context context) {
         return null;
     }
 

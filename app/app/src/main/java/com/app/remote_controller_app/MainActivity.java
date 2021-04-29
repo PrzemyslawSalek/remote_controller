@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
     DialogInterface.OnClickListener listenerDeviceOkButton = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            bluetoothService.closeBluetooth();
             bluetoothService.pairWithSelectedDevice();
         }
     };
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     DialogInterface.OnClickListener listenerDeviceCancelButton = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            bluetoothService.setCurrentDevice(-1);
+            //bluetoothService.setCurrentDevice(-1);
         }
     };
 

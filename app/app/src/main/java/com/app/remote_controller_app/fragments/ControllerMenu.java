@@ -8,7 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
+
+import java.util.function.ToIntBiFunction;
 
 
 public class ControllerMenu extends Fragment {
@@ -50,7 +54,10 @@ public class ControllerMenu extends Fragment {
     View.OnClickListener listenerUsageMode = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_usageMode);
+            if( ((MainActivity) getActivity() ).getBluetoothService().isPair())
+                NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_usageMode);
+            else
+                Toast.makeText(getContext(), "Nie wybrano urządzenia bluetooth", Toast.LENGTH_SHORT).show();
         }
     };
 

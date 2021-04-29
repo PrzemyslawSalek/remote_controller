@@ -18,7 +18,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type( value = LED.class)
 })
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.PROTECTED_AND_PUBLIC)
-public class Component {
+public abstract class Component {
+    protected String name;
     protected float sizeX;
     protected float sizeY;
     protected float posX;
@@ -28,16 +29,16 @@ public class Component {
     @JsonIgnore
     protected BluetoothService bluetoothService;
 
-    public Component(float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
+    public Component(String name, float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
+        this.name = name;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.posX = posX;
         this.posY = posY;
     }
 
-    public View getView(Context context){
-        return null;
-    }
+    public abstract View getEditView(Context context);
+    public abstract View getUsageView(Context context);
 
     public void setBluetoothService(BluetoothService bluetoothService) {
         this.bluetoothService = bluetoothService;

@@ -55,27 +55,14 @@ public class BluetoothService {
             this.currentDevice = null;
     }
 
-    public String getCurrentName(){
-        return currentDevice.getName();
-    }
-
-    public String getCurrentAddress(){
-        return currentDevice.getAddress();
-    }
-
-    public BluetoothAdapter getBluetoothAdapter() {
-        return mBluetoothAdapter;
-    }
-
     public void pairWithSelectedDevice() {
         try {
             bluetoothSocket = currentDevice.createRfcommSocketToServiceRecord(MY_UUID);
             bluetoothSocket.connect();
+            Log.i("[BLUETOOTH]","Connected to: " + currentDevice.getName());
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.i("[BLUETOOTH]","Pair error");
         }
-        Log.i("[BLUETOOTH]","Connected to: " + currentDevice.getName());
-
     }
 
     public void startTransmission(Handler handler){
@@ -90,13 +77,35 @@ public class BluetoothService {
         connectedThread.write(s.getBytes());
     }
 
-    public void closeBluetooth() throws IOException {
-        connectedThread.cancel();
-        bluetoothSocket.close();
+    public void closeBluetooth(){
+        try {
+            if(bluetoothSocket != null)
+                bluetoothSocket.close();
+            if(connectedThread != null)
+                connectedThread.cancel();
+        } catch (IOException e) {
+            Log.i("[BLUETOOTH]","Close bluetooth error");
+        }
+    }
+
+    public String getCurrentName(){
+        return currentDevice.getName();
+    }
+
+    public String getCurrentAddress(){
+        return currentDevice.getAddress();
+    }
+
+    public BluetoothAdapter getBluetoothAdapter() {
+        return mBluetoothAdapter;
     }
 
     public boolean isEnabled(){
         return mBluetoothAdapter.isEnabled();
+    }
+
+    public boolean isPair(){
+        return bluetoothSocket != null;
     }
 
 }
