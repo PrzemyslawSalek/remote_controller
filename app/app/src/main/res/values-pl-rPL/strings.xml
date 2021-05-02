@@ -30,4 +30,6 @@
     <string name="label_availableDevices">Dostępne urządzenia</string>
     <string name="label_none">Żadne</string>
     <string name="action_cancel">Anuluj</string>
+    <string name="component_Button">Przycisk</string>
+    <string name="component_TextArea">Obszar tekstowy</string>
 </resources>

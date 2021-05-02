@@ -51,7 +51,11 @@
         android:id="@+id/componentSelection"
         android:name="com.app.remote_controller_app.fragments.ComponentSelection"
         android:label="@string/componentSelection"
-        tools:layout="@layout/fragment_component_selection" />
+        tools:layout="@layout/fragment_component_selection" >
+        <action
+            android:id="@+id/action_componentSelection_to_editMode"
+            app:destination="@id/editMode" />
+    </fragment>
     <fragment
         android:id="@+id/componentOptions"
         android:name="com.app.remote_controller_app.fragments.ComponentOptions"
