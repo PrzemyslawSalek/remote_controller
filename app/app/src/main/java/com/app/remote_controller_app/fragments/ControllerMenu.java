@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.app.remote_controller_app.BluetoothService;
+import com.app.remote_controller_app.Controller;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 
@@ -20,9 +22,20 @@ public class ControllerMenu extends Fragment {
     Button btnEditMode;
     Button btnUsageMode;
     Button btnDelete;
+    Controller currentController;
+    BluetoothService bluetoothService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        this.currentController = ((MainActivity) getActivity() ).getCurrentSelectedController();
+        this.bluetoothService = ((MainActivity) getActivity() ).getBluetoothService();
+        if(currentController.getFavoriteMAC()!=null){
+            boolean connect=bluetoothService.pairWithFavoriteMAC(currentController.getFavoriteMAC());
+            if(!connect){
+                //Nie udało się połączyć z domyślnym urządzeniem
+
+            }
+        }
         super.onCreate(savedInstanceState);
     }
 

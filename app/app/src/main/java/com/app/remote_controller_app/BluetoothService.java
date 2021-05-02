@@ -65,6 +65,19 @@ public class BluetoothService {
         }
     }
 
+    public boolean pairWithFavoriteMAC(String favoriteMAC) {
+        try {
+            currentDevice=mBluetoothAdapter.getRemoteDevice(favoriteMAC);
+            bluetoothSocket = currentDevice.createRfcommSocketToServiceRecord(MY_UUID);
+            bluetoothSocket.connect();
+            Log.i("[BLUETOOTH]","Connected to: " + currentDevice.getName());
+            return true;
+        } catch (IOException e) {
+            Log.i("[BLUETOOTH]","Pair error");
+            return false;
+        }
+    }
+
     public void startTransmission(Handler handler){
         if(bluetoothSocket != null){
             Log.i("[BLUETOOTH]", "Creating and running Thread");
