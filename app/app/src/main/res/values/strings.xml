@@ -43,5 +43,7 @@
     <string name="label_none">None</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_ok" translatable="false">Ok</string>
+    <string name="component_Button">Button</string>
+    <string name="component_TextArea">TextArea</string>
 
 </resources>
