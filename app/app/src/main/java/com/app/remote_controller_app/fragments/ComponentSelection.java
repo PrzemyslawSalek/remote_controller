@@ -2,7 +2,6 @@ package com.app.remote_controller_app.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.app.remote_controller_app.Controller;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Button;
@@ -52,13 +50,9 @@ public class ComponentSelection extends Fragment {
                 Button btn = new Button();
                 ((MainActivity) getActivity() ).addComponentToCurrentController(btn);
             } else if(componentsList.get(position).equals(getString(R.string.component_TextArea))) {
-                //
-                // Co się dzieje kiedy wybierzesz TextArea //
-                //
-                System.out.println(componentsList.get(position));
-                //
+                System.out.println(componentsList.get(position)); //TextArea
             }
-            NavHostFragment.findNavController(ComponentSelection.this).navigate(R.id.action_componentSelection_to_editMode);
+            getActivity().onBackPressed();
         }
     };
 }
