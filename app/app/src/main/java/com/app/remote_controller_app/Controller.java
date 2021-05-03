@@ -12,7 +12,7 @@ import java.util.List;
 public class Controller {
     private long id;
     private String name;
-    private String favoriteMAC=null;
+    private String favoriteMAC;
     private List<Component> listOfComponents;
 
     @JsonCreator
@@ -36,9 +36,8 @@ public class Controller {
         listOfComponents.remove(c);
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public List<Component> getListOfComponents() {
+        return listOfComponents;
     }
 
     public long getId() {
@@ -55,5 +54,10 @@ public class Controller {
 
     public void setFavoriteMAC(String favoriteMAC) {
         this.favoriteMAC = favoriteMAC;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

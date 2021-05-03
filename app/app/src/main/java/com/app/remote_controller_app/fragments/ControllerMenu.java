@@ -22,21 +22,11 @@ public class ControllerMenu extends Fragment {
     Button btnEditMode;
     Button btnUsageMode;
     Button btnDelete;
-    Controller currentController;
-    BluetoothService bluetoothService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        this.currentController = ((MainActivity) getActivity() ).getCurrentSelectedController();
-        this.bluetoothService = ((MainActivity) getActivity() ).getBluetoothService();
-        if(currentController.getFavoriteMAC()!=null){
-            boolean connect=bluetoothService.pairWithFavoriteMAC(currentController.getFavoriteMAC());
-            if(!connect){
-                //Nie udało się połączyć z domyślnym urządzeniem
-
-            }
-        }
         super.onCreate(savedInstanceState);
+        ((MainActivity) getActivity()).pairWithFavoriteDevice();
     }
 
     @Override
@@ -67,7 +57,7 @@ public class ControllerMenu extends Fragment {
     View.OnClickListener listenerUsageMode = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if( ((MainActivity) getActivity() ).getBluetoothService().isPair())
+            if( ((MainActivity) getActivity() ).isPair())
                 NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_usageMode);
             else
                 Toast.makeText(getContext(), "Nie wybrano urządzenia bluetooth", Toast.LENGTH_SHORT).show();
@@ -78,6 +68,8 @@ public class ControllerMenu extends Fragment {
     View.OnClickListener listenerDelete = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            ((MainActivity) getActivity()).removeSelectedController();
+            // brak wystawionej navigacji powrotu
             Toast.makeText(getActivity(), "Delete", Toast.LENGTH_SHORT).show();
         }
     };

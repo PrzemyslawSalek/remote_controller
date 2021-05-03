@@ -26,7 +26,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
+import com.app.remote_controller_app.components.Component;
 import com.app.remote_controller_app.database.DatabaseHelper;
 import com.app.remote_controller_app.database.SerializedControllers;
 import com.j256.ormlite.dao.Dao;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper db;
     Controller currentSelectedController;
     BluetoothService bluetoothService;
-
+    Component currentSelectedComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         setAppLocale(settings.getString("language_key", "device"));
 
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
@@ -168,14 +170,16 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    /* -------------- Controller  ------------------ */
+    /* -------------- Controllers Database  ------------------ */
 
     public Controller addController(String name){
         try{
             Dao d = db.getSerializedControllerDao();
-            SerializedControllers sc=new SerializedControllers(new Controller(name, ""));
+            SerializedControllers sc = new SerializedControllers(new Controller(name, null));
             d.create(sc);
-            sc.getObject().setId(sc.getId());
+            Controller c = sc.getObject();
+            c.setId(sc.getId());
+            sc.setSerializedController(c);
             d.update(sc);
             return sc.getObject();
         } catch (SQLException e) {
@@ -217,8 +221,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*------ Controllers Activity ------*/
     public void setCurrentSelectedController(Controller c){
-        Log.v("SetCurrentController", c.toString());
         currentSelectedController = c;
     }
 
@@ -226,7 +230,48 @@ public class MainActivity extends AppCompatActivity {
         return currentSelectedController;
     }
 
-    public BluetoothService getBluetoothService() {
-        return bluetoothService;
+    public void addComponentToCurrentController(Component c){
+        currentSelectedController.addComponent(c);
+        updateController(currentSelectedController);
     }
+
+    public void removeSelectedController(){
+        removeController(currentSelectedController);
+        currentSelectedController = null;
+    }
+
+    /*------Component Activity------*/
+    public void setCurrentSelectedComponent(Component currentSelectedComponent) {
+        this.currentSelectedComponent = currentSelectedComponent;
+        Log.v("Component", currentSelectedComponent.toString());
+    }
+
+    public Component getCurrentSelectedComponent() {
+        return currentSelectedComponent;
+    }
+
+    /*-------- Bluetooth -------*/
+    public void startTransmission(Handler handler) {
+        bluetoothService.startTransmission(handler);
+    }
+
+    public void setComponentBluetoothService(){
+        for(Component c : currentSelectedController.getListOfComponents()){
+            c.setBluetoothService(bluetoothService);
+        }
+    }
+
+    public void pairWithFavoriteDevice(){
+        if(currentSelectedController.getFavoriteMAC()!=null){
+            boolean connect=bluetoothService.pairWithFavoriteMAC(currentSelectedController.getFavoriteMAC());
+            if(!connect){
+                Toast.makeText(this, "nie znalezono ulubionego urządzenia", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    public boolean isPair(){
+        return bluetoothService.isPair();
+    }
+
+
 }

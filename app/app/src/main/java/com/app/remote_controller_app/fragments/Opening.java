@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +28,7 @@ import java.util.ArrayList;
 public class Opening extends Fragment {
 
     ListView listView;
-    EditText textButtonName;
     FloatingActionButton buttonAddController;
-    View dialogLayout;
     ArrayAdapter<Controller> arrayAdapter;
 
     ArrayList<Controller> controllerList;
@@ -38,10 +37,11 @@ public class Opening extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restoreFromDatabase();
+        for(Controller c: controllerList)
+            Log.v("Controller", String.valueOf(c.getId()) + "- " + c);
     }
 
     // Avoid passing null as the view of root
-    @SuppressLint("InflateParams")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_opening, container, false);
@@ -61,24 +61,21 @@ public class Opening extends Fragment {
         @Override
         public void onClick(View v) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            dialogLayout = getLayoutInflater().inflate(R.layout.dialog_add_controller_layout, null);
 
-            builder.setView(dialogLayout);
-            builder.setPositiveButton(getString(R.string.action_ok), listenerButtonCreation);
+            EditText inputText = new EditText(getContext());
+            builder.setView(inputText);
+
+            builder.setPositiveButton(getString(R.string.action_ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Controller newController = ((MainActivity) getActivity() ).addController(String.valueOf(inputText.getText()));
+                    controllerList.add(newController);
+                }
+            });
+
             builder.setNegativeButton(getString(R.string.action_cancel), null);
-
             AlertDialog dialog = builder.create();
             dialog.show();
-        }
-    };
-
-    DialogInterface.OnClickListener listenerButtonCreation = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            textButtonName = dialogLayout.findViewById(R.id.dialog_add_controller_edit_name);
-            Controller newController = ((MainActivity) getActivity() ).addController(String.valueOf(textButtonName.getText()));
-            controllerList.add(newController);
-            NavHostFragment.findNavController(Opening.this).navigate(R.id.action_opening_to_controllerMenu);
         }
     };
 

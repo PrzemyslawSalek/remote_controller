@@ -4,22 +4,28 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
+import com.app.remote_controller_app.Controller;
+import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
+import com.app.remote_controller_app.components.Component;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class EditMode extends Fragment {
 
-    Button btnSampleEdit;
     FloatingActionButton btnComponentSelection;
+    LinearLayout l;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.v("Component", "DDITTTTT");
         super.onCreate(savedInstanceState);
     }
 
@@ -27,8 +33,9 @@ public class EditMode extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_mode, container, false);
 
-        btnSampleEdit = (Button) view.findViewById(R.id.button_sampleEdit);
-        btnSampleEdit.setOnClickListener(listenerSampleEdit);
+        l = view.findViewById(R.id.component_view);
+        for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents())
+            l.addView(c.getEditView(getContext(), EditMode.this));
 
         btnComponentSelection = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_componentSelection);
         btnComponentSelection.setOnClickListener(listenerComponentSelection);
@@ -36,12 +43,7 @@ public class EditMode extends Fragment {
         return view;
     }
 
-    View.OnClickListener listenerSampleEdit = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            NavHostFragment.findNavController(EditMode.this).navigate(R.id.action_editMode_to_componentOptions);
-        }
-    };
+
 
     /* Co się dzieje po kliknięciu przycisku do wyboru komponentów */
     View.OnClickListener listenerComponentSelection = new View.OnClickListener() {
@@ -50,4 +52,5 @@ public class EditMode extends Fragment {
             NavHostFragment.findNavController(EditMode.this).navigate(R.id.action_editMode_to_componentSelection);
         }
     };
+
 }

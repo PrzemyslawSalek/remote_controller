@@ -11,7 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.app.remote_controller_app.Controller;
+import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
+import com.app.remote_controller_app.components.Button;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +25,7 @@ public class ComponentSelection extends Fragment {
     ListView listView;
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> componentsList;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,11 +49,8 @@ public class ComponentSelection extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if(componentsList.get(position).equals(getString(R.string.component_Button))) {
-                //
-                // Co się dzieje kiedy wybierzesz Button //
-                //
-                System.out.println(componentsList.get(position));
-                //
+                Button btn = new Button();
+                ((MainActivity) getActivity() ).addComponentToCurrentController(btn);
             } else if(componentsList.get(position).equals(getString(R.string.component_TextArea))) {
                 //
                 // Co się dzieje kiedy wybierzesz TextArea //
