@@ -45,7 +45,7 @@ public class Button extends Component implements OutputComponent {
             @Override
             public void onClick(View v) {
                 ((MainActivity) context).setCurrentSelectedComponent(ths);
-                NavHostFragment.findNavController(fragment).navigate(R.id.action_editMode_to_componentOptions);
+                NavHostFragment.findNavController(fragment).navigate(R.id.action_editMode_to_buttonOptions);
             }
         });
 

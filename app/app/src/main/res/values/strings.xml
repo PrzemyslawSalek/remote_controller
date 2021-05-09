@@ -1,28 +1,17 @@
 <resources>
     <string name="app_name">remote_controller_app</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-
     <string name="id" translatable="false">ID</string>
-    <string name="id_colon" translatable="false">ID:</string>
-    <string name="size_colon">Size:</string>
-    <string name="color_colon">Color:</string>
-    <!-- Preference Titles -->
-
-    <!-- Messages Preferences -->
-
-    <!-- Sync Preferences -->
+    <string name="colon_id" translatable="false">ID:</string>
+    <string name="colon_size">Size:</string>
+    <string name="colon_color">Color:</string>
     <string name="language_header">Language</string>
     <string name="language_title">Select the language</string>
     <string name="english_entries">English</string>
     <string name="polish_entries">Polish</string>
     <string name="english_values" translatable="false">en</string>
     <string name="polish_values" translatable="false">pl</string>
-
-    <!-- Controller View -->
     <string name="controller_edit">Edit Mode</string>
-
-    <!-- Opening View -->
     <string name="enter_controller_name">Enter Controller Name</string>
     <string name="opening_addnew">Add new controller</string>
     <string name="action_bluetooth" translatable="false">Bluetooth</string>
@@ -45,5 +34,10 @@
     <string name="action_ok" translatable="false">Ok</string>
     <string name="component_Button">Button</string>
     <string name="component_TextArea">TextArea</string>
+    <string name="colon_name">Name:</string>
+    <string name="colon_x" translatable="false">X:</string>
+    <string name="colon_y" translatable="false">Y:</string>
+    <string name="colon_position">Position:</string>
+    <string name="colon_message">Message:</string>
 
 </resources>

@@ -2,17 +2,13 @@
 <resources>
     <string name="app_name">remote_controller_app</string>
     <string name="action_settings">Ustawienia</string>
-    <string name="size_colon">Rozmiar:</string>
-    <string name="color_colon">Kolor:</string>
+    <string name="colon_size">Rozmiar:</string>
+    <string name="colon_color">Kolor:</string>
     <string name="language_header">Język</string>
     <string name="language_title">Wybierz język</string>
     <string name="english_entries">Angielski</string>
     <string name="polish_entries">Polski</string>
-
-    <!-- Controller View -->
     <string name="controller_edit">Tryb Edycji</string>
-
-<!-- Opening View -->
     <string name="enter_controller_name">Wprowadź Nazwę Pilota</string>
     <string name="opening_addnew">Dodaj Nowy Pilot</string>
     <string name="device_entries">Język urządzenia</string>
@@ -32,4 +28,7 @@
     <string name="action_cancel">Anuluj</string>
     <string name="component_Button">Przycisk</string>
     <string name="component_TextArea">Obszar tekstowy</string>
+    <string name="colon_name">Nazwa:</string>
+    <string name="colon_position">Pozycja:</string>
+    <string name="colon_message">Wiadomość:</string>
 </resources>

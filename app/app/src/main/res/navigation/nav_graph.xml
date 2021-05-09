@@ -39,8 +39,8 @@
             android:id="@+id/action_editMode_to_componentSelection"
             app:destination="@id/componentSelection" />
         <action
-            android:id="@+id/action_editMode_to_componentOptions"
-            app:destination="@id/componentOptions" />
+            android:id="@+id/action_editMode_to_buttonOptions"
+            app:destination="@id/buttonOptions" />
     </fragment>
     <fragment
         android:id="@+id/usageMode"
@@ -53,8 +53,7 @@
         android:label="@string/componentSelection"
         tools:layout="@layout/fragment_component_selection" />
     <fragment
-        android:id="@+id/componentOptions"
-        android:name="com.app.remote_controller_app.fragments.ComponentOptions"
-        android:label="@string/label_ComponentOptions"
-        tools:layout="@layout/fragment_component_options" />
+        android:id="@+id/buttonOptions"
+        android:name="com.app.remote_controller_app.fragments.component_selection.ButtonOptions"
+        android:label="ButtonOptions" />
 </navigation>

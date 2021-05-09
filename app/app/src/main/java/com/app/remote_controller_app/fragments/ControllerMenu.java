@@ -9,13 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.app.remote_controller_app.BluetoothService;
-import com.app.remote_controller_app.Controller;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
-
-import java.util.function.ToIntBiFunction;
-
 
 public class ControllerMenu extends Fragment {
 
@@ -70,7 +65,7 @@ public class ControllerMenu extends Fragment {
         public void onClick(View v) {
             ((MainActivity) getActivity()).removeSelectedController();
             // brak wystawionej navigacji powrotu
-            Toast.makeText(getActivity(), "Delete", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.action_delete), Toast.LENGTH_SHORT).show();
         }
     };
 

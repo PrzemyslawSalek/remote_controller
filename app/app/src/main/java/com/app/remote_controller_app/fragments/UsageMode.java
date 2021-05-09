@@ -13,12 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.app.remote_controller_app.BluetoothService;
 import com.app.remote_controller_app.ConnectedThread;
-import com.app.remote_controller_app.Controller;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
-import com.app.remote_controller_app.components.Button;
 import com.app.remote_controller_app.components.Component;
 
 

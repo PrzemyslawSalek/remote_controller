@@ -8,10 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.app.remote_controller_app.Controller;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Component;
@@ -43,9 +41,7 @@ public class EditMode extends Fragment {
         return view;
     }
 
-
-
-    /* Co się dzieje po kliknięciu przycisku do wyboru komponentów */
+    /* Co się dzieje po kliknięciu przycisku "Wybór komponentów" */
     View.OnClickListener listenerComponentSelection = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

@@ -6,7 +6,6 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 
 import com.app.remote_controller_app.BluetoothService;
-import com.app.remote_controller_app.ConnectedThread;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
