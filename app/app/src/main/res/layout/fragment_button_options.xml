@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="40dp"
-        tools:context=".fragments.component_selection.ButtonOptions">
+        tools:context=".fragments.component_options.ButtonOptions">
 
         <TextView
             android:id="@+id/textView_Button"
