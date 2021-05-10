@@ -63,6 +63,7 @@ public class Opening extends Fragment {
 
             EditText inputText = new EditText(getContext());
             builder.setView(inputText);
+            builder.setTitle(getString(R.string.enter_controller_name));
 
             builder.setPositiveButton(getString(R.string.action_ok), new DialogInterface.OnClickListener() {
                 @Override

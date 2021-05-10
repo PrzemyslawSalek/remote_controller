@@ -23,17 +23,16 @@ public class EditMode extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.v("Component", "DDITTTTT");
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_mode, container, false);
-
         l = view.findViewById(R.id.component_view);
-        for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents())
+        for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents()) {
             l.addView(c.getEditView(getContext(), EditMode.this));
+        }
 
         btnComponentSelection = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_componentSelection);
         btnComponentSelection.setOnClickListener(listenerComponentSelection);
@@ -48,5 +47,4 @@ public class EditMode extends Fragment {
             NavHostFragment.findNavController(EditMode.this).navigate(R.id.action_editMode_to_componentSelection);
         }
     };
-
 }

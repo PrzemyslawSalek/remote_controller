@@ -39,7 +39,7 @@ public class Button extends Component implements OutputComponent {
         android.widget.Button btn = new android.widget.Button(context);
         btn.setText(name);
 
-        Component ths = this;
+        Button ths = this;
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,5 +87,13 @@ public class Button extends Component implements OutputComponent {
                 ", isLocal=" + isLocal +
                 ", bluetoothService=" + bluetoothService +
                 '}';
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

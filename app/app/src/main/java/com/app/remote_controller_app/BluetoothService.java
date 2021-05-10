@@ -29,6 +29,7 @@ public class BluetoothService {
     }
 
     public void refreshDevices(){
+        pairedDevices.clear();
         for(BluetoothDevice bt : mBluetoothAdapter.getBondedDevices()){
             pairedDevices.add(bt);
         }
@@ -99,6 +100,23 @@ public class BluetoothService {
         } catch (IOException e) {
             Log.i("[BLUETOOTH]","Close bluetooth error");
         }
+    }
+
+    public int getDeviceIndex(String mac){
+        if(mac!=null) {
+            for (int i = 0; i < pairedDevices.size(); ++i) {
+                if (pairedDevices.get(i).getAddress().equals(mac))
+                    return i;
+            }
+        }
+        return -1;
+    }
+
+    public String getMacByIndex(int index){
+        if(index>=0){
+            return pairedDevices.get(index).getAddress();
+        }
+        return null;
     }
 
     public String getCurrentName(){

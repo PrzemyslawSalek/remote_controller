@@ -55,5 +55,9 @@
     <fragment
         android:id="@+id/buttonOptions"
         android:name="com.app.remote_controller_app.fragments.component_options.ButtonOptions"
-        android:label="ButtonOptions" />
+        android:label="ButtonOptions" >
+        <action
+            android:id="@+id/action_buttonOptions_to_editMode"
+            app:destination="@id/editMode" />
+    </fragment>
 </navigation>

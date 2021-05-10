@@ -17,6 +17,7 @@ public class ControllerMenu extends Fragment {
     Button btnEditMode;
     Button btnUsageMode;
     Button btnDelete;
+    Button btnFavorite;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,9 @@ public class ControllerMenu extends Fragment {
         btnDelete = (Button) view.findViewById(R.id.button_delete);
         btnDelete.setOnClickListener(listenerDelete);
 
+        btnFavorite = (Button) view.findViewById(R.id.button_favorite_device);
+        btnFavorite.setOnClickListener(listenerFavorite);
+
         return view;
     }
 
@@ -56,6 +60,13 @@ public class ControllerMenu extends Fragment {
                 NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_usageMode);
             else
                 Toast.makeText(getContext(), "Nie wybrano urządzenia bluetooth", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    View.OnClickListener listenerFavorite = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ((MainActivity) getActivity()).selectFavoriteDeviceAlert();
         }
     };
 

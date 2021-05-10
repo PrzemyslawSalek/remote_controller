@@ -3,7 +3,9 @@ package com.app.remote_controller_app.fragments.component_options;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,26 +16,30 @@ import android.widget.Toast;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Component;
+import com.app.remote_controller_app.fragments.EditMode;
 
 
 public class ButtonOptions extends Fragment {
 
-    Component thisComponent;
+    com.app.remote_controller_app.components.Button thisComponent;
 
     EditText editText_id;
     EditText editText_name;
     Button button_delete;
+    EditText editText_Button_message;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        thisComponent = ((MainActivity) getActivity()).getCurrentSelectedComponent();
+        thisComponent = (com.app.remote_controller_app.components.Button) ((MainActivity) getActivity()).getCurrentSelectedComponent();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        // Tutaj dodaj metode zapisywania zmian komponentu w bazie //
+        updateComponent();
+        ((MainActivity) getActivity()).updateCurrentSelectedController();
+        ((MainActivity) getActivity()).setCurrentSelectedComponent(null);
     }
 
     @Override
@@ -57,6 +63,9 @@ public class ButtonOptions extends Fragment {
         editText_name = view.findViewById(R.id.editText_Button_name);
         editText_name.setText(thisComponent.getName());
 
+        editText_Button_message = view.findViewById(R.id.editText_Button_message);
+        editText_Button_message.setText(thisComponent.getMsg());
+
         // Color (pewnie jakaś lista) //
 
         // Plain Text Size X //
@@ -67,8 +76,10 @@ public class ButtonOptions extends Fragment {
 
         // Plain Text Position Y //
 
-        // Plain Text Message //
+
     }
+
+
 
     // Metoda dla przycisku "Usun" //
     View.OnClickListener listenerDeleteButton = new View.OnClickListener() {
@@ -78,4 +89,11 @@ public class ButtonOptions extends Fragment {
             // Usuń Button //
         }
     };
+
+    public void updateComponent(){
+        thisComponent.setId(editText_id.getText().toString());
+        thisComponent.setName(editText_name.getText().toString());
+        thisComponent.setMsg(editText_Button_message.getText().toString());
+    }
+
 }

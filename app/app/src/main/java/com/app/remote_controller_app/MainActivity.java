@@ -187,12 +187,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void updateCurrentSelectedController(){
+        updateController(currentSelectedController);
+    }
+
     public void updateController(Controller c){
         try {
             Dao d = db.getSerializedControllerDao();
             SerializedControllers SController= (SerializedControllers) d.queryForId(c.getId());
             SController.setSerializedController(c);
-            d.update(SController);
+            d.createOrUpdate(SController);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -221,6 +225,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public Controller getById(long id){
+        try {
+            Dao d = db.getSerializedControllerDao();
+            SerializedControllers SController= (SerializedControllers) d.queryForId(id);
+            return  SController.getObject();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /*------ Controllers Activity ------*/
     public void setCurrentSelectedController(Controller c){
         currentSelectedController = c;
@@ -243,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
     /*------Component Activity------*/
     public void setCurrentSelectedComponent(Component currentSelectedComponent) {
         this.currentSelectedComponent = currentSelectedComponent;
-        Log.v("Component", currentSelectedComponent.toString());
     }
 
     public Component getCurrentSelectedComponent() {
@@ -263,8 +276,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void pairWithFavoriteDevice(){
         if(currentSelectedController.getFavoriteMAC()!=null){
-            boolean connect=bluetoothService.pairWithFavoriteMAC(currentSelectedController.getFavoriteMAC());
-            if(!connect){
+            if(!bluetoothService.pairWithFavoriteMAC(currentSelectedController.getFavoriteMAC())){
                 Toast.makeText(this, "nie znalezono ulubionego urządzenia", Toast.LENGTH_SHORT).show();
             }
         }
@@ -273,5 +285,32 @@ public class MainActivity extends AppCompatActivity {
         return bluetoothService.isPair();
     }
 
+
+    public void selectFavoriteDeviceAlert(){
+        bluetoothService.refreshDevices();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.label_availableDevices));
+
+        final int[] index = {bluetoothService.getDeviceIndex(currentSelectedController.getFavoriteMAC())};
+
+        builder.setSingleChoiceItems(bluetoothService.getNameList(), index[0], new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                index[0] = which;
+            }
+        });
+
+        builder.setPositiveButton(getString(R.string.action_ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                currentSelectedController.setFavoriteMAC(bluetoothService.getMacByIndex(index[0]));
+                updateController(currentSelectedController);
+            }
+        });
+
+        builder.setNegativeButton(getString(R.string.action_cancel), null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 }

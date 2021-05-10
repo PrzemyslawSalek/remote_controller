@@ -20,6 +20,7 @@
     <string name="action_usageMode">Usage Mode</string>
     <string name="action_editMode">Edit Mode</string>
     <string name="action_delete">Delete</string>
+    <string name="action_favorite">Favorite device</string>
     <string name="action_sampleButton">Sample button</string>
     <string name="componentSelection">Component Selection</string>
     <string name="label_UsageMode">Usage Mode</string>
