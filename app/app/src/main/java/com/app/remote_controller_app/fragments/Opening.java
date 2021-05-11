@@ -19,6 +19,7 @@ import android.widget.ListView;
 import com.app.remote_controller_app.Controller;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
+import com.app.remote_controller_app.lists.adapters.ControllerListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Opening extends Fragment {
 
     ListView listView;
     FloatingActionButton buttonAddController;
-    ArrayAdapter<Controller> arrayAdapter;
+    ControllerListAdapter arrayAdapter;
 
     ArrayList<Controller> controllerList;
 
@@ -60,7 +61,7 @@ public class Opening extends Fragment {
         buttonAddController = (FloatingActionButton) view.findViewById(R.id.button_addController);
         buttonAddController.setOnClickListener(listenerAddController);
 
-        arrayAdapter = new ArrayAdapter<Controller>(getContext(), android.R.layout.simple_list_item_1, controllerList);
+        arrayAdapter = new ControllerListAdapter(getActivity(), R.layout.controller_list_item, controllerList);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(listenerGetController);
@@ -81,6 +82,7 @@ public class Opening extends Fragment {
                 public void onClick(DialogInterface dialog, int which) {
                     Controller newController = ((MainActivity) getActivity() ).addController(String.valueOf(inputText.getText()));
                     controllerList.add(newController);
+                    arrayAdapter.notifyDataSetChanged();
                 }
             });
 

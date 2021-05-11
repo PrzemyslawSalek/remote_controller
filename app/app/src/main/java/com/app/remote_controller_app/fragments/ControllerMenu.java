@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.remote_controller_app.MainActivity;
@@ -20,6 +21,7 @@ public class ControllerMenu extends Fragment {
     Button btnUsageMode;
     Button btnDelete;
     Button btnFavorite;
+    TextView textView_name;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class ControllerMenu extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_controller_menu, container, false);
+
+        textView_name = view.findViewById(R.id.textView_ControllerMenu_name);
+        textView_name.setText(((MainActivity) getActivity()).getCurrentSelectedController().toString());
 
         btnEditMode = (Button) view.findViewById(R.id.button_editMode);
         btnEditMode.setOnClickListener(listenerEditMode);
