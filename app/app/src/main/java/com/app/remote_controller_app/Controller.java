@@ -60,4 +60,13 @@ public class Controller {
     public String toString() {
         return name;
     }
+
+    public void msgToCommand(String id, List<String> data){
+        for(int i=0;i<listOfComponents.size();i++){
+            if(listOfComponents.get(i).getId().equals(id)){
+                listOfComponents.get(i).receive(data);
+                break;
+            }
+        }
+    }
 }

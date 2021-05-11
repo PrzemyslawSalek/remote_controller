@@ -34,6 +34,7 @@ public class UsageMode extends Fragment {
                 if (msg.what == ConnectedThread.RESPONSE_MESSAGE) {
                     String txt = (String) msg.obj;
                     Log.v("BLUETOOTH", txt);
+                    ((MainActivity) getActivity()).msgToDataProtocol(txt);
                 }
             }
         };

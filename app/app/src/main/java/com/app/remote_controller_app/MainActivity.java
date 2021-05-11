@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
+import java.util.Arrays;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -311,6 +312,13 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton(getString(R.string.action_cancel), null);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void msgToDataProtocol(String msg){
+        List<String> data = Arrays.asList(msg.split("\r\n"));
+        String id=data.get(0);
+        data.remove(data.get(0));
+        currentSelectedController.msgToCommand(id, data);
     }
 
 }

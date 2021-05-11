@@ -5,6 +5,8 @@ import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.List;
+
 public class LED extends Component implements InputComponent{
 
     public LED(String name, String id, float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
@@ -22,8 +24,10 @@ public class LED extends Component implements InputComponent{
     }
 
     @Override
-    public void receive(String msg) {
-        if(msg.contains("off")){
+    public void receive(String msg){ }
+
+    public void receive(List<String> data) {
+        if(data.get(0).contains("off")){
             off();
         }
     }
