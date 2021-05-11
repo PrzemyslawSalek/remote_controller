@@ -40,5 +40,6 @@
     <string name="colon_y" translatable="false">Y:</string>
     <string name="colon_position">Position:</string>
     <string name="colon_message">Message:</string>
+    <string name="label_deleted">Deleted</string>
 
 </resources>

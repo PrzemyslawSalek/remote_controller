@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         updateController(currentSelectedController);
     }
 
-    public void removeSelectedController(){
+    public void removeSelectedController() {
         removeController(currentSelectedController);
         currentSelectedController = null;
     }

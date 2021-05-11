@@ -36,4 +36,5 @@
     <string name="colon_name">Nazwa:</string>
     <string name="colon_position">Pozycja:</string>
     <string name="colon_message">Wiadomość:</string>
+    <string name="label_deleted">Usunięto</string>
 </resources>

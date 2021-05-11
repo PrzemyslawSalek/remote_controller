@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 
+import java.io.StringReader;
+
 public class ControllerMenu extends Fragment {
 
     Button btnEditMode;
@@ -74,9 +76,12 @@ public class ControllerMenu extends Fragment {
     View.OnClickListener listenerDelete = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            String deletedController = ((MainActivity) getActivity()).getCurrentSelectedController().toString();
+
             ((MainActivity) getActivity()).removeSelectedController();
-            // brak wystawionej navigacji powrotu
-            Toast.makeText(getActivity(), getString(R.string.action_delete), Toast.LENGTH_SHORT).show();
+            ((MainActivity) getActivity()).onBackPressed();
+
+            Toast.makeText(getActivity(), getString(R.string.label_deleted) + " " + deletedController, Toast.LENGTH_SHORT).show();
         }
     };
 
