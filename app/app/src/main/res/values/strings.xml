@@ -43,5 +43,7 @@
     <string name="label_deleted">Deleted</string>
     <string name="component_LED" translatable="false">LED</string>
     <string name="action_save">Save</string>
+    <string name="component_Slider">Slider</string>
+    <string name="component_TextField">TextField</string>
 
 </resources>

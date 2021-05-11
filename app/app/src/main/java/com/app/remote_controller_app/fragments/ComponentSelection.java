@@ -7,28 +7,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Button;
+import com.app.remote_controller_app.lists.adapters.ComponentListAdapter;
+import com.app.remote_controller_app.lists.elements.ComponentListElement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 
 public class ComponentSelection extends Fragment {
 
     ListView listView;
-    ArrayAdapter<String> arrayAdapter;
-    ArrayList<String> componentsList;
+    ComponentListAdapter adapter;
+    List<ComponentListElement> componentsList;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        componentsList = new ArrayList<String>(Arrays.asList(getString(R.string.component_Button), getString(R.string.component_TextArea), getString(R.string.component_LED)));
+        createListWithComponents();
     }
 
     @Override
@@ -36,8 +37,8 @@ public class ComponentSelection extends Fragment {
         View view = inflater.inflate(R.layout.fragment_component_selection, container, false);
         listView = (ListView) view.findViewById(R.id.listView_componentSelection);
 
-        arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, componentsList);
-        listView.setAdapter(arrayAdapter);
+        adapter = new ComponentListAdapter(getActivity(), R.layout.component_list_item, componentsList);
+        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(listenerGetComponent);
         return view;
@@ -46,15 +47,28 @@ public class ComponentSelection extends Fragment {
     AdapterView.OnItemClickListener listenerGetComponent = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if(componentsList.get(position).equals(getString(R.string.component_Button))) {
+            if(componentsList.get(position).getName().equals(getString(R.string.component_Button))) {
                 Button btn = new Button();
                 ((MainActivity) getActivity() ).addComponentToCurrentController(btn);
-            } else if(componentsList.get(position).equals(getString(R.string.component_TextArea))) {
-                System.out.println(componentsList.get(position)); //TextArea
-            } else if(componentsList.get(position).equals(getString(R.string.component_LED))) {
-                System.out.println(componentsList.get(position)); //LED
+            } else if(componentsList.get(position).getName().equals(getString(R.string.component_TextArea))) {
+                System.out.println(componentsList.get(position).getName()); //TextArea
+            } else if(componentsList.get(position).getName().equals(getString(R.string.component_LED))) {
+                System.out.println(componentsList.get(position).getName()); //LED
+            } else if(componentsList.get(position).getName().equals(getString(R.string.component_Slider))) {
+                System.out.println(componentsList.get(position).getName()); //Slider
+            } else if(componentsList.get(position).getName().equals(getString(R.string.component_TextField))) {
+                System.out.println(componentsList.get(position).getName()); //TextField
             }
             getActivity().onBackPressed();
         }
     };
+
+    private void createListWithComponents() {
+        componentsList = new ArrayList<>();
+        componentsList.add(new ComponentListElement(R.drawable.ic_component_button, getString(R.string.component_Button)));
+        componentsList.add(new ComponentListElement(R.drawable.ic_component_textarea, getString(R.string.component_TextArea)));
+        componentsList.add(new ComponentListElement(R.drawable.ic_component_led, getString(R.string.component_LED)));
+        componentsList.add(new ComponentListElement(R.drawable.ic_component_slider, getString(R.string.component_Slider)));
+        componentsList.add(new ComponentListElement(R.drawable.ic_component_textfield, getString(R.string.component_TextField)));
+    }
 }

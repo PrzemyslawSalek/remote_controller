@@ -34,4 +34,6 @@
     <string name="colon_message">Wiadomość:</string>
     <string name="label_deleted">Usunięto</string>
     <string name="action_save">Zapisz</string>
+    <string name="component_TextField">Pole tekstowe</string>
+    <string name="component_Slider">Suwak</string>
 </resources>
