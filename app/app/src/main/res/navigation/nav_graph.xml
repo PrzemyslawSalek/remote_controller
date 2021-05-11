@@ -41,6 +41,12 @@
         <action
             android:id="@+id/action_editMode_to_buttonOptions"
             app:destination="@id/buttonOptions" />
+        <action
+            android:id="@+id/action_editMode_to_textAreaOptions"
+            app:destination="@id/textAreaOptions" />
+        <action
+            android:id="@+id/action_editMode_to_LEDOptions"
+            app:destination="@id/LEDOptions" />
     </fragment>
     <fragment
         android:id="@+id/usageMode"
@@ -58,6 +64,22 @@
         android:label="ButtonOptions" >
         <action
             android:id="@+id/action_buttonOptions_to_editMode"
+            app:destination="@id/editMode" />
+    </fragment>
+    <fragment
+        android:id="@+id/textAreaOptions"
+        android:name="com.app.remote_controller_app.fragments.component_options.TextAreaOptions"
+        android:label="TextAreaOptions" >
+        <action
+            android:id="@+id/action_textAreaOptions_to_editMode"
+            app:destination="@id/editMode" />
+    </fragment>
+    <fragment
+        android:id="@+id/LEDOptions"
+        android:name="com.app.remote_controller_app.fragments.component_options.LEDOptions"
+        android:label="LEDOptions" >
+        <action
+            android:id="@+id/action_LEDOptions_to_editMode"
             app:destination="@id/editMode" />
     </fragment>
 </navigation>

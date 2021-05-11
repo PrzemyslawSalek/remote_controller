@@ -41,5 +41,7 @@
     <string name="colon_position">Position:</string>
     <string name="colon_message">Message:</string>
     <string name="label_deleted">Deleted</string>
+    <string name="component_LED" translatable="false">LED</string>
+    <string name="action_save">Save</string>
 
 </resources>

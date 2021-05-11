@@ -28,7 +28,7 @@ public class ComponentSelection extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        componentsList = new ArrayList<String>(Arrays.asList(getString(R.string.component_Button), getString(R.string.component_TextArea)));
+        componentsList = new ArrayList<String>(Arrays.asList(getString(R.string.component_Button), getString(R.string.component_TextArea), getString(R.string.component_LED)));
     }
 
     @Override
@@ -51,6 +51,8 @@ public class ComponentSelection extends Fragment {
                 ((MainActivity) getActivity() ).addComponentToCurrentController(btn);
             } else if(componentsList.get(position).equals(getString(R.string.component_TextArea))) {
                 System.out.println(componentsList.get(position)); //TextArea
+            } else if(componentsList.get(position).equals(getString(R.string.component_LED))) {
+                System.out.println(componentsList.get(position)); //LED
             }
             getActivity().onBackPressed();
         }

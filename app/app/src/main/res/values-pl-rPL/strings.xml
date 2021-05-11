@@ -8,11 +8,7 @@
     <string name="language_title">Wybierz język</string>
     <string name="english_entries">Angielski</string>
     <string name="polish_entries">Polski</string>
-
-    <!-- Controller View -->
     <string name="controller_edit">Tryb Edycji</string>
-
-<!-- Opening View -->
     <string name="enter_controller_name">Wprowadź Nazwę Pilota</string>
     <string name="opening_addnew">Dodaj Nowy Pilot</string>
     <string name="device_entries">Język urządzenia</string>
@@ -37,4 +33,5 @@
     <string name="colon_position">Pozycja:</string>
     <string name="colon_message">Wiadomość:</string>
     <string name="label_deleted">Usunięto</string>
+    <string name="action_save">Zapisz</string>
 </resources>

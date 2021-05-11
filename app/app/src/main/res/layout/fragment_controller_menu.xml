@@ -6,51 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ControllerMenu">
 
-    <Button
-        android:id="@+id/button_editMode"
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/action_editMode"
-        app:layout_constraintBottom_toTopOf="@+id/button_usageMode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_usageMode"
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:text="@string/action_usageMode"
-        app:layout_constraintBottom_toTopOf="@+id/button_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_editMode" />
-
-    <Button
-        android:id="@+id/button_delete"
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/action_delete"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_usageMode" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button_favorite_device"
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:text="@string/action_favorite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_usageMode"
-        app:layout_constraintVertical_bias="0.057" />
+        <Button
+            android:id="@+id/button_editMode"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            android:layout_margin="50dp"
+            android:text="@string/action_editMode" />
+
+        <Button
+            android:id="@+id/button_usageMode"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
+            android:text="@string/action_usageMode" />
+
+        <Button
+            android:id="@+id/button_favorite_device"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            android:layout_margin="25dp"
+            android:text="@string/action_favorite" />
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/action_delete" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
