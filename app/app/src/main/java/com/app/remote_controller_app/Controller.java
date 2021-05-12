@@ -1,10 +1,14 @@
 package com.app.remote_controller_app;
 
+import android.util.Log;
+
 import com.app.remote_controller_app.components.Component;
+import com.app.remote_controller_app.components.InputComponent;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +20,9 @@ public class Controller {
     private List<Component> listOfComponents;
 
     @JsonCreator
-    public Controller(@JsonProperty("name") String name, @JsonProperty("favoriteDeviceMAC") String favoriteMAC, @JsonProperty("listOfComponents") List<Component> listOfComponents) {
+    public Controller(@JsonProperty("name") String name,
+                      @JsonProperty("favoriteDeviceMAC") String favoriteMAC,
+                      @JsonProperty("listOfComponents") List<Component> listOfComponents) {
         this.name = name;
         this.favoriteMAC = favoriteMAC;
         this.listOfComponents = listOfComponents;
@@ -26,6 +32,15 @@ public class Controller {
         this.listOfComponents = new LinkedList<Component>();
         this.name = name;
         this.favoriteMAC = favoriteMAC;
+    }
+
+    public void msgToCommand(String id, ArrayList<String> data){
+        for(Component c : listOfComponents){
+            if(c.getId().equals(id) && c instanceof InputComponent){
+                ((InputComponent) c).receive(data);
+                break; //ale czy napewno
+            }
+        }
     }
 
     public void addComponent(Component c){
@@ -59,14 +74,5 @@ public class Controller {
     @Override
     public String toString() {
         return name;
-    }
-
-    public void msgToCommand(String id, List<String> data){
-        for(int i=0;i<listOfComponents.size();i++){
-            if(listOfComponents.get(i).getId().equals(id)){
-                listOfComponents.get(i).receive(data);
-                break;
-            }
-        }
     }
 }

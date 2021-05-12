@@ -18,20 +18,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Button extends Component implements OutputComponent {
-    String msg = "to działa xD";
+    String msg;
 
     @JsonCreator
     public Button(@JsonProperty("name") String name, @JsonProperty("id") String id,
                   @JsonProperty("sizeX") float sizeX, @JsonProperty("sizeY") float sizeY,
                   @JsonProperty("posX") float posX, @JsonProperty("posY") float posY,
-                  @JsonProperty("isLocal") boolean isLocal,
                   @JsonProperty("msg") String msg){
-        super(name, id, sizeX, sizeY, posX, posY, isLocal);
+        super(name, id, sizeX, sizeY, posX, posY);
         this.msg = msg;
     }
 
-    public Button() {
-        super("button", "button", 0,0,0,0,false);
+    public Button(String name, String id) {
+        super(name, id, 0,0,0,0);
+        msg = "hello";
     }
 
     @Override
@@ -40,7 +40,6 @@ public class Button extends Component implements OutputComponent {
         btn.setText(name);
 
         Button ths = this;
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,9 +54,6 @@ public class Button extends Component implements OutputComponent {
     @Override
     public View getUsageView(Context context) {
         android.widget.Button btn = new android.widget.Button(context);
-//        btn.setX(posX);
-//        btn.setY(posY);
-        Log.v("[Component]", name);
         btn.setText(name);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +61,19 @@ public class Button extends Component implements OutputComponent {
                 send();
             }
         });
-
         return btn;
     }
 
     @Override
     public void send() {
         bluetoothService.send(msg);
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     @Override
@@ -84,16 +86,8 @@ public class Button extends Component implements OutputComponent {
                 ", sizeY=" + sizeY +
                 ", posX=" + posX +
                 ", posY=" + posY +
-                ", isLocal=" + isLocal +
+                ", isLocal=" +
                 ", bluetoothService=" + bluetoothService +
                 '}';
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 }

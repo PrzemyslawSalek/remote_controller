@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Button;
+import com.app.remote_controller_app.components.TextArea;
 import com.app.remote_controller_app.lists.adapters.ComponentListAdapter;
 import com.app.remote_controller_app.lists.elements.ComponentListElement;
 
@@ -47,11 +48,13 @@ public class ComponentSelection extends Fragment {
     AdapterView.OnItemClickListener listenerGetComponent = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            String index = ((MainActivity) getActivity()).getNextIndexComponent();
             if(componentsList.get(position).getName().equals(getString(R.string.component_Button))) {
-                Button btn = new Button();
+                Button btn = new Button("btn"+index, "id"+index);
                 ((MainActivity) getActivity() ).addComponentToCurrentController(btn);
             } else if(componentsList.get(position).getName().equals(getString(R.string.component_TextArea))) {
-                System.out.println(componentsList.get(position).getName()); //TextArea
+                TextArea area = new TextArea("txt"+index, "id"+index);
+                ((MainActivity) getActivity() ).addComponentToCurrentController(area);
             } else if(componentsList.get(position).getName().equals(getString(R.string.component_LED))) {
                 System.out.println(componentsList.get(position).getName()); //LED
             } else if(componentsList.get(position).getName().equals(getString(R.string.component_Slider))) {

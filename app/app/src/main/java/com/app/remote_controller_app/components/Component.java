@@ -21,19 +21,18 @@ import java.util.List;
         @JsonSubTypes.Type( value = LED.class)
 })
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.PROTECTED_AND_PUBLIC)
-public abstract class Component {
+public abstract class Component{
     protected String name;
     protected String id;
     protected float sizeX;
     protected float sizeY;
     protected float posX;
     protected float posY;
-    protected boolean isLocal;
 
     @JsonIgnore
     protected BluetoothService bluetoothService;
 
-    public Component(String name, String id, float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
+    public Component(String name, String id, float sizeX, float sizeY, float posX, float posY) {
         this.name = name;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
@@ -52,16 +51,14 @@ public abstract class Component {
     public String getName() {
         return name;
     }
-
     public String getId() {
         return id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
     public void setId(String id) {
         this.id = id;
     }
-    public void receive(List<String> data){}
+
 }

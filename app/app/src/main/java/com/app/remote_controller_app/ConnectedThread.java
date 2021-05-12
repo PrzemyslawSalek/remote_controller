@@ -15,13 +15,16 @@ public class ConnectedThread extends Thread{
     private final BluetoothSocket mmSocket;
     private  InputStream mmInStream;
     private  OutputStream mmOutStream;
+    private boolean stop;
 
     public static final int RESPONSE_MESSAGE = 10;
     Handler handler;
+    BufferedReader br;
 
     public ConnectedThread(BluetoothSocket socket, Handler uih){
         mmSocket = socket;
         this.handler = uih;
+        stop = false;
         
         Log.i("[THREAD-CT]","Creating thread");
         try{
@@ -35,16 +38,18 @@ public class ConnectedThread extends Thread{
     }
 
     public void run(){
-        BufferedReader br = new BufferedReader(new InputStreamReader(mmInStream));
+        br = new BufferedReader(new InputStreamReader(mmInStream));
         Log.i("[THREAD-CT]","Starting thread");
-        while(true){
+        while(!stop){
             try{
-                String resp = br.readLine();
-                Message msg = new Message();
-                msg.what = RESPONSE_MESSAGE;
-                msg.obj = resp;
-                handler.sendMessage(msg);
-            }catch(IOException e){
+                if(mmInStream.available() > 0){
+                    String resp = br.readLine();
+                    Message msg = new Message();
+                    msg.what = RESPONSE_MESSAGE;
+                    msg.obj = resp;
+                    handler.sendMessage(msg);
+                }
+            }catch(Exception e){
                 break;
             }
         }
@@ -61,11 +66,7 @@ public class ConnectedThread extends Thread{
     }
 
     public void cancel(){
-        try {
-            mmSocket.close();
-            Log.i("[THREAD-CT]", "Thread close");
-        } catch (IOException e) {
-            Log.i("[THREAD-CT]", "Thread close error");
-        }
+        stop=true;
+        Log.i("[THREAD-CT]", "Thread close");
     }
 }

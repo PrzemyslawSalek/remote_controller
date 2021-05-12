@@ -36,14 +36,12 @@ public class Opening extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        restoreFromDatabase();
-        for(Controller c: controllerList)
-            Log.v("Controller", String.valueOf(c.getId()) + "- " + c);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        refreshControllersView();
         ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
     @Override
@@ -58,11 +56,10 @@ public class Opening extends Fragment {
         View view = inflater.inflate(R.layout.fragment_opening, container, false);
         listView = (ListView) view.findViewById(R.id.list_view_layout);
 
+        refreshControllersView();
+
         buttonAddController = (FloatingActionButton) view.findViewById(R.id.button_addController);
         buttonAddController.setOnClickListener(listenerAddController);
-
-        arrayAdapter = new ControllerListAdapter(getActivity(), R.layout.controller_list_item, controllerList);
-        listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(listenerGetController);
         return view;
@@ -103,5 +100,11 @@ public class Opening extends Fragment {
     public void restoreFromDatabase(){
         controllerList = new ArrayList<>();
         controllerList = ((MainActivity) getActivity() ).listOfController();
+    }
+
+    public void refreshControllersView(){
+        restoreFromDatabase();
+        arrayAdapter = new ControllerListAdapter(getActivity(), R.layout.controller_list_item, controllerList);
+        listView.setAdapter(arrayAdapter);
     }
 }

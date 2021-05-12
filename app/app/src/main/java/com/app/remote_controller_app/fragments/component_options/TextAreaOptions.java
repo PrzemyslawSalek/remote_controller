@@ -17,7 +17,7 @@ import com.app.remote_controller_app.R;
 
 public class TextAreaOptions extends Fragment {
 
-    //com.app.remote_controller_app.components.TextArea thisComponent;
+    com.app.remote_controller_app.components.TextArea thisComponent;
 
     EditText editText_id;
     EditText editText_sizeX;
@@ -30,6 +30,15 @@ public class TextAreaOptions extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        thisComponent = (com.app.remote_controller_app.components.TextArea) ((MainActivity) getActivity()).getCurrentSelectedComponent();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        updateComponent();
+        ((MainActivity) getActivity()).updateCurrentSelectedController();
+        ((MainActivity) getActivity()).setCurrentSelectedComponent(null);
     }
 
     @Override
@@ -51,7 +60,7 @@ public class TextAreaOptions extends Fragment {
     private void inflateViews(View view) {
         // Plain Text ID //
         editText_id = view.findViewById(R.id.editText_TextArea_id);
-        //editText_id.setText(thisComponent.getId());
+        editText_id.setText(thisComponent.getId());
 
         // Plain Text Size X //
         editText_sizeX = view.findViewById(R.id.editTextNumber_TextArea_sizeX);
@@ -85,4 +94,9 @@ public class TextAreaOptions extends Fragment {
             Toast.makeText(getActivity(), getString(R.string.label_deleted), Toast.LENGTH_SHORT).show();
         }
     };
+
+    public void updateComponent(){
+        thisComponent.setId(editText_id.getText().toString());
+        //thisComponent.setName(editText_name.getText().toString());
+    }
 }

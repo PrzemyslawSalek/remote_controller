@@ -5,12 +5,23 @@ import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class LED extends Component implements InputComponent{
 
-    public LED(String name, String id, float sizeX, float sizeY, float posX, float posY, boolean isLocal) {
-        super(name, id, sizeX, sizeY, posX, posY, isLocal);
+    @JsonCreator
+    public LED(@JsonProperty("name") String name, @JsonProperty("id") String id,
+               @JsonProperty("sizeX") float sizeX, @JsonProperty("sizeY") float sizeY,
+               @JsonProperty("posX") float posX, @JsonProperty("posY") float posY){
+        super(name, id, sizeX, sizeY, posX, posY);
+    }
+
+    public LED(String name, String id) {
+        super(name, id, 0,0,0,0);
     }
 
     @Override
@@ -24,12 +35,7 @@ public class LED extends Component implements InputComponent{
     }
 
     @Override
-    public void receive(String msg){ }
-
-    public void receive(List<String> data) {
-        if(data.get(0).contains("off")){
-            off();
-        }
+    public void receive(ArrayList<String> data) {
     }
 
     public void off(){

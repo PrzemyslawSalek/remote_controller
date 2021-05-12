@@ -2,8 +2,6 @@ package com.app.remote_controller_app;
 
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,10 +10,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -33,14 +28,11 @@ import com.app.remote_controller_app.database.DatabaseHelper;
 import com.app.remote_controller_app.database.SerializedControllers;
 import com.j256.ormlite.dao.Dao;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
 import java.util.Arrays;
 
 
@@ -159,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     DialogInterface.OnClickListener listenerDeviceChoice = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            bluetoothService.setCurrentDevice(which);
+            bluetoothService.setCurrentDeviceByIndex(which);
         }
     };
 
@@ -167,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
     DialogInterface.OnClickListener listenerDeviceOkButton = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            bluetoothService.closeBluetooth();
+            bluetoothService.closeBluetoothSocket();
             bluetoothService.pairWithSelectedDevice();
         }
     };
@@ -264,6 +256,10 @@ public class MainActivity extends AppCompatActivity {
         currentSelectedController = null;
     }
 
+    public String getNextIndexComponent(){
+        return String.valueOf(currentSelectedController.getListOfComponents().size());
+    }
+
     /*------Component Activity------*/
     public void setCurrentSelectedComponent(Component currentSelectedComponent) {
         this.currentSelectedComponent = currentSelectedComponent;
@@ -278,6 +274,9 @@ public class MainActivity extends AppCompatActivity {
         bluetoothService.startTransmission(handler);
     }
 
+    public void closeTransmission(){
+        bluetoothService.closeConnectedThread();
+    }
     public void setComponentBluetoothService(){
         for(Component c : currentSelectedController.getListOfComponents()){
             c.setBluetoothService(bluetoothService);
@@ -324,10 +323,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void msgToDataProtocol(String msg){
-        List<String> data = Arrays.asList(msg.split("\r\n"));
-        String id=data.get(0);
-        data.remove(data.get(0));
-        currentSelectedController.msgToCommand(id, data);
+        ArrayList<String> data = new ArrayList<>(Arrays.asList(msg.split(";")));
+        if(data.size()>1){
+            String id = data.get(0);
+            data.remove(0);
+            currentSelectedController.msgToCommand(id, data);
+        }
+
     }
 
 }
