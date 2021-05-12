@@ -41,7 +41,9 @@ android:layout_width="match_parent">
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_id" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_LED_id"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/textView_LED_size"
@@ -54,49 +56,62 @@ android:layout_width="match_parent">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_LED_id" />
 
-    <EditText
-        android:id="@+id/editTextNumber_LED_sizeX"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+    <LinearLayout
+        android:id="@+id/linearLayout_LED1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/textView_LED_sizeX"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_size" />
-
-    <TextView
-        android:id="@+id/textView_LED_sizeX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/colon_x"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_size" />
-
-    <TextView
-        android:id="@+id/textView_LED_sizeY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/colon_y"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumber_LED_sizeX"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_size" />
-
-    <EditText
-        android:id="@+id/editTextNumber_LED_sizeY"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="number"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_LED_sizeY"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_size" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_LED_size">
+
+        <TextView
+            android:id="@+id/textView_LED_sizeX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/colon_x"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextNumber_LED_sizeX"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="number"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/textView_LED_sizeY"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/colon_y"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextNumber_LED_sizeY"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="number"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView_LED_position"
@@ -107,51 +122,64 @@ android:layout_width="match_parent">
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber_LED_sizeX" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_LED1" />
 
-    <TextView
-        android:id="@+id/textView_LED_positionX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout_LED2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:text="@string/colon_x"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_position" />
-
-    <EditText
-        android:id="@+id/editTextNumber_LED_positionX"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/textView_LED_positionX"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_position" />
-
-    <TextView
-        android:id="@+id/textView_LED_positionY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/colon_y"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumber_LED_positionX"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_position" />
-
-    <EditText
-        android:id="@+id/editTextNumber_LED_positionY"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="number"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_LED_positionY"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LED_position" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_LED_position">
+
+        <TextView
+            android:id="@+id/textView_LED_positionX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/colon_x"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextNumber_LED_positionX"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="number"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/textView_LED_positionY"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/colon_y"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextNumber_LED_positionY"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="number"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_LED_delete"
@@ -163,7 +191,7 @@ android:layout_width="match_parent">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber_LED_positionX" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_LED2" />
 
     <Button
         android:id="@+id/button_LED_save"
@@ -175,7 +203,7 @@ android:layout_width="match_parent">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber_LED_positionX" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_LED2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

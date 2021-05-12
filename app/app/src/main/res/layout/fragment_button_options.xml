@@ -13,6 +13,30 @@
         tools:context=".fragments.component_options.ButtonOptions">
 
         <TextView
+            android:id="@+id/textView_Button_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/colon_id"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Button" />
+
+        <EditText
+            android:id="@+id/editText_Button_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Button_id"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+
+        <TextView
             android:id="@+id/textView_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,139 +66,9 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_name" />
-
-        <TextView
-            android:id="@+id/textView_Button_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@string/colon_id"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button" />
-
-        <EditText
-            android:id="@+id/editText_Button_id"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_id" />
-
-        <TextView
-            android:id="@+id/textView_Button_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/colon_size"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_Button_message" />
-
-        <EditText
-            android:id="@+id/editTextNumber_Button_sizeX"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintStart_toEndOf="@+id/textView_Button_sizeX"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_size" />
-
-        <TextView
-            android:id="@+id/textView_Button_sizeX"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/colon_x"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_size" />
-
-        <TextView
-            android:id="@+id/textView_Button_sizeY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/colon_y"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumber_Button_sizeX"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_size" />
-
-        <EditText
-            android:id="@+id/editTextNumber_Button_sizeY"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView_Button_sizeY"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_size" />
-
-        <TextView
-            android:id="@+id/textView_Button_position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/colon_position"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber_Button_sizeX" />
-
-        <TextView
-            android:id="@+id/textView_Button_positionX"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/colon_x"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_position" />
-
-        <EditText
-            android:id="@+id/editTextNumber_Button_positionX"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintStart_toEndOf="@+id/textView_Button_positionX"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_position" />
-
-        <TextView
-            android:id="@+id/textView_Button_positionY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/colon_y"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumber_Button_positionX"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_position" />
-
-        <EditText
-            android:id="@+id/editTextNumber_Button_positionY"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView_Button_positionY"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_position" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_Button_name"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/textView_Button_message"
@@ -196,19 +90,144 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_message" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_Button_message"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
 
-        <Button
-            android:id="@+id/button_Button_delete"
+        <TextView
+            android:id="@+id/textView_Button_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/action_delete"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="20dp"
+            android:text="@string/colon_size"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber_Button_positionX" />
+            app:layout_constraintTop_toBottomOf="@+id/editText_Button_message" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_Button1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Button_size">
+
+            <TextView
+                android:id="@+id/textView_Button_sizeX"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/colon_x"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editTextNumber_Button_sizeX"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="number"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor" />
+
+            <TextView
+                android:id="@+id/textView_Button_sizeY"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/colon_y"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editTextNumber_Button_sizeY"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="number"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_Button_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/colon_position"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Button1" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_Button2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Button_position">
+
+            <TextView
+                android:id="@+id/textView_Button_positionX"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/colon_x"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editTextNumber_Button_positionX"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="number"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor" />
+
+            <TextView
+                android:id="@+id/textView_Button_positionY"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/colon_y"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editTextNumber_Button_positionY"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="number"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_Button_save"
@@ -220,7 +239,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber_Button_positionX" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Button2" />
+
+        <Button
+            android:id="@+id/button_Button_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/action_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Button2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
