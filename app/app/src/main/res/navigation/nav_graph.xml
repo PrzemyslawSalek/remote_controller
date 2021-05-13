@@ -17,6 +17,12 @@
         <action
             android:id="@+id/action_opening_to_controllerMenu"
             app:destination="@id/controllerMenu" />
+        <action
+            android:id="@+id/action_opening_to_editMode"
+            app:destination="@id/editMode" />
+        <action
+            android:id="@+id/action_opening_to_usageMode"
+            app:destination="@id/usageMode" />
     </fragment>
     <fragment
         android:id="@+id/controllerMenu"

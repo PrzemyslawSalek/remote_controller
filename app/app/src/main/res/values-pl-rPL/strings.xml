@@ -36,4 +36,5 @@
     <string name="action_save">Zapisz</string>
     <string name="component_TextField">Pole tekstowe</string>
     <string name="component_Slider">Suwak</string>
+    <string name="label_BluetoothDeviceNotSelected">Nie wybrano urządzenia Bluetooth</string>
 </resources>

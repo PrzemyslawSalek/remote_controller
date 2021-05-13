@@ -36,39 +36,12 @@ public class ControllerMenu extends Fragment {
         textView_name = view.findViewById(R.id.textView_ControllerMenu_name);
         textView_name.setText(((MainActivity) getActivity()).getCurrentSelectedController().toString());
 
-        btnEditMode = (Button) view.findViewById(R.id.button_editMode);
-        btnEditMode.setOnClickListener(listenerEditMode);
-
-        btnUsageMode = (Button) view.findViewById(R.id.button_usageMode);
-        btnUsageMode.setOnClickListener(listenerUsageMode);
-
-        btnDelete = (Button) view.findViewById(R.id.button_delete);
-        btnDelete.setOnClickListener(listenerDelete);
-
         btnFavorite = (Button) view.findViewById(R.id.button_favorite_device);
         btnFavorite.setOnClickListener(listenerFavorite);
 
         return view;
     }
 
-    /* Co się dzieje po wybraniu Edit Mode */
-    View.OnClickListener listenerEditMode = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_editMode);
-        }
-    };
-
-    /* Co się dzieje po wybraniu Usage Mode */
-    View.OnClickListener listenerUsageMode = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if( ((MainActivity) getActivity() ).isPair())
-                NavHostFragment.findNavController(ControllerMenu.this).navigate(R.id.action_controllerMenu_to_usageMode);
-            else
-                Toast.makeText(getContext(), "Nie wybrano urządzenia bluetooth", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     View.OnClickListener listenerFavorite = new View.OnClickListener() {
         @Override
@@ -77,17 +50,5 @@ public class ControllerMenu extends Fragment {
         }
     };
 
-    /* Co się dzieje po wybraniu Delete */
-    View.OnClickListener listenerDelete = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String deletedController = ((MainActivity) getActivity()).getCurrentSelectedController().toString();
-
-            ((MainActivity) getActivity()).removeSelectedController();
-            ((MainActivity) getActivity()).onBackPressed();
-
-            Toast.makeText(getActivity(), getString(R.string.label_deleted) + " " + deletedController, Toast.LENGTH_SHORT).show();
-        }
-    };
 
 }

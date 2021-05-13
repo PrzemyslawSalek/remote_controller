@@ -41,7 +41,6 @@ public class Opening extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        refreshControllersView();
         ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
     @Override
@@ -56,12 +55,11 @@ public class Opening extends Fragment {
         View view = inflater.inflate(R.layout.fragment_opening, container, false);
         listView = (ListView) view.findViewById(R.id.list_view_layout);
 
-        refreshControllersView();
+        createListView();
 
         buttonAddController = (FloatingActionButton) view.findViewById(R.id.button_addController);
         buttonAddController.setOnClickListener(listenerAddController);
 
-        listView.setOnItemClickListener(listenerGetController);
         return view;
     }
 
@@ -89,21 +87,11 @@ public class Opening extends Fragment {
         }
     };
 
-    AdapterView.OnItemClickListener listenerGetController = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ((MainActivity) getActivity() ).setCurrentSelectedController(controllerList.get(position));
-            NavHostFragment.findNavController(Opening.this).navigate(R.id.action_opening_to_controllerMenu);
-        }
-    };
-
-    public void restoreFromDatabase(){
+    // Tworzy elementy listy i zapełnia ListView //
+    public void createListView(){
         controllerList = new ArrayList<>();
         controllerList = ((MainActivity) getActivity() ).listOfController();
-    }
 
-    public void refreshControllersView(){
-        restoreFromDatabase();
         arrayAdapter = new ControllerListAdapter(getActivity(), R.layout.controller_list_item, controllerList);
         listView.setAdapter(arrayAdapter);
     }

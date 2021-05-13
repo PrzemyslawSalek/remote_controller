@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.app.remote_controller_app.components.Component;
 import com.app.remote_controller_app.database.DatabaseHelper;
 import com.app.remote_controller_app.database.SerializedControllers;
+import com.app.remote_controller_app.lists.adapters.ControllerListAdapter;
 import com.j256.ormlite.dao.Dao;
 
 import java.lang.reflect.Method;
@@ -204,7 +205,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void removeController(Controller c){
+    public void removeController(Controller c) {
+        currentSelectedController = null;
         try {
             Dao d = db.getSerializedControllerDao();
             d.deleteById(c.getId());
@@ -240,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
     /*------ Controllers Activity ------*/
     public void setCurrentSelectedController(Controller c){
         currentSelectedController = c;
+        System.out.println("Current Controller:" + currentSelectedController);
     }
 
     public Controller getCurrentSelectedController() {
