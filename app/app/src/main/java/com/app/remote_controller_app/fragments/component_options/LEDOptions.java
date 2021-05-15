@@ -30,6 +30,7 @@ public class LEDOptions extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        thisComponent = (com.app.remote_controller_app.components.LED) ((MainActivity) getActivity()).getCurrentSelectedComponent();
     }
 
     @Override

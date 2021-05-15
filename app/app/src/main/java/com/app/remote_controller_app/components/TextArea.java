@@ -55,12 +55,10 @@ public class TextArea extends Component implements InputComponent{
 
     @Override
     public View getUsageView(Context context) {
-        android.widget.TextView textView = new android.widget.TextView(context);
+        this.textView = new android.widget.TextView(context);
 
         textView.setText(name);
         textView.setBackgroundColor(Color.GRAY);
-
-        this.textView = textView;
 
         return textView;
     }

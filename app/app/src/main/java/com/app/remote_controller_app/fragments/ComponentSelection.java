@@ -12,7 +12,9 @@ import android.widget.ListView;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Button;
+import com.app.remote_controller_app.components.LED;
 import com.app.remote_controller_app.components.TextArea;
+import com.app.remote_controller_app.components.view_components.LEDComponent;
 import com.app.remote_controller_app.lists.adapters.ComponentListAdapter;
 import com.app.remote_controller_app.lists.elements.ComponentListElement;
 
@@ -56,7 +58,8 @@ public class ComponentSelection extends Fragment {
                 TextArea area = new TextArea("txt"+index, "id"+index);
                 ((MainActivity) getActivity() ).addComponentToCurrentController(area);
             } else if(componentsList.get(position).getName().equals(getString(R.string.component_LED))) {
-                System.out.println(componentsList.get(position).getName()); //LED
+                LED led = new LED("led"+index, "id"+index);
+                ((MainActivity) getActivity() ).addComponentToCurrentController(led);
             } else if(componentsList.get(position).getName().equals(getString(R.string.component_Slider))) {
                 System.out.println(componentsList.get(position).getName()); //Slider
             } else if(componentsList.get(position).getName().equals(getString(R.string.component_TextField))) {
