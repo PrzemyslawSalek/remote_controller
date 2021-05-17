@@ -14,7 +14,6 @@ import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Button;
 import com.app.remote_controller_app.components.LED;
 import com.app.remote_controller_app.components.TextArea;
-import com.app.remote_controller_app.components.view_components.LEDComponent;
 import com.app.remote_controller_app.lists.adapters.ComponentListAdapter;
 import com.app.remote_controller_app.lists.elements.ComponentListElement;
 
@@ -33,6 +32,18 @@ public class ComponentSelection extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createListWithComponents();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.label_selectComponent));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name));
     }
 
     @Override
