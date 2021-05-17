@@ -37,4 +37,8 @@
     <string name="component_TextField">Pole tekstowe</string>
     <string name="component_Slider">Suwak</string>
     <string name="label_BluetoothDeviceNotSelected">Nie wybrano urządzenia Bluetooth</string>
+    <string name="label_deleteController">Usuń kontroler</string>
+    <string name="label_deleteControllerSure">Czy na pewno chcesz usunąć ten kontroler?</string>
+    <string name="action_yes">Tak</string>
+    <string name="action_no">Nie</string>
 </resources>

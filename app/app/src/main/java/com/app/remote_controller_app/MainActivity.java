@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             //bluetoothService.setCurrentDevice(-1);
-        }
+        }   
     };
 
     /* -------------- Controllers Database  ------------------ */
@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
     /*------ Controllers Activity ------*/
     public void setCurrentSelectedController(Controller c){
         currentSelectedController = c;
-        System.out.println("Current Controller:" + currentSelectedController);
+        System.out.println("Current Controller: " + currentSelectedController);
     }
 
     public Controller getCurrentSelectedController() {

@@ -1,7 +1,8 @@
 package com.app.remote_controller_app.lists.adapters;
 
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +15,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.FragmentNavigator;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.app.remote_controller_app.Controller;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
-import com.app.remote_controller_app.fragments.ControllerMenu;
-import com.app.remote_controller_app.fragments.Opening;
 
 import java.util.List;
 
@@ -84,7 +80,7 @@ public class ControllerListAdapter extends ArrayAdapter<Controller> {
                     NavController navController = Navigation.findNavController(((MainActivity) mCtx), R.id.nav_host_fragment);
                     navController.navigate(R.id.action_opening_to_usageMode);
                 } else
-                    Toast.makeText(getContext(), ((MainActivity) mCtx).getString(R.string.label_BluetoothDeviceNotSelected), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), mCtx.getString(R.string.label_BluetoothDeviceNotSelected), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -92,13 +88,28 @@ public class ControllerListAdapter extends ArrayAdapter<Controller> {
         view.findViewById(R.id.imageButton_Controller_Delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                String deletedController = controllerElement.toString();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle(mCtx.getString(R.string.label_deleteController));
+                builder.setMessage(mCtx.getString(R.string.label_deleteControllerSure));
 
-                controllerElements.remove(position);
-                notifyDataSetChanged();
-                ((MainActivity) mCtx).removeController(controllerElement);
+                builder.setPositiveButton(mCtx.getString(R.string.action_yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String deletedController = controllerElement.toString();
 
-                Toast.makeText(getContext(), ((MainActivity) mCtx).getString(R.string.label_deleted) + " " + deletedController, Toast.LENGTH_SHORT).show();
+                        controllerElements.remove(position);
+                        notifyDataSetChanged();
+                        ((MainActivity) mCtx).removeController(controllerElement);
+
+                        Toast.makeText(getContext(), mCtx.getString(R.string.label_deleted) + " \"" + deletedController + "\"", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setNegativeButton(mCtx.getString(R.string.action_no), null);
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
