@@ -1,29 +1,28 @@
+RFC 10202
+
 remote_controller protocol
 
-<sep> - separator, is declarate by user(different from ',')
 ID - is unique identificator every Component, set by user
 METHOD ID - is unique identificator every Method in every type of Component
 arg1, arg2, ... - user data input field, every method can have different number of arguments
 
 
 Example request:
-ID<sep>METHOD ID<sep>arg1,arg2,arg3<sep><sep>
-
-On end the request is double <sep>
-
+ID;METHOD ID;arg1,arg2,arg3\n
 
 
 How control android Component (INPUT COMPONENT)?
 
 LED
-ID<sep>"toggle"<sep><sep>
-ID<sep>"off"<sep><sep>
-ID<sep>"on"<sep><sep>
+ID;toggle\n
+ID;off\n
+ID;on\n
+ID;color;arg1\n  - arg1 in hex code
 
 TextArea
-ID<sep>"clear"<sep><sep>
-ID<sep>"write"<sep>arg1<sep><sep>
-ID<sep>"append"<sep>arg1<sep><sep>
+ID;clear\n
+ID;write;arg1\n
+ID;append;arg1\n
 
 
 
@@ -31,3 +30,4 @@ ID<sep>"append"<sep>arg1<sep><sep>
 What data is return by android Compontent (OUTPUT COMPONENT)?
 BUTTON
 onClick - return data from onClickField, which is set by user
+
