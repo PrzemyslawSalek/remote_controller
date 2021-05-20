@@ -54,5 +54,13 @@
     <string name="colon_range">Range:</string>
     <string name="colon_min" translatable="false">Min:</string>
     <string name="colon_max" translatable="false">Max:</string>
+    <string name="label_deleteButton">Delete Button</string>
+    <string name="label_deleteButtonSure">Are you sure you want to delete this button?</string>
+    <string name="label_deleteLED">Delete Led</string>
+    <string name="label_deleteLEDSure">Are you sure you want to delete this led?</string>
+    <string name="label_deleteSlider">Delete Slider</string>
+    <string name="label_deleteSliderSure">Are you sure you want to delete this slider?</string>
+    <string name="label_deleteTextArea">Delete TextArea</string>
+    <string name="label_deleteTextAreaSure">Are you sure you want to delete this text area?</string>
 
 </resources>

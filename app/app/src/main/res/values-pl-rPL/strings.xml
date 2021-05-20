@@ -42,4 +42,12 @@
     <string name="action_no">Nie</string>
     <string name="label_selectComponent">Wybierz komponent</string>
     <string name="colon_range">Zasięg:</string>
+    <string name="label_deleteButton">Usuń przycisk</string>
+    <string name="label_deleteButtonSure">Czy na pewno chcesz usunąć ten przycisk?</string>
+    <string name="label_deleteLED">Usuń diodę</string>
+    <string name="label_deleteLEDSure">Czy na pewno chcesz usunąć tą diodę?</string>
+    <string name="label_deleteSlider">Usuń suwak</string>
+    <string name="label_deleteSliderSure">Czy na pewno chcesz usunąć ten suwak?</string>
+    <string name="label_deleteTextArea">Usuń obszar tekstowy</string>
+    <string name="label_deleteTextAreaSure">Czy na pewno chcesz usunąć ten obszar tekstowy?</string>
 </resources>
