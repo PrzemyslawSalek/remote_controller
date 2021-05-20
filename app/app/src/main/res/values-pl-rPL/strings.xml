@@ -41,4 +41,5 @@
     <string name="action_yes">Tak</string>
     <string name="action_no">Nie</string>
     <string name="label_selectComponent">Wybierz komponent</string>
+    <string name="colon_range">Zasięg:</string>
 </resources>

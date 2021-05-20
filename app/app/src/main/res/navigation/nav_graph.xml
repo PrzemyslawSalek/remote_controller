@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_editMode_to_LEDOptions"
             app:destination="@id/LEDOptions" />
+        <action
+            android:id="@+id/action_editMode_to_sliderOptions"
+            app:destination="@id/sliderOptions" />
     </fragment>
     <fragment
         android:id="@+id/usageMode"
@@ -71,6 +74,14 @@
         android:label="LEDOptions" >
         <action
             android:id="@+id/action_LEDOptions_to_editMode"
+            app:destination="@id/editMode" />
+    </fragment>
+    <fragment
+        android:id="@+id/sliderOptions"
+        android:name="com.app.remote_controller_app.fragments.component_options.SliderOptions"
+        android:label="SliderOptions" >
+        <action
+            android:id="@+id/action_sliderOptions_to_editMode"
             app:destination="@id/editMode" />
     </fragment>
 </navigation>

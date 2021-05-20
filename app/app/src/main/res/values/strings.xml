@@ -51,5 +51,8 @@
     <string name="action_yes">Yes</string>
     <string name="action_no">No</string>
     <string name="label_selectComponent">Select a component</string>
+    <string name="colon_range">Range:</string>
+    <string name="colon_min" translatable="false">Min:</string>
+    <string name="colon_max" translatable="false">Max:</string>
 
 </resources>
