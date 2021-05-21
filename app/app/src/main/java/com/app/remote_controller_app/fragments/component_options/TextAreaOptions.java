@@ -97,7 +97,8 @@ public class TextAreaOptions extends Fragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    // Metoda do usuwania TextArea  <--- TUTAJ DOPISAC //
+                    ((MainActivity) getActivity()).removeComponentInSelectedController(thisComponent);
+                    ((MainActivity) getActivity()).updateCurrentSelectedController();
 
                     ((MainActivity) getActivity()).onBackPressed();
                     Toast.makeText(getActivity(), getString(R.string.label_deleted), Toast.LENGTH_SHORT).show();

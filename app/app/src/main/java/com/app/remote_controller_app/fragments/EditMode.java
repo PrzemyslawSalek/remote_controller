@@ -37,8 +37,10 @@ public class EditMode extends Fragment {
         ((MainActivity) getActivity()).getSupportActionBar().show();
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.v("Button", "create");
         View view = inflater.inflate(R.layout.fragment_edit_mode, container, false);
         l = view.findViewById(R.id.component_view);
         for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents()) {

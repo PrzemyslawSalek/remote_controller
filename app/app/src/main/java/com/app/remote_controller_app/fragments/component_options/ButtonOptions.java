@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,14 +36,6 @@ public class ButtonOptions extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         thisComponent = (com.app.remote_controller_app.components.Button) ((MainActivity) getActivity()).getCurrentSelectedComponent();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        updateComponent();
-        ((MainActivity) getActivity()).updateCurrentSelectedController();
-        ((MainActivity) getActivity()).setCurrentSelectedComponent(null);
     }
 
     @Override
@@ -91,6 +84,8 @@ public class ButtonOptions extends Fragment {
     View.OnClickListener listenerSaveButton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            updateComponent();
+            ((MainActivity) getActivity()).updateCurrentSelectedController();
             ((MainActivity) getActivity()).onBackPressed();
         }
     };
@@ -107,7 +102,8 @@ public class ButtonOptions extends Fragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    // Metoda do usuwania Button  <--- TUTAJ DOPISAC //
+                    ((MainActivity) getActivity()).removeComponentInSelectedController(thisComponent);
+                    ((MainActivity) getActivity()).updateCurrentSelectedController();
 
                     ((MainActivity) getActivity()).onBackPressed();
                     Toast.makeText(getActivity(), getString(R.string.label_deleted), Toast.LENGTH_SHORT).show();

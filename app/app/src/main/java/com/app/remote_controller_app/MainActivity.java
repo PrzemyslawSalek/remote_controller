@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -20,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         bluetoothService = new BluetoothService();
 
-        if(!bluetoothService.isEnabled()){
+        if (!bluetoothService.isEnabled()) {
             Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBTIntent, 1);
         }
@@ -82,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            if(localeCode.equals("device"))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (localeCode.equals("device"))
                 conf.setLocale(new Locale(Locale.getDefault().getLanguage()));
             else
                 conf.setLocale(new Locale(localeCode.toLowerCase()));
         } else {
-            if(localeCode.equals("device"))
+            if (localeCode.equals("device"))
                 conf.locale = new Locale(Locale.getDefault().getLanguage());
             else
                 conf.locale = new Locale(localeCode.toLowerCase());
@@ -111,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
     /* Gdy menu jest otwarte... Wyświetla ikony obok elementów z listy */
     @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
-        if((featureId & Window.FEATURE_ACTION_BAR) == Window.FEATURE_ACTION_BAR && menu != null){
-            if(menu.getClass().getSimpleName().equals("MenuBuilder")){
+        if ((featureId & Window.FEATURE_ACTION_BAR) == Window.FEATURE_ACTION_BAR && menu != null) {
+            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
                 try {
                     Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
                     m.setAccessible(true);
                     m.invoke(menu, true);
-                } catch(NoSuchMethodException e){
+                } catch (NoSuchMethodException e) {
                     //Log.e(TAG, "onMenuOpened", e);
-                } catch(Exception e){
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -161,7 +163,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             bluetoothService.closeBluetoothSocket();
-            bluetoothService.pairWithSelectedDevice();
+            if (!bluetoothService.openBluetoothSocketForCurrentDevice())
+                Toast.makeText(getApplicationContext(), getString(R.string.label_BluetoothDeviceNotSelected), Toast.LENGTH_SHORT).show();
+
         }
     };
 
@@ -170,13 +174,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             //bluetoothService.setCurrentDevice(-1);
-        }   
+        }
     };
 
     /* -------------- Controllers Database  ------------------ */
 
-    public Controller addController(String name){
-        try{
+    public Controller addController(String name) {
+        try {
             Dao d = db.getSerializedControllerDao();
             SerializedControllers sc = new SerializedControllers(new Controller(name, null));
             d.create(sc);
@@ -190,14 +194,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void updateCurrentSelectedController(){
+    public void updateCurrentSelectedController() {
         updateController(currentSelectedController);
     }
 
-    public void updateController(Controller c){
+    public void updateController(Controller c) {
         try {
             Dao d = db.getSerializedControllerDao();
-            SerializedControllers SController= (SerializedControllers) d.queryForId(c.getId());
+            SerializedControllers SController = (SerializedControllers) d.queryForId(c.getId());
             SController.setSerializedController(c);
             d.createOrUpdate(SController);
         } catch (SQLException e) {
@@ -215,12 +219,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public ArrayList<Controller> listOfController(){
+    public ArrayList<Controller> listOfController() {
         try {
             Dao d = db.getSerializedControllerDao();
-            List<SerializedControllers> listS=d.queryForAll();
+            List<SerializedControllers> listS = d.queryForAll();
             ArrayList<Controller> listC = new ArrayList<>();
-            for(SerializedControllers sc : listS){
+            for (SerializedControllers sc : listS) {
                 listC.add(sc.getObject());
             }
             return listC;
@@ -229,18 +233,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public Controller getById(long id){
+    public Controller getById(long id) {
         try {
             Dao d = db.getSerializedControllerDao();
-            SerializedControllers SController= (SerializedControllers) d.queryForId(id);
-            return  SController.getObject();
+            SerializedControllers SController = (SerializedControllers) d.queryForId(id);
+            return SController.getObject();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     /*------ Controllers Activity ------*/
-    public void setCurrentSelectedController(Controller c){
+    public void setCurrentSelectedController(Controller c) {
         currentSelectedController = c;
         System.out.println("Current Controller: " + currentSelectedController);
     }
@@ -249,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
         return currentSelectedController;
     }
 
-    public void addComponentToCurrentController(Component c){
+    public void addComponentToCurrentController(Component c) {
         currentSelectedController.addComponent(c);
         updateController(currentSelectedController);
     }
@@ -259,8 +263,22 @@ public class MainActivity extends AppCompatActivity {
         currentSelectedController = null;
     }
 
-    public String getNextIndexComponent(){
+    public String getNextIndexComponent() {
         return String.valueOf(currentSelectedController.getListOfComponents().size());
+    }
+
+    public void removeComponentInSelectedController(Component component) {
+        currentSelectedController.removeComponent(component);
+    }
+
+    public void updateFavoriteMac() {
+        String currAdr = bluetoothService.getCurrentAddress();
+        if (currAdr != null) {
+            if (!currAdr.equals(currentSelectedController.getFavoriteMAC())) {
+                currentSelectedController.setFavoriteMAC(currAdr);
+                updateController(currentSelectedController);
+            }
+        }
     }
 
     /*------Component Activity------*/
@@ -277,62 +295,29 @@ public class MainActivity extends AppCompatActivity {
         bluetoothService.startTransmission(handler);
     }
 
-    public void closeTransmission(){
-        bluetoothService.closeConnectedThread();
+    public void closeTransmission() {
+        bluetoothService.closeTransmission();
     }
-    public void setComponentBluetoothService(){
-        for(Component c : currentSelectedController.getListOfComponents()){
+
+    public void setComponentBluetoothService() {
+        for (Component c : currentSelectedController.getListOfComponents()) {
             c.setBluetoothService(bluetoothService);
         }
     }
 
-    public void pairWithFavoriteDevice(){
-        if(currentSelectedController.getFavoriteMAC()!=null){
-            if(!bluetoothService.pairWithFavoriteMAC(currentSelectedController.getFavoriteMAC())){
-                Toast.makeText(this, "nie znalezono ulubionego urządzenia", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    public boolean isPair(){
+    public boolean isPair() {
         return bluetoothService.isPair();
     }
 
 
-    public void selectFavoriteDeviceAlert(){
-        bluetoothService.refreshDevices();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.label_availableDevices));
-
-        final int[] index = {bluetoothService.getDeviceIndex(currentSelectedController.getFavoriteMAC())};
-
-        builder.setSingleChoiceItems(bluetoothService.getNameList(), index[0], new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                index[0] = which;
-            }
-        });
-
-        builder.setPositiveButton(getString(R.string.action_ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                currentSelectedController.setFavoriteMAC(bluetoothService.getMacByIndex(index[0]));
-                updateController(currentSelectedController);
-            }
-        });
-
-        builder.setNegativeButton(getString(R.string.action_cancel), null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
-    public void msgToDataProtocol(String msg){
+    //Protocol Service
+    public void msgToDataProtocol(String msg) {
         ArrayList<String> data = new ArrayList<>(Arrays.asList(msg.split(";")));
-        if(data.size()>1){
+        if (data.size() > 1) {
             String id = data.get(0);
             data.remove(0);
             currentSelectedController.msgToCommand(id, data);
         }
-
     }
 
 }

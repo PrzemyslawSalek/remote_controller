@@ -46,7 +46,11 @@
         android:id="@+id/usageMode"
         android:name="com.app.remote_controller_app.fragments.UsageMode"
         android:label="@string/label_UsageMode"
-        tools:layout="@layout/fragment_usage_mode" />
+        tools:layout="@layout/fragment_usage_mode" >
+        <action
+            android:id="@+id/action_usageMode_to_opening"
+            app:destination="@id/opening" />
+    </fragment>
     <fragment
         android:id="@+id/componentSelection"
         android:name="com.app.remote_controller_app.fragments.ComponentSelection"

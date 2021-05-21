@@ -3,6 +3,8 @@ package com.app.remote_controller_app.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -35,6 +37,9 @@ public class UsageMode extends Fragment {
                     String txt = (String) msg.obj;
                     Log.v("BLUETOOTH", txt);
                     ((MainActivity) getActivity()).msgToDataProtocol(txt);
+                }else if(msg.what == ConnectedThread.DISCONNECT_MESSAGE){
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    navController.navigate(R.id.action_usageMode_to_opening);
                 }
             }
         };
@@ -58,8 +63,10 @@ public class UsageMode extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_usage_mode, container, false);
         l = (LinearLayout) view.findViewById(R.id.test_layout);
-        for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents())
+        for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents()) {
             l.addView(c.getUsageView(getContext()));
+            Log.v("Component", c.getId());
+        }
         return view;
     }
 
