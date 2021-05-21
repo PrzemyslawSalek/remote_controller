@@ -29,25 +29,26 @@ public class TextArea extends Component implements InputComponent{
 
     @JsonCreator
     public TextArea(@JsonProperty("name") String name, @JsonProperty("id") String id,
-                    @JsonProperty("sizeX") float sizeX, @JsonProperty("sizeY") float sizeY,
-                    @JsonProperty("posX") float posX, @JsonProperty("posY") float posY){
+                    @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
+                    @JsonProperty("posX") int posX, @JsonProperty("posY") int posY){
         super(name, id, sizeX, sizeY, posX, posY);
     }
 
     public TextArea(String name, String id) {
-        super(name, id, 0.5f,0.5f,0,0);
+        super(name, id, 50,50,50,50);
     }
 
     @Override
     public View getEditView(Context context, Fragment fragment) {
         android.widget.TextView textView = new android.widget.TextView(context);
 
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int)( sizeX * ((MainActivity) context).width ), (int) (sizeY * ((MainActivity) context).height));
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int)( (float)sizeX/100 * ((MainActivity) context).width ), (int) ((float)sizeY/100 * ((MainActivity) context).height));
         textView.setLayoutParams(lp);
 
         Log.v("LAYOUT", String.valueOf(textView.getLineHeight()));
 
-        textView.setX(20);
+        textView.setX((int)((( (1-(float)sizeX/100) * ((MainActivity) context).width )*(float)posX/100)));
+        textView.setY((int)((( (1-(float)sizeY/100) * ((MainActivity) context).height )*(float)posY/100)));
         textView.setText(name);
         textView.setBackgroundColor(Color.GRAY);
 

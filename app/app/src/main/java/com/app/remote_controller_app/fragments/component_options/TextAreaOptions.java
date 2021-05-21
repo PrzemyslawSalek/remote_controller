@@ -67,17 +67,19 @@ public class TextAreaOptions extends Fragment {
 
         // Plain Text Size X //
         editText_sizeX = view.findViewById(R.id.editTextNumber_TextArea_sizeX);
-        editText_sizeX.setText(String.valueOf(thisComponent.getSizeX()*100));
+        editText_sizeX.setText(String.valueOf(thisComponent.getSizeX()));
 
         // Plain Text Size Y //
         editText_sizeY = view.findViewById(R.id.editTextNumber_TextArea_sizeY);
-        editText_sizeY.setText(String.valueOf(thisComponent.getSizeY()*100));
+        editText_sizeY.setText(String.valueOf(thisComponent.getSizeY()));
 
         // Plain Text Position X //
         editText_posX = view.findViewById(R.id.editTextNumber_TextArea_positionX);
+        editText_posX.setText(String.valueOf(thisComponent.getPosX()));
 
         // Plain Text Position Y //
         editText_posY = view.findViewById(R.id.editTextNumber_TextArea_positionY);
+        editText_posY.setText(String.valueOf(thisComponent.getPosY()));
     }
 
     // Metoda dla przycisku "Zapisz" //
@@ -118,10 +120,9 @@ public class TextAreaOptions extends Fragment {
         }
     };
 
-    public void updateComponent(){
-        thisComponent.setId(editText_id.getText().toString());
-        float x = Float.parseFloat(editText_sizeX.getText().toString());
-        float y = Float.parseFloat(editText_sizeY.getText().toString());
+    public void updateSize(){
+        int x = Integer.parseInt(editText_sizeX.getText().toString());
+        int y = Integer.parseInt(editText_sizeY.getText().toString());
         if(x>100)
             x=100;
         if(x<10)
@@ -132,7 +133,24 @@ public class TextAreaOptions extends Fragment {
         if(y<10)
             y=10;
 
-        thisComponent.resize(x/100.f, y/100.f);
+        thisComponent.resize(x, y);
+    }
+
+    public void updatePos(){
+        int x = Integer.parseInt(editText_posX.getText().toString());
+        int y = Integer.parseInt(editText_posY.getText().toString());
+        if(x>100)
+            x=100;
+        if(y>100)
+            y=100;
+
+        thisComponent.move(x, y);
+    }
+
+    public void updateComponent(){
+        thisComponent.setId(editText_id.getText().toString());
+        updateSize();
+        updatePos();
         //thisComponent.setName(editText_name.getText().toString());
     }
 }
