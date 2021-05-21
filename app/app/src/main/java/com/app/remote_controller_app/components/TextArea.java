@@ -1,9 +1,12 @@
 package com.app.remote_controller_app.components;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -18,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class TextArea extends Component implements InputComponent{
 
@@ -26,18 +30,22 @@ public class TextArea extends Component implements InputComponent{
 
     @JsonCreator
     public TextArea(@JsonProperty("name") String name, @JsonProperty("id") String id,
-                    @JsonProperty("sizeX") float sizeX, @JsonProperty("sizeY") float sizeY,
+                    @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
                     @JsonProperty("posX") float posX, @JsonProperty("posY") float posY){
         super(name, id, sizeX, sizeY, posX, posY);
     }
 
     public TextArea(String name, String id) {
-        super(name, id, 0,0,0,0);
+        super(name, id, 100,100,0,0);
     }
 
     @Override
     public View getEditView(Context context, Fragment fragment) {
         android.widget.TextView textView = new android.widget.TextView(context);
+        LinearLayout.LayoutParams lp= new LinearLayout.LayoutParams(this.sizeX, this.sizeY);
+        textView.setLayoutParams(lp);
+        //textView.setLayoutParams(this.sizeX);
+        //textView.setScaleY(this.sizeY);
 
         textView.setText(name);
         textView.setBackgroundColor(Color.GRAY);

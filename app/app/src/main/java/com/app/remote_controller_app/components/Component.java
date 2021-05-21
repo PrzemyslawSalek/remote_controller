@@ -24,15 +24,15 @@ import java.util.List;
 public abstract class Component{
     protected String name;
     protected String id;
-    protected float sizeX;
-    protected float sizeY;
+    protected int sizeX;
+    protected int sizeY;
     protected float posX;
     protected float posY;
 
     @JsonIgnore
     protected BluetoothService bluetoothService;
 
-    public Component(String name, String id, float sizeX, float sizeY, float posX, float posY) {
+    public Component(String name, String id, int sizeX, int sizeY, float posX, float posY) {
         this.name = name;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
@@ -48,6 +48,11 @@ public abstract class Component{
         this.bluetoothService = bluetoothService;
     }
 
+    public void resize(int sizeX, int sizeY){
+        this.sizeX=sizeX;
+        this.sizeY=sizeY;
+    }
+
     public String getName() {
         return name;
     }
@@ -61,4 +66,35 @@ public abstract class Component{
         this.id = id;
     }
 
+    public int getSizeX() {
+        return sizeX;
+    }
+
+    public void setSizeX(int sizeX) {
+        this.sizeX = sizeX;
+    }
+
+    public int getSizeY() {
+        return sizeY;
+    }
+
+    public void setSizeY(int sizeY) {
+        this.sizeY = sizeY;
+    }
+
+    public float getPosX() {
+        return posX;
+    }
+
+    public void setPosX(float posX) {
+        this.posX = posX;
+    }
+
+    public float getPosY() {
+        return posY;
+    }
+
+    public void setPosY(float posY) {
+        this.posY = posY;
+    }
 }

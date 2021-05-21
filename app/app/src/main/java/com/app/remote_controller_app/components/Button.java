@@ -22,7 +22,7 @@ public class Button extends Component implements OutputComponent {
 
     @JsonCreator
     public Button(@JsonProperty("name") String name, @JsonProperty("id") String id,
-                  @JsonProperty("sizeX") float sizeX, @JsonProperty("sizeY") float sizeY,
+                  @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
                   @JsonProperty("posX") float posX, @JsonProperty("posY") float posY,
                   @JsonProperty("msg") String msg){
         super(name, id, sizeX, sizeY, posX, posY);

@@ -27,7 +27,7 @@ public class LED extends Component implements InputComponent{
 
     @JsonCreator
     public LED(@JsonProperty("name") String name, @JsonProperty("id") String id,
-               @JsonProperty("sizeX") float sizeX, @JsonProperty("sizeY") float sizeY,
+               @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
                @JsonProperty("posX") float posX, @JsonProperty("posY") float posY){
         super(name, id, sizeX, sizeY, posX, posY);
         is_on = false;

@@ -66,9 +66,11 @@ public class TextAreaOptions extends Fragment {
 
         // Plain Text Size X //
         editText_sizeX = view.findViewById(R.id.editTextNumber_TextArea_sizeX);
+        editText_sizeX.setText(String.valueOf(thisComponent.getSizeX()));
 
         // Plain Text Size Y //
         editText_sizeY = view.findViewById(R.id.editTextNumber_TextArea_sizeY);
+        editText_sizeY.setText(String.valueOf(thisComponent.getSizeY()));
 
         // Plain Text Position X //
         editText_posX = view.findViewById(R.id.editTextNumber_TextArea_positionX);
@@ -81,6 +83,8 @@ public class TextAreaOptions extends Fragment {
     View.OnClickListener listenerSaveButton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            updateComponent();
+            ((MainActivity) getActivity()).updateCurrentSelectedController();
             ((MainActivity) getActivity()).onBackPressed();
         }
     };
@@ -115,6 +119,7 @@ public class TextAreaOptions extends Fragment {
 
     public void updateComponent(){
         thisComponent.setId(editText_id.getText().toString());
+        thisComponent.resize(Float.valueOf(editText_sizeX.getText().toString()), Float.valueOf(editText_sizeY.getText().toString()));
         //thisComponent.setName(editText_name.getText().toString());
     }
 }
