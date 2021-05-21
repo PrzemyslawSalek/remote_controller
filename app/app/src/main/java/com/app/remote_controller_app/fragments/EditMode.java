@@ -1,6 +1,8 @@
 package com.app.remote_controller_app.fragments;
 
 import android.os.Bundle;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -19,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class EditMode extends Fragment {
 
     FloatingActionButton btnComponentSelection;
-    LinearLayout l;
+    ConstraintLayout l;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class EditMode extends Fragment {
         Log.v("Button", "create");
         View view = inflater.inflate(R.layout.fragment_edit_mode, container, false);
         l = view.findViewById(R.id.component_view);
+
         for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents()) {
             l.addView(c.getEditView(getContext(), EditMode.this));
         }

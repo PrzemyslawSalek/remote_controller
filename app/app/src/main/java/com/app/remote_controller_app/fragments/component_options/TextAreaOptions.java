@@ -2,6 +2,7 @@ package com.app.remote_controller_app.fragments.component_options;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -66,11 +67,11 @@ public class TextAreaOptions extends Fragment {
 
         // Plain Text Size X //
         editText_sizeX = view.findViewById(R.id.editTextNumber_TextArea_sizeX);
-        editText_sizeX.setText(String.valueOf(thisComponent.getSizeX()));
+        editText_sizeX.setText(String.valueOf(thisComponent.getSizeX()*100));
 
         // Plain Text Size Y //
         editText_sizeY = view.findViewById(R.id.editTextNumber_TextArea_sizeY);
-        editText_sizeY.setText(String.valueOf(thisComponent.getSizeY()));
+        editText_sizeY.setText(String.valueOf(thisComponent.getSizeY()*100));
 
         // Plain Text Position X //
         editText_posX = view.findViewById(R.id.editTextNumber_TextArea_positionX);
@@ -119,7 +120,19 @@ public class TextAreaOptions extends Fragment {
 
     public void updateComponent(){
         thisComponent.setId(editText_id.getText().toString());
-        thisComponent.resize(Float.valueOf(editText_sizeX.getText().toString()), Float.valueOf(editText_sizeY.getText().toString()));
+        float x = Float.parseFloat(editText_sizeX.getText().toString());
+        float y = Float.parseFloat(editText_sizeY.getText().toString());
+        if(x>100)
+            x=100;
+        if(x<10)
+            x=10;
+
+        if(y>100)
+            y=100;
+        if(y<10)
+            y=10;
+
+        thisComponent.resize(x/100.f, y/100.f);
         //thisComponent.setName(editText_name.getText().toString());
     }
 }

@@ -1,13 +1,12 @@
 package com.app.remote_controller_app.components;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -30,23 +29,25 @@ public class TextArea extends Component implements InputComponent{
 
     @JsonCreator
     public TextArea(@JsonProperty("name") String name, @JsonProperty("id") String id,
-                    @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
+                    @JsonProperty("sizeX") float sizeX, @JsonProperty("sizeY") float sizeY,
                     @JsonProperty("posX") float posX, @JsonProperty("posY") float posY){
         super(name, id, sizeX, sizeY, posX, posY);
     }
 
     public TextArea(String name, String id) {
-        super(name, id, 100,100,0,0);
+        super(name, id, 0.5f,0.5f,0,0);
     }
 
     @Override
     public View getEditView(Context context, Fragment fragment) {
         android.widget.TextView textView = new android.widget.TextView(context);
-        LinearLayout.LayoutParams lp= new LinearLayout.LayoutParams(this.sizeX, this.sizeY);
-        textView.setLayoutParams(lp);
-        //textView.setLayoutParams(this.sizeX);
-        //textView.setScaleY(this.sizeY);
 
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int)( sizeX * ((MainActivity) context).width ), (int) (sizeY * ((MainActivity) context).height));
+        textView.setLayoutParams(lp);
+
+        Log.v("LAYOUT", String.valueOf(textView.getLineHeight()));
+
+        textView.setX(20);
         textView.setText(name);
         textView.setBackgroundColor(Color.GRAY);
 

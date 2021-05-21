@@ -46,9 +46,21 @@ public class MainActivity extends AppCompatActivity {
     BluetoothService bluetoothService;
     Component currentSelectedComponent;
 
+    public float height;
+    public float width;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        height = Float.valueOf(metrics.heightPixels);
+        width = Float.valueOf(metrics.widthPixels);
+
+        Log.v("LAYOUT", String.valueOf(height));
+        Log.v("LAYOUT", String.valueOf(width));
 
         /*Inicjalizacja obiektów*/
         db = new DatabaseHelper(this);
