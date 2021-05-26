@@ -6,254 +6,40 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="40dp"
-        tools:context=".fragments.component_options.ButtonOptions">
-
-        <TextView
-            android:id="@+id/textView_Button_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@string/colon_id"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button" />
+        android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText_Button_id"
-            android:layout_width="0dp"
+            android:id="@+id/editText_Button_message"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_id"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor" />
-
-        <TextView
-            android:id="@+id/textView_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/component_Button"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView_Button_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/colon_name"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_Button_id" />
-
-        <EditText
-            android:id="@+id/editText_Button_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_name"
-            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Button_message"
             tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/textView_Button_message"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/colon_message"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_Button_name" />
+            app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
-        <EditText
-            android:id="@+id/editText_Button_message"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_message"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor" />
-
-        <TextView
-            android:id="@+id/textView_Button_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/colon_size"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_Button_message" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout_Button1"
+        <include
+            android:id="@+id/general_layout"
+            layout="@layout/options_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_size">
-
-            <TextView
-                android:id="@+id/textView_Button_sizeX"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/colon_x"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextNumber_Button_sizeX"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:inputType="number"
-                android:importantForAutofill="no"
-                tools:ignore="LabelFor" />
-
-            <TextView
-                android:id="@+id/textView_Button_sizeY"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/colon_y"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextNumber_Button_sizeY"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:inputType="number"
-                android:importantForAutofill="no"
-                tools:ignore="LabelFor" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView_Button_position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/colon_position"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Button1" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout_Button2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Button_position">
-
-            <TextView
-                android:id="@+id/textView_Button_positionX"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/colon_x"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextNumber_Button_positionX"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:inputType="number"
-                android:importantForAutofill="no"
-                tools:ignore="LabelFor" />
-
-            <TextView
-                android:id="@+id/textView_Button_positionY"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/colon_y"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextNumber_Button_positionY"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:inputType="number"
-                android:importantForAutofill="no"
-                tools:ignore="LabelFor" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button_Button_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="150dp"
-            android:text="@string/action_save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Button2" />
-
-        <Button
-            android:id="@+id/button_Button_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/action_delete"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Button2" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </ScrollView>
 

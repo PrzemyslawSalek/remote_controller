@@ -42,13 +42,8 @@ public class TextArea extends Component implements InputComponent{
     public View getEditView(Context context, Fragment fragment) {
         android.widget.TextView textView = new android.widget.TextView(context);
 
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int)( (float)sizeX/100 * ((MainActivity) context).width ), (int) ((float)sizeY/100 * ((MainActivity) context).height));
-        textView.setLayoutParams(lp);
+        setAndroidView(textView, context);
 
-        Log.v("LAYOUT", String.valueOf(textView.getLineHeight()));
-
-        textView.setX((int)((( (1-(float)sizeX/100) * ((MainActivity) context).width )*(float)posX/100)));
-        textView.setY((int)((( (1-(float)sizeY/100) * ((MainActivity) context).height )*(float)posY/100)));
         textView.setText(name);
         textView.setBackgroundColor(Color.GRAY);
 
@@ -66,7 +61,6 @@ public class TextArea extends Component implements InputComponent{
     @Override
     public View getUsageView(Context context) {
         this.textView = new android.widget.TextView(context);
-
         textView.setText(name);
         textView.setBackgroundColor(Color.GRAY);
 

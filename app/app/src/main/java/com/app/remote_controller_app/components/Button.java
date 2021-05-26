@@ -37,8 +37,8 @@ public class Button extends Component implements OutputComponent {
     @Override
     public View getEditView(Context context, Fragment fragment) {
         android.widget.Button btn = new android.widget.Button(context);
+        setAndroidView(btn, context);
         btn.setText(name);
-        Log.v("Button", name);
 
         Button ths = this;
         btn.setOnClickListener(new View.OnClickListener() {
