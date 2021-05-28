@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 
@@ -16,29 +17,20 @@ import androidx.core.graphics.ColorUtils;
 public class LEDComponent extends View {
 
     int LEDColor;
-    int borderColor;
     int defaultColor;
-
-    int diameter = 160;
-    float borderWidth = 4.0f;
 
 
     public LEDComponent(Context context) {
         super(context);
         LEDColor = Color.RED;
         defaultColor = LEDColor;
-        borderColor = Color.BLACK;
     }
 
     public LEDComponent(Context context, int color) {
         super(context);
         LEDColor = color;
         defaultColor = LEDColor;
-        borderColor = Color.BLACK;
     }
-
-    int positionX;
-    int positionY;
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -51,22 +43,9 @@ public class LEDComponent extends View {
         paint.setColor(LEDColor);
         paint.setStyle(Paint.Style.FILL);
 
-        float radius = diameter / 2f;
-
-        canvas.drawCircle(diameter / 2f, diameter / 2f, radius, paint);
-
-        paint.setColor(borderColor);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(borderWidth);
-
-        canvas.drawCircle(diameter / 2f, diameter / 2f, radius - borderWidth / 2f, paint);
+        canvas.drawOval(canvas.getClipBounds().left, canvas.getClipBounds().top, canvas.getClipBounds().right, canvas.getClipBounds().bottom,paint);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(diameter, diameter);
-    }
 
     public void setLEDColor(String LEDColor) {
         this.defaultColor = Color.parseColor(LEDColor);
@@ -84,10 +63,5 @@ public class LEDComponent extends View {
         this.postInvalidate();
     }
 
-
-    public void setDiameter(int diameter) {
-        this.diameter = diameter;
-        this.postInvalidate();
-    }
 
 }

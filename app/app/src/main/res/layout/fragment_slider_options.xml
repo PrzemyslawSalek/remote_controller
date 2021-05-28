@@ -5,181 +5,16 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="40dp"
-        tools:context=".fragments.component_options.SliderOptions">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/linearLayout_Slider2"
+        <include
+            android:id="@+id/general_layout"
+            layout="@layout/options_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Slider_position">
-
-            <TextView
-                android:id="@+id/textView_Slider_positionX"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/colon_x"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextNumber_Slider_positionX"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                tools:ignore="LabelFor" />
-
-            <TextView
-                android:id="@+id/textView_Slider_positionY"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/colon_y"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextNumber_Slider_positionY"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                tools:ignore="LabelFor" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView_Slider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/component_Slider"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView_Slider_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@string/colon_id"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Slider" />
-
-        <EditText
-            android:id="@+id/editText_Slider_id"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Slider_id"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor" />
-
-        <TextView
-            android:id="@+id/textView_Slider_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/colon_size"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_Slider_id" />
-
-        <TextView
-            android:id="@+id/textView_Slider_position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/colon_position"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Slider1" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout_Slider1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Slider_size">
-
-            <TextView
-                android:id="@+id/textView_Slider_sizeX"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/colon_x"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextNumber_Slider_sizeX"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:inputType="number"
-                android:importantForAutofill="no"
-                tools:ignore="LabelFor" />
-
-            <TextView
-                android:id="@+id/textView_Slider_sizeY"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/colon_y"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextNumber_Slider_sizeY"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:inputType="number"
-                android:importantForAutofill="no"
-                tools:ignore="LabelFor" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/textView_Slider_range"
@@ -249,31 +84,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button_Slider_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/action_delete"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Slider3" />
-
-        <Button
-            android:id="@+id/button_Slider_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="150dp"
-            android:text="@string/action_save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_Slider3" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>
 </ScrollView>
 

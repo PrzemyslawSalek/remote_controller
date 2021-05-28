@@ -15,100 +15,42 @@ import android.widget.Toast;
 
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
+import com.app.remote_controller_app.components.Component;
+import com.app.remote_controller_app.components.SeekBar;
 
 
-public class SliderOptions extends Fragment {
+public class SliderOptions extends Options {
 
-    //com.app.remote_controller_app.components.Slider thisComponent;
+    SeekBar thisComponent;
 
-    EditText editText_id;
-    EditText editText_sizeX;
-    EditText editText_sizeY;
-    EditText editText_posX;
-    EditText editText_posY;
     EditText editText_rangeMIN;
     EditText editText_rangeMAX;
-    Button button_save;
-    Button button_delete;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //thisComponent = (com.app.remote_controller_app.components.Slider) ((MainActivity) getActivity()).getCurrentSelectedComponent();
+        thisComponent = (com.app.remote_controller_app.components.SeekBar) ((MainActivity) getActivity()).getCurrentSelectedComponent();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_slider_options, container, false);
+        View view = inflateFragment(R.layout.fragment_slider_options, inflater, container, thisComponent);
 
-        inflateViews(view);
+        // Plain Text Range MIN //
+        editText_rangeMIN = view.findViewById(R.id.editTextNumber_Slider_rangeMIN);
+        editText_rangeMIN.setText(String.valueOf(thisComponent.getMinRange()));
 
-        button_save = (Button) view.findViewById(R.id.button_Slider_save);
-        button_save.setOnClickListener(listenerSaveButton);
-
-        button_delete = (Button) view.findViewById(R.id.button_Slider_delete);
-        button_delete.setOnClickListener(listenerDeleteButton);
+        // Plain Text Range MAX //
+        editText_rangeMAX = view.findViewById(R.id.editTextNumber_Slider_rangeMAX);
+        editText_rangeMAX.setText(String.valueOf(thisComponent.getMaxRange()));
 
         return view;
     }
 
-    // Metoda odpowiedzialna za uzupełnienie wszystkich widoków //
-    private void inflateViews(View view) {
-        // Plain Text ID //
-        editText_id = view.findViewById(R.id.editText_Slider_id);
-        //editText_id.setText(thisComponent.getId());
-
-        // Plain Text Size X //
-        editText_sizeX = view.findViewById(R.id.editTextNumber_Slider_sizeX);
-
-        // Plain Text Size Y //
-        editText_sizeY = view.findViewById(R.id.editTextNumber_Slider_sizeY);
-
-        // Plain Text Position X //
-        editText_posX = view.findViewById(R.id.editTextNumber_Slider_positionX);
-
-        // Plain Text Position Y //
-        editText_posY = view.findViewById(R.id.editTextNumber_Slider_positionY);
-
-        // Plain Text Range MIN //
-        editText_rangeMIN = view.findViewById(R.id.editTextNumber_Slider_rangeMIN);
-
-        // Plain Text Range MAX //
-        editText_rangeMAX = view.findViewById(R.id.editTextNumber_Slider_rangeMAX);
+    @Override
+    public void updateComponent(Component thisComponent) {
+        super.updateComponent(thisComponent);
+        this.thisComponent.setMaxRange(Integer.parseInt(editText_rangeMAX.getText().toString()));
+        this.thisComponent.setMinRange(Integer.parseInt(editText_rangeMIN.getText().toString()));
     }
-
-    // Metoda dla przycisku "Zapisz" //
-    View.OnClickListener listenerSaveButton = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            ((MainActivity) getActivity()).onBackPressed();
-        }
-    };
-
-    // Metoda dla przycisku "Usuń" //
-    View.OnClickListener listenerDeleteButton = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle(getString(R.string.label_deleteSlider));
-            builder.setMessage(getString(R.string.label_deleteSliderSure));
-
-            builder.setPositiveButton(getString(R.string.action_yes), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    // Metoda do usuwania Slider  <--- TUTAJ DOPISAC //
-
-                    ((MainActivity) getActivity()).onBackPressed();
-                    Toast.makeText(getActivity(), getString(R.string.label_deleted), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            builder.setNegativeButton(getString(R.string.action_no), null);
-            builder.setIcon(android.R.drawable.ic_dialog_alert);
-
-            AlertDialog alert = builder.create();
-            alert.show();
-        }
-    };
 }

@@ -22,15 +22,7 @@ import com.app.remote_controller_app.components.Component;
 public class ButtonOptions extends Options {
 
     com.app.remote_controller_app.components.Button thisComponent;
-
-//    EditText editText_id;
-//    EditText editText_name;
-//    EditText editText_sizeX;
-//    EditText editText_sizeY;
-//    EditText editText_posX;
-//    EditText editText_posY;
     EditText editText_Button_message;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,99 +32,18 @@ public class ButtonOptions extends Options {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //View view = inflater.inflate(R.layout.fragment_button_options, container, false);
-
-
         View view = inflateFragment(R.layout.fragment_button_options, inflater, container, thisComponent);
+
         // Plain Text Message //
         editText_Button_message = view.findViewById(R.id.editText_Button_message);
         editText_Button_message.setText(thisComponent.getMsg());
 
-//        button_save = (Button) view.findViewById(R.id.button_save);
-//        button_save.setOnClickListener(listenerSaveButton);
-//
-//        button_delete = (Button) view.findViewById(R.id.button_delete);
-//        button_delete.setOnClickListener(listenerDeleteButton);
-
         return view;
     }
-
-    // Metoda odpowiedzialna za uzupełnienie wszystkich widoków //
-//    private void inflateViews(View view) {
-//        // Plain Text ID //
-//        editText_id = view.findViewById(R.id.editText_id);
-//        editText_id.setText(thisComponent.getId());
-//
-//        // Plain Text Name //
-//        editText_name = view.findViewById(R.id.editText_name);
-//        editText_name.setText(thisComponent.getName());
-//
-//        // Plain Text Message //
-//        editText_Button_message = view.findViewById(R.id.editText_Button_message);
-//        editText_Button_message.setText(thisComponent.getMsg());
-//
-//        // Plain Text Size X //
-//        editText_sizeX = view.findViewById(R.id.editTextNumber_sizeX);
-//
-//        // Plain Text Size Y //
-//        editText_sizeY = view.findViewById(R.id.editTextNumber_sizeY);
-//
-//        // Plain Text Position X //
-//        editText_posX = view.findViewById(R.id.editTextNumber_positionX);
-//
-//        // Plain Text Position Y //
-//        editText_posY = view.findViewById(R.id.editTextNumber_positionY);
-//    }
-
-//    // Metoda dla przycisku "Zapisz" //
-//    View.OnClickListener listenerSaveButton = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            updateComponent();
-//            ((MainActivity) getActivity()).updateCurrentSelectedController();
-//            ((MainActivity) getActivity()).onBackPressed();
-//        }
-//    };
-//
-//    // Metoda dla przycisku "Usun" //
-//    View.OnClickListener listenerDeleteButton = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//            builder.setTitle(getString(R.string.label_deleteButton));
-//            builder.setMessage(getString(R.string.label_deleteButtonSure));
-//
-//            builder.setPositiveButton(getString(R.string.action_yes), new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//
-//                    ((MainActivity) getActivity()).removeComponentInSelectedController(thisComponent);
-//                    ((MainActivity) getActivity()).updateCurrentSelectedController();
-//
-//                    ((MainActivity) getActivity()).onBackPressed();
-//                    Toast.makeText(getActivity(), getString(R.string.label_deleted), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//            builder.setNegativeButton(getString(R.string.action_no), null);
-//            builder.setIcon(android.R.drawable.ic_dialog_alert);
-//
-//            AlertDialog alert = builder.create();
-//            alert.show();
-//        }
-//    };
-
 
     @Override
     public void updateComponent(Component thisComponent) {
         super.updateComponent(thisComponent);
         this.thisComponent.setMsg(editText_Button_message.getText().toString());
     }
-
-//    public void updateComponent(){
-//        thisComponent.setId(editText_id.getText().toString());
-//        thisComponent.setName(editText_name.getText().toString());
-//        thisComponent.setMsg(editText_Button_message.getText().toString());
-//    }
-
 }

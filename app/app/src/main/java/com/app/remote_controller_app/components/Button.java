@@ -30,7 +30,7 @@ public class Button extends Component implements OutputComponent {
     }
 
     public Button(String name, String id) {
-        super(name, id, 0,0,0,0);
+        super(name, id, 10,10,10,10);
         msg = "hello";
     }
 

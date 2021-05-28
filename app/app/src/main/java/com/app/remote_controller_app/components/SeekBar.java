@@ -12,32 +12,56 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SeekBar extends Component implements OutputComponent {
 
-    int progressValue;
-    int maximumRange;
-    int defaultValue;
+    int maxRange;
+    int minRange;
+    int currentValue;
 
-    String msg;
 
-    public SeekBar(String name, String id, int sizeX, int sizeY, int posX, int posY) {
+    @JsonCreator
+    public SeekBar(@JsonProperty("name") String name, @JsonProperty("id") String id,
+                    @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
+                    @JsonProperty("posX") int posX, @JsonProperty("posY") int posY,
+                    @JsonProperty("maxRange") int maxRange, @JsonProperty("minRange") int minRange,
+                    @JsonProperty("currentValue") int currentValue){
         super(name, id, sizeX, sizeY, posX, posY);
-        //TODO set range and default value (which user begins)
+        this.minRange = minRange;
+        this.maxRange = maxRange;
+        this.currentValue = currentValue;
     }
 
-    // SuppressLint for avoid warnings
+    public SeekBar(String name, String id) {
+        super(name, id, 10, 10, 10, 10);
+        this.minRange = 0;
+        this.maxRange = 100;
+        this.currentValue = 50;
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public View getEditView(Context context, Fragment fragment) {
         android.widget.SeekBar seekBar = new android.widget.SeekBar(context);
 
-        seekBar.setOnTouchListener(new View.OnTouchListener() {
+        setAndroidView(seekBar, context);
+
+        SeekBar ths = this;
+        seekBar.setOnSeekBarChangeListener(new android.widget.SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(android.widget.SeekBar seekBar, int progress, boolean fromUser) {
+            }
 
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                //TODO navigation to proper component option fragment
-                return false;
+            public void onStartTrackingTouch(android.widget.SeekBar seekBar) {
+                ((MainActivity) context).setCurrentSelectedComponent(ths);
+                NavHostFragment.findNavController(fragment).navigate(R.id.action_editMode_to_sliderOptions);
+            }
+
+            @Override
+            public void onStopTrackingTouch(android.widget.SeekBar seekBar) {
             }
         });
 
@@ -51,8 +75,7 @@ public class SeekBar extends Component implements OutputComponent {
         seekBar.setOnSeekBarChangeListener(new android.widget.SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(android.widget.SeekBar seekBar, int progress, boolean fromUser) {
-                progressValue = progress;
-                msg = String.valueOf(progressValue);
+                currentValue = progress;
 
             }
 
@@ -63,7 +86,7 @@ public class SeekBar extends Component implements OutputComponent {
 
             @Override
             public void onStopTrackingTouch(android.widget.SeekBar seekBar) {
-                Toast.makeText(context, "value: " + progressValue, Toast.LENGTH_SHORT).show();
+                send();
             }
         });
         return seekBar;
@@ -71,24 +94,30 @@ public class SeekBar extends Component implements OutputComponent {
 
     @Override
     public void send() {
-        bluetoothService.send(msg);
+        bluetoothService.send(String.valueOf(currentValue));
     }
 
-    @Override
-    public String toString() {
-        return "SeekBar{" +
-                "progress value='" + progressValue + '\'' +
-                "maximumRange='" + maximumRange + '\'' +
-                "defaultValue='" + defaultValue + '\'' +
-                "msg='" + msg + '\'' +
-                ", name='" + name + '\'' +
-                ", id='" + id + '\'' +
-                ", sizeX=" + sizeX +
-                ", sizeY=" + sizeY +
-                ", posX=" + posX +
-                ", posY=" + posY +
-                ", isLocal=" +
-                ", bluetoothService=" + bluetoothService +
-                '}';
+    public int getMaxRange() {
+        return maxRange;
+    }
+
+    public int getMinRange() {
+        return minRange;
+    }
+
+    public int getCurrentValue() {
+        return currentValue;
+    }
+
+    public void setMaxRange(int maxRange) {
+        this.maxRange = maxRange;
+    }
+
+    public void setMinRange(int minRange) {
+        this.minRange = minRange;
+    }
+
+    public void setCurrentValue(int currentValue) {
+        this.currentValue = currentValue;
     }
 }

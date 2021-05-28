@@ -34,13 +34,14 @@ public class LED extends Component implements InputComponent{
     }
 
     public LED(String name, String id) {
-        super(name, id, 0,0,0,0);
+        super(name, id, 10,10,10,10);
         is_on = false;
     }
 
     @Override
     public View getEditView(Context context, Fragment fragment) {
         LEDComponent led = new LEDComponent(context);
+        setAndroidView(led, context);
 
         LED ths = this;
         led.setOnClickListener(new View.OnClickListener() {
