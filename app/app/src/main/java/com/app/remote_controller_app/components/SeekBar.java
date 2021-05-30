@@ -2,11 +2,13 @@ package com.app.remote_controller_app.components;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -68,9 +70,13 @@ public class SeekBar extends Component implements OutputComponent {
         return seekBar;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View getUsageView(Context context) {
         android.widget.SeekBar seekBar = new android.widget.SeekBar(context);
+        setAndroidView(seekBar, context);
+        seekBar.setMax(maxRange);
+        seekBar.setMin(minRange);
 
         seekBar.setOnSeekBarChangeListener(new android.widget.SeekBar.OnSeekBarChangeListener() {
             @Override

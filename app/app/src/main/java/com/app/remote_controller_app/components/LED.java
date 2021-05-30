@@ -57,6 +57,7 @@ public class LED extends Component implements InputComponent{
     @Override
     public View getUsageView(Context context) {
         this.ledView = new LEDComponent(context);
+        setAndroidView(ledView, context);
         ledView.darker(0.3f);
 
         return ledView;

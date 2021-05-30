@@ -55,6 +55,7 @@ public class Button extends Component implements OutputComponent {
     @Override
     public View getUsageView(Context context) {
         android.widget.Button btn = new android.widget.Button(context);
+        setAndroidView(btn, context);
         btn.setText(name);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

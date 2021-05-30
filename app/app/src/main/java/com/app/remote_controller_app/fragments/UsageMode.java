@@ -2,6 +2,7 @@ package com.app.remote_controller_app.fragments;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,7 +25,7 @@ import com.app.remote_controller_app.components.Component;
 public class UsageMode extends Fragment {
 
     Handler handler;
-    LinearLayout l;
+    ConstraintLayout l;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class UsageMode extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_usage_mode, container, false);
-        l = (LinearLayout) view.findViewById(R.id.test_layout);
+        l = view.findViewById(R.id.component_view);
         for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents()) {
             l.addView(c.getUsageView(getContext()));
             Log.v("Component", c.getId());
