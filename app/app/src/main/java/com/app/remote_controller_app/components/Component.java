@@ -1,6 +1,7 @@
 package com.app.remote_controller_app.components;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -47,17 +48,52 @@ public abstract class Component{
     public abstract View getUsageView(Context context);
 
     protected void setAndroidView(View view, Context context){
-//        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int)( (float)sizeX/100 * ((MainActivity) context).width ), (int) ((float)sizeY/100 * ((MainActivity) context).height));
-//        view.setLayoutParams(lp);
-
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int) (sizeX*MainActivity.scale), (int) (sizeY*MainActivity.scale));
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(dpToPx(sizeX), dpToPx(sizeY));
         view.setLayoutParams(lp);
 
-//        view.setX((int)((( (1-(float)sizeX/100) * ((MainActivity) context).width )*(float)posX/100)));
-//        view.setY((int)((( (1-(float)sizeY/100) * ((MainActivity) context).height )*(float)posY/100)));
+        view.setX((dpToPx(posX) - view.getWidth()/2));
+        view.setY((dpToPx(posY) - view.getHeight()/2));
 
-        view.setX((posX - sizeX/2*MainActivity.scale)*MainActivity.scale);
-        view.setY((posY - sizeY/2*MainActivity.scale)*MainActivity.scale);
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                view.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int ex = (int) event.getRawX();
+                        int ey = (int) event.getRawY();
+
+                        if(event.getAction()==MotionEvent.ACTION_MOVE) {
+                            if(ex + v.getWidth()/2 <= MainActivity.width && ex - v.getWidth()/2 >= 0) {
+                                v.setX(ex - v.getWidth() / 2);
+                            }else if(ex + v.getWidth()/2 > MainActivity.width) {
+                                v.setX(MainActivity.width - v.getWidth());
+                            }else if(ex - v.getWidth()/2 < 0) {
+                                v.setX(0);
+                            }
+
+                            if(ey + v.getHeight()/2 <= MainActivity.height && ey - v.getHeight()/2 >= 0) {
+                                v.setY(ey - v.getHeight() / 2);
+                            }else if(ey + v.getHeight()/2 > MainActivity.height) {
+                                v.setY(MainActivity.height - v.getHeight());
+                            }else if(ey - v.getHeight()/2 < 0) {
+                                v.setY(0);
+                            }
+                            return true;
+                        }
+                        if(event.getAction()==MotionEvent.ACTION_UP){
+                            move(Math.round(v.getX()), Math.round(v.getY()));
+                            ((MainActivity) context).updateCurrentSelectedController();
+                            view.setOnTouchListener(null);
+                            return true;
+                        }
+                        return true;
+                    }
+                });
+                return false;
+            }
+        });
+
 
     }
 
@@ -65,7 +101,7 @@ public abstract class Component{
         this.bluetoothService = bluetoothService;
     }
 
-    public void resize(int x, int y){
+    public void resize(int x, int y){//przyjmuje w pikselach a zapisuje w dp
         if(x>MainActivity.width)
             x=MainActivity.width;
         if(x<100)
@@ -76,18 +112,29 @@ public abstract class Component{
         if(y<100)
             y=100;
 
-        this.sizeX=x;
-        this.sizeY=y;
+        this.sizeX=pxToDp(x);
+        this.sizeY=pxToDp(y);
     }
 
-    public void move(int x, int y){
+    public void move(int x, int y){//przyjuje w pikselach ale ustaiwia w dp
         if(x>MainActivity.width)
             x = MainActivity.width;
         if(y>MainActivity.height)
             y=MainActivity.height;
 
-        this.posX=x;
-        this.posY=y;
+
+        this.posX=pxToDp(x);
+        this.posY=pxToDp(y);
+    }
+
+    public static int dpToPx(int dp)
+    {
+        return (int) (dp * MainActivity.scale);
+    }
+
+    public static int pxToDp(int px)
+    {
+        return (int) (px / MainActivity.scale);
     }
 
 

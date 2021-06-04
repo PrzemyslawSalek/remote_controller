@@ -35,7 +35,7 @@ public class TextArea extends Component implements InputComponent{
     }
 
     public TextArea(String name, String id) {
-        super(name, id, 50,50,50,50);
+        super(name, id, 12,12,0,0);
     }
 
     @Override

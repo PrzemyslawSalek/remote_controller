@@ -37,7 +37,7 @@ public class SeekBar extends Component implements OutputComponent {
     }
 
     public SeekBar(String name, String id) {
-        super(name, id, 10, 10, 10, 10);
+        super(name, id, 100, 100, 100, 100);
         this.minRange = 0;
         this.maxRange = 100;
         this.currentValue = 50;

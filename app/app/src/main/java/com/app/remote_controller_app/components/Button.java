@@ -32,7 +32,7 @@ public class Button extends Component implements OutputComponent {
     }
 
     public Button(String name, String id) {
-        super(name, id, 100,100,500,500);
+        super(name, id, 100,100,50,50);
         msg = "hello";
     }
     @SuppressLint("ClickableViewAccessibility")
@@ -43,47 +43,13 @@ public class Button extends Component implements OutputComponent {
         btn.setText(name);
         Button ths = this;
 
-        View.OnClickListener l = new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity) context).setCurrentSelectedComponent(ths);
                 NavHostFragment.findNavController(fragment).navigate(R.id.action_editMode_to_buttonOptions);
             }
-        };
-
-
-        btn.setOnClickListener(l);
-
-        btn.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                btn.setOnClickListener(null);
-                btn.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if(event.getAction()==MotionEvent.ACTION_MOVE) {
-                            Log.v("111", String.valueOf(event.getX()));
-                            btn.setX(event.getRawX() - sizeX/2);
-                            btn.setY(event.getRawY() - sizeY/2);
-                            return true;
-                        }
-                        if(event.getAction()==MotionEvent.ACTION_UP){
-                            move(Math.round(event.getRawX()), Math.round(event.getRawY()));
-
-                            ((MainActivity) context).updateCurrentSelectedController();
-
-                            btn.setOnTouchListener(null);
-                            btn.setOnClickListener(l);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-                return false;
-            }
         });
-
-
 
         return btn;
     }

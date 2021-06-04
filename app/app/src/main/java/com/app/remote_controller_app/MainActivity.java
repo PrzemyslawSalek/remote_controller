@@ -61,9 +61,15 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        height = metrics.heightPixels;
+        int resourceId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            height = metrics.heightPixels + getResources().getDimensionPixelSize(resourceId);
+        }else{
+            height = metrics.heightPixels;
+        }
+
         width = metrics.widthPixels;
-        scale = getResources().getDisplayMetrics().density;
+        scale = getResources().getDisplayMetrics().density;//dla mniejszych rozdzielczosci trzeba cos dodawac
 
         Log.v("LAYOUT", String.valueOf(height));
         Log.v("LAYOUT", String.valueOf(width));
