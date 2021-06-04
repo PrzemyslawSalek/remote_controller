@@ -59,7 +59,7 @@ public class ControllerListAdapter extends ArrayAdapter<Controller> {
         Controller controllerElement = controllerElements.get(position);
 
         textViewName.setText(controllerElement.toString());
-//        imageView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.ic_controller_opening));
+        imageView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.ic_controller_opening));
 
         // Edit Mode //
         view.findViewById(R.id.button_Controller_EditMode).setOnClickListener(new View.OnClickListener() {

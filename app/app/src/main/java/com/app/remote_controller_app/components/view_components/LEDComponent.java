@@ -1,6 +1,7 @@
 package com.app.remote_controller_app.components.view_components;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
@@ -44,8 +45,10 @@ public class LEDComponent extends View {
         paint.setStyle(Paint.Style.FILL);
 
         canvas.drawOval(canvas.getClipBounds().left, canvas.getClipBounds().top, canvas.getClipBounds().right, canvas.getClipBounds().bottom,paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30);
+        canvas.drawText("dupa", 0, canvas.getWidth()/2, paint);
     }
-
 
     public void setLEDColor(String LEDColor) {
         this.defaultColor = Color.parseColor(LEDColor);

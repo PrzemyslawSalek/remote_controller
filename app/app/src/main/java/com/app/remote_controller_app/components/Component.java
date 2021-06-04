@@ -47,11 +47,17 @@ public abstract class Component{
     public abstract View getUsageView(Context context);
 
     protected void setAndroidView(View view, Context context){
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int)( (float)sizeX/100 * ((MainActivity) context).width ), (int) ((float)sizeY/100 * ((MainActivity) context).height));
+//        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int)( (float)sizeX/100 * ((MainActivity) context).width ), (int) ((float)sizeY/100 * ((MainActivity) context).height));
+//        view.setLayoutParams(lp);
+
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams((int) (sizeX*MainActivity.scale), (int) (sizeY*MainActivity.scale));
         view.setLayoutParams(lp);
 
-        view.setX((int)((( (1-(float)sizeX/100) * ((MainActivity) context).width )*(float)posX/100)));
-        view.setY((int)((( (1-(float)sizeY/100) * ((MainActivity) context).height )*(float)posY/100)));
+//        view.setX((int)((( (1-(float)sizeX/100) * ((MainActivity) context).width )*(float)posX/100)));
+//        view.setY((int)((( (1-(float)sizeY/100) * ((MainActivity) context).height )*(float)posY/100)));
+
+        view.setX((posX - sizeX/2*MainActivity.scale)*MainActivity.scale);
+        view.setY((posY - sizeY/2*MainActivity.scale)*MainActivity.scale);
 
     }
 
@@ -60,25 +66,25 @@ public abstract class Component{
     }
 
     public void resize(int x, int y){
-        if(x>100)
+        if(x>MainActivity.width)
+            x=MainActivity.width;
+        if(x<100)
             x=100;
-        if(x<10)
-            x=10;
 
-        if(y>100)
+        if(y>MainActivity.height)
+            y=MainActivity.height;
+        if(y<100)
             y=100;
-        if(y<10)
-            y=10;
 
         this.sizeX=x;
         this.sizeY=y;
     }
 
     public void move(int x, int y){
-        if(x>100)
-            x=100;
-        if(y>100)
-            y=100;
+        if(x>MainActivity.width)
+            x = MainActivity.width;
+        if(y>MainActivity.height)
+            y=MainActivity.height;
 
         this.posX=x;
         this.posY=y;

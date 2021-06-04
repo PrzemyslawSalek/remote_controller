@@ -14,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.preference.PreferenceManager;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.remote_controller_app.components.Component;
@@ -46,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
     BluetoothService bluetoothService;
     Component currentSelectedComponent;
 
-    public float height;
-    public float width;
+    public static int height;
+    public static int width;
+    public static float scale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        height = Float.valueOf(metrics.heightPixels);
-        width = Float.valueOf(metrics.widthPixels);
+        height = metrics.heightPixels;
+        width = metrics.widthPixels;
+        scale = getResources().getDisplayMetrics().density;
 
         Log.v("LAYOUT", String.valueOf(height));
         Log.v("LAYOUT", String.valueOf(width));
@@ -330,6 +336,23 @@ public class MainActivity extends AppCompatActivity {
             data.remove(0);
             currentSelectedController.msgToCommand(id, data);
         }
+    }
+
+    public void b(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LinearLayout l = new LinearLayout(this);
+//        l.addView(new View(this));
+        l.addView(new SeekBar(this));
+        l.addView(new SeekBar(this));
+        l.addView(new SeekBar(this));
+        l.addView(new TextView(this));
+
+
+        builder.setView(l);
+
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 }

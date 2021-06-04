@@ -1,5 +1,6 @@
 package com.app.remote_controller_app.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Component;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
 
 public class EditMode extends Fragment {
@@ -26,6 +29,10 @@ public class EditMode extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        View decorView = getActivity().getWindow().getDecorView();
+//        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+//        decorView.setSystemUiVisibility(uiOptions);
     }
 
     @Override
@@ -42,7 +49,10 @@ public class EditMode extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.v("Button", "create");
+//        ColorPicker cp = new ColorPicker(getActivity());
+//        cp.show();
+
+        //((MainActivity) getActivity()).b();
         View view = inflater.inflate(R.layout.fragment_edit_mode, container, false);
         l = view.findViewById(R.id.component_view);
 

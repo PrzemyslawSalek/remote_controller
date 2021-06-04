@@ -93,7 +93,7 @@ public class BluetoothService {
 
     public void send(String s){
         if(connectedThread != null)
-            connectedThread.write(s.getBytes());
+            connectedThread.write(s.concat("\n").getBytes());
     }
 
     public void setCurrentDeviceByIndex(int index) {

@@ -34,7 +34,7 @@ public class LED extends Component implements InputComponent{
     }
 
     public LED(String name, String id) {
-        super(name, id, 10,10,10,10);
+        super(name, id, 20,10,10,10);
         is_on = false;
     }
 
