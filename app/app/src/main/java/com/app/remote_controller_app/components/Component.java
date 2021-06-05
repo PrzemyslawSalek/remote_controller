@@ -129,12 +129,12 @@ public abstract class Component{
 
     public static int dpToPx(int dp)
     {
-        return (int) (dp * MainActivity.scale);
+        return Math.round(dp * MainActivity.scale);
     }
 
     public static int pxToDp(int px)
     {
-        return (int) (px / MainActivity.scale);
+        return Math.round(px / MainActivity.scale);
     }
 
 

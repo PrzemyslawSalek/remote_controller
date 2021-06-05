@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -41,7 +42,6 @@ public class TextArea extends Component implements InputComponent{
     @Override
     public View getEditView(Context context, Fragment fragment) {
         android.widget.TextView textView = new android.widget.TextView(context);
-
         setAndroidView(textView, context);
 
         textView.setText(name);

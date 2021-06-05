@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
@@ -47,11 +48,11 @@ public class LEDComponent extends View {
         canvas.drawOval(canvas.getClipBounds().left, canvas.getClipBounds().top, canvas.getClipBounds().right, canvas.getClipBounds().bottom,paint);
         paint.setColor(Color.BLACK);
         paint.setTextSize(30);
-        canvas.drawText("dupa", 0, canvas.getWidth()/2, paint);
+        canvas.drawText("led", 0, canvas.getWidth()/2, paint);
     }
 
     public void setLEDColor(String LEDColor) {
-        this.defaultColor = Color.parseColor(LEDColor);
+        this.defaultColor = Color.parseColor("#"+LEDColor);
         this.LEDColor = defaultColor;
         this.postInvalidate();
     }

@@ -78,19 +78,19 @@ public class Options extends Fragment {
 
         // Plain Text Size X //
         editText_sizeX = view.findViewById(R.id.editTextNumber_sizeX);
-        editText_sizeX.setText(String.valueOf(thisComponent.getSizeX()));
+        editText_sizeX.setText(String.valueOf(Component.dpToPx(thisComponent.getSizeX())));
 
         // Plain Text Size Y //
         editText_sizeY = view.findViewById(R.id.editTextNumber_sizeY);
-        editText_sizeY.setText(String.valueOf(thisComponent.getSizeY()));
+        editText_sizeY.setText(String.valueOf(Component.dpToPx(thisComponent.getSizeY())));
 
         // Plain Text Position X //
         editText_posX = view.findViewById(R.id.editTextNumber_positionX);
-        editText_posX.setText(String.valueOf(thisComponent.getPosX()));
+        editText_posX.setText(String.valueOf(Component.dpToPx(thisComponent.getPosX())));
 
         // Plain Text Position Y //
         editText_posY = view.findViewById(R.id.editTextNumber_positionY);
-        editText_posY.setText(String.valueOf(thisComponent.getPosY()));
+        editText_posY.setText(String.valueOf(Component.dpToPx(thisComponent.getPosY())));
 
         setHasOptionsMenu(true);
         return view;

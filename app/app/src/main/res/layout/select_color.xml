@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/colorView"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:background="#E40909">
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="32dp"
+            android:background="#888585"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/mainColor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00FFFFFF"
+                android:ems="8"
+                android:fontFamily="monospace"
+                android:inputType="textPersonName"
+                android:selectAllOnFocus="false"
+                android:singleLine="false"
+                android:text="ff000000"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:paddingTop="16dp">
+
+        <SeekBar
+            android:id="@+id/redSlider"
+            style="@android:style/Widget.DeviceDefault.SeekBar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:max="255"
+            android:progress="0"
+            android:progressBackgroundTint="#FF0000"
+            android:progressTint="#FF0000"
+            android:thumbTint="#FF0000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/redText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/redText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:ems="3"
+            android:fontFamily="monospace"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <SeekBar
+            android:id="@+id/greenSlider"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#FFFFFF"
+            android:max="255"
+            android:progress="0"
+            android:progressBackgroundTint="#00FF00"
+            android:progressTint="#00FF00"
+            android:thumbTint="#00FF00"
+            app:layout_constraintBottom_toBottomOf="@+id/greenText"
+            app:layout_constraintEnd_toStartOf="@+id/greenText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/greenText" />
+
+        <TextView
+            android:id="@+id/greenText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="#FFFFFF"
+            android:ems="3"
+            android:fontFamily="monospace"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <SeekBar
+            android:id="@+id/blueSlider"
+            style="@android:style/Widget.DeviceDefault.SeekBar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#FFFFFF"
+            android:max="255"
+            android:progress="0"
+            android:progressBackgroundTint="#0000FF"
+            android:progressTint="#0000FF"
+            android:thumbTint="#0000FF"
+            app:layout_constraintBottom_toBottomOf="@+id/blueText"
+            app:layout_constraintEnd_toStartOf="@+id/blueText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/blueText" />
+
+        <TextView
+            android:id="@+id/blueText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="#FFFFFF"
+            android:ems="3"
+            android:fontFamily="monospace"
+            android:inputType="numberDecimal"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -48,6 +48,4 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
-
-    implementation 'com.pes.materialcolorpicker:library:1.0.2'
 }

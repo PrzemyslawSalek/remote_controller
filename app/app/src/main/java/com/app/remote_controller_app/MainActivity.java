@@ -33,6 +33,7 @@ import com.app.remote_controller_app.components.Component;
 import com.app.remote_controller_app.database.DatabaseHelper;
 import com.app.remote_controller_app.database.SerializedControllers;
 import com.app.remote_controller_app.lists.adapters.ControllerListAdapter;
+import com.app.remote_controller_app.tools.SelectColorTool;
 import com.j256.ormlite.dao.Dao;
 
 import java.lang.reflect.Method;
@@ -61,12 +62,14 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        int resourceId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            height = metrics.heightPixels + getResources().getDimensionPixelSize(resourceId);
-        }else{
-            height = metrics.heightPixels;
-        }
+//        int resourceId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+//        if (resourceId > 0) {
+//            height = metrics.heightPixels + getResources().getDimensionPixelSize(resourceId);
+//        }else{
+//            height = metrics.heightPixels;
+//        }
+
+        height = metrics.heightPixels;
 
         width = metrics.widthPixels;
         scale = getResources().getDisplayMetrics().density;//dla mniejszych rozdzielczosci trzeba cos dodawac
@@ -342,23 +345,6 @@ public class MainActivity extends AppCompatActivity {
             data.remove(0);
             currentSelectedController.msgToCommand(id, data);
         }
-    }
-
-    public void b(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LinearLayout l = new LinearLayout(this);
-//        l.addView(new View(this));
-        l.addView(new SeekBar(this));
-        l.addView(new SeekBar(this));
-        l.addView(new SeekBar(this));
-        l.addView(new TextView(this));
-
-
-        builder.setView(l);
-
-
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
 }

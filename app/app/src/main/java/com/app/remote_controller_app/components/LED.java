@@ -19,22 +19,26 @@ import java.util.List;
 
 public class LED extends Component implements InputComponent{
 
+    String color;
+
     @JsonIgnore
     LEDComponent ledView;
-
     @JsonIgnore
     boolean is_on;
 
     @JsonCreator
     public LED(@JsonProperty("name") String name, @JsonProperty("id") String id,
                @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
-               @JsonProperty("posX") int posX, @JsonProperty("posY") int posY){
+               @JsonProperty("posX") int posX, @JsonProperty("posY") int posY,
+               @JsonProperty("color") String color){
         super(name, id, sizeX, sizeY, posX, posY);
+        this.color = color;
         is_on = false;
     }
 
     public LED(String name, String id) {
         super(name, id, 100,100,200,200);
+        this.color = "ffff0000";
         is_on = false;
     }
 
@@ -42,6 +46,7 @@ public class LED extends Component implements InputComponent{
     public View getEditView(Context context, Fragment fragment) {
         LEDComponent led = new LEDComponent(context);
         setAndroidView(led, context);
+        led.setLEDColor(color);
 
         LED ths = this;
         led.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +63,7 @@ public class LED extends Component implements InputComponent{
     public View getUsageView(Context context) {
         this.ledView = new LEDComponent(context);
         setAndroidView(ledView, context);
+        ledView.setLEDColor(color);
         ledView.darker(0.3f);
 
         return ledView;
@@ -101,4 +107,11 @@ public class LED extends Component implements InputComponent{
         ledView.setLEDColor(s);
     }
 
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
 }
