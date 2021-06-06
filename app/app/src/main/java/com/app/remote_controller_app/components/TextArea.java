@@ -42,6 +42,8 @@ public class TextArea extends Component implements InputComponent{
     @Override
     public View getEditView(Context context, Fragment fragment) {
         android.widget.TextView textView = new android.widget.TextView(context);
+        ScrollView sc = new ScrollView(context);
+
         setAndroidView(textView, context);
 
         textView.setText(name);
@@ -61,7 +63,10 @@ public class TextArea extends Component implements InputComponent{
     @Override
     public View getUsageView(Context context) {
         this.textView = new android.widget.TextView(context);
-        setAndroidView(textView, context);
+        ScrollView sc  = new ScrollView(context);
+        sc.addView(textView);
+        setAndroidView(sc, context);
+
         textView.setText(name);
         textView.setBackgroundColor(Color.GRAY);
 
