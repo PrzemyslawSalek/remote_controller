@@ -35,6 +35,7 @@ public class SliderOptions extends Options {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragment(R.layout.fragment_slider_options, inflater, container, thisComponent);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.component_Slider);
 
         // Plain Text Range MIN //
         editText_rangeMIN = view.findViewById(R.id.editTextNumber_Slider_rangeMIN);

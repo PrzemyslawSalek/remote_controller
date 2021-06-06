@@ -46,6 +46,7 @@ public class TextAreaOptions extends Options {
         //View view = inflater.inflate(R.layout.fragment_textarea_options, container, false);
 
         View view = inflateFragment(R.layout.fragment_textarea_options, inflater, container, thisComponent);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.component_TextArea);
 
 
 //        button_save = (Button) view.findViewById(R.id.button_TextArea_save);

@@ -38,6 +38,8 @@ public class LEDOptions extends Options {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragment(R.layout.fragment_led_options, inflater, container, thisComponent);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.component_LED);
+
         editColor = view.findViewById(R.id.editColor);
         editColor.setText(thisComponent.getColor());
         editColor.setOnTouchListener(new View.OnTouchListener() {

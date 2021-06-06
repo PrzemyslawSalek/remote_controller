@@ -33,6 +33,7 @@ public class ButtonOptions extends Options {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragment(R.layout.fragment_button_options, inflater, container, thisComponent);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.component_Button);
 
         // Plain Text Message //
         editText_Button_message = view.findViewById(R.id.editText_Button_message);

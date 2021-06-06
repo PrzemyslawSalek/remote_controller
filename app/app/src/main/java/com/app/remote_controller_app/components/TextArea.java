@@ -36,7 +36,7 @@ public class TextArea extends Component implements InputComponent{
     }
 
     public TextArea(String name, String id) {
-        super(name, id, 12,12,0,0);
+        super(name, id, 100,200,0,0);
     }
 
     @Override
@@ -66,11 +66,12 @@ public class TextArea extends Component implements InputComponent{
         ScrollView sc  = new ScrollView(context);
         sc.addView(textView);
         setAndroidView(sc, context);
+        sc.setBackgroundColor(Color.GRAY);
 
         textView.setText(name);
         textView.setBackgroundColor(Color.GRAY);
 
-        return textView;
+        return sc;
     }
 
     @Override
