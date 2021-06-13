@@ -16,16 +16,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.app.remote_controller_app.components.view_components.MyConstrainLayout
         android:id="@+id/component_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:translationZ="-12dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.app.remote_controller_app.components.view_components.MyConstrainLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

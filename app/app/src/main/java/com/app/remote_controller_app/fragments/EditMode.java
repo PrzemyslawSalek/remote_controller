@@ -14,13 +14,14 @@ import android.widget.LinearLayout;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Component;
+import com.app.remote_controller_app.components.view_components.MyConstrainLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class EditMode extends Fragment {
 
     FloatingActionButton btnComponentSelection;
-    ConstraintLayout l;
+    MyConstrainLayout l;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class EditMode extends Fragment {
         l = view.findViewById(R.id.component_view);
 
         for(Component c : ((MainActivity) getActivity()).getCurrentSelectedController().getListOfComponents()) {
+            c.setLayout(l);
             l.addView(c.getEditView(getContext(), EditMode.this));
         }
 

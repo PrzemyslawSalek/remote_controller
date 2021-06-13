@@ -1,6 +1,8 @@
 package com.app.remote_controller_app.components;
 
 import android.content.Context;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.app.remote_controller_app.BluetoothService;
 import com.app.remote_controller_app.MainActivity;
+import com.app.remote_controller_app.components.view_components.MyConstrainLayout;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -35,6 +38,11 @@ public abstract class Component{
     @JsonIgnore
     protected BluetoothService bluetoothService;
 
+    @JsonIgnore
+    private MyConstrainLayout layout;
+
+
+
     public Component(String name, String id, int sizeX, int sizeY, int posX, int posY) {
         this.name = name;
         this.sizeX = sizeX;
@@ -47,6 +55,10 @@ public abstract class Component{
     public abstract View getEditView(Context context, Fragment fragment);
     public abstract View getUsageView(Context context);
 
+    public void setLayout(MyConstrainLayout layout) {
+        this.layout = layout;
+    }
+
     protected void setAndroidView(View view, Context context){
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(dpToPx(sizeX), dpToPx(sizeY));
         view.setLayoutParams(lp);
@@ -58,35 +70,51 @@ public abstract class Component{
             @Override
             public boolean onLongClick(View v) {
                 view.setOnTouchListener(new View.OnTouchListener() {
+                    float mem = -1;
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        int ex = (int) event.getRawX();
-                        int ey = (int) event.getRawY();
+                        float ex = event.getRawX();
+                        float ey = event.getRawY();
+
+
 
                         if(event.getAction()==MotionEvent.ACTION_MOVE) {
-                            if(ex + v.getWidth()/2 <= MainActivity.width && ex - v.getWidth()/2 >= 0) {
-                                v.setX(ex - v.getWidth() / 2);
-                            }else if(ex + v.getWidth()/2 > MainActivity.width) {
+                            if(mem!=-1 && Math.abs(ex - mem) < 150) {
+                                ex = mem;
+                            }else{
+                                mem= -1;
+                            }
+
+                            if(ex + v.getWidth()/2.f <= MainActivity.width && ex - v.getWidth()/2.f >= 0) {
+                                v.setX(ex - v.getWidth() / 2.f);
+                            }else if(ex + v.getWidth()/2.f > MainActivity.width) {
                                 v.setX(MainActivity.width - v.getWidth());
-                            }else if(ex - v.getWidth()/2 < 0) {
+                            }else if(ex - v.getWidth()/2.f < 0) {
                                 v.setX(0);
                             }
 
-                            if(ey + v.getHeight()/2 <= MainActivity.height && ey - v.getHeight()/2 >= 0) {
-                                v.setY(ey - v.getHeight() / 2);
-                            }else if(ey + v.getHeight()/2 > MainActivity.height) {
+                            if(ey + v.getHeight()/2.f <= MainActivity.height && ey - v.getHeight()/2.f >= 0) {
+                                v.setY(ey - v.getHeight() / 2.f);
+                            }else if(ey + v.getHeight()/2.f > MainActivity.height) {
                                 v.setY(MainActivity.height - v.getHeight());
-                            }else if(ey - v.getHeight()/2 < 0) {
+                            }else if(ey - v.getHeight()/2.f < 0) {
                                 v.setY(0);
                             }
+                            if(layout.drawLine(v)){
+                                mem = ex;
+                            }
+
                             return true;
                         }
                         if(event.getAction()==MotionEvent.ACTION_UP){
+                            layout.removeLine();
                             move(Math.round(v.getX()), Math.round(v.getY()));
                             ((MainActivity) context).updateCurrentSelectedController();
                             view.setOnTouchListener(null);
                             return true;
                         }
+
+
                         return true;
                     }
                 });
