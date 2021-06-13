@@ -47,12 +47,13 @@ public class LEDComponent extends View {
 
         canvas.drawOval(canvas.getClipBounds().left, canvas.getClipBounds().top, canvas.getClipBounds().right, canvas.getClipBounds().bottom,paint);
         paint.setColor(Color.BLACK);
-        paint.setTextSize(30);
-        canvas.drawText("led", 0, canvas.getWidth()/2, paint);
     }
 
     public void setLEDColor(String LEDColor) {
-        this.defaultColor = Color.parseColor("#"+LEDColor);
+        if(!LEDColor.startsWith("#"))
+            this.defaultColor = Color.parseColor("#"+LEDColor);
+        else
+            this.defaultColor = Color.parseColor(LEDColor);
         this.LEDColor = defaultColor;
         this.postInvalidate();
     }

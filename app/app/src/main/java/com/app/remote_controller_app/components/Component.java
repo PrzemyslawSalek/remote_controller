@@ -70,49 +70,38 @@ public abstract class Component{
             @Override
             public boolean onLongClick(View v) {
                 view.setOnTouchListener(new View.OnTouchListener() {
-                    float memX = -1;
-                    float memY = -1;
+                    float memX, memY = -1;
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         float ex = event.getRawX();
                         float ey = event.getRawY();
 
                         if(event.getAction()==MotionEvent.ACTION_MOVE) {
-                            if(memX!=-1 && Math.abs(ex - memX) < 150) {
-                                ex = memX;
-                            }else{
-                                memX= -1;
-                            }
+                            if(memX!=-1 && Math.abs(ex - memX) < MainActivity.dead_zone) ex = memX;
+                            else memX= -1;
 
-                            if(memY!=-1 && Math.abs(ey - memY) < 150) {
-                                ey = memY;
-                            }else{
-                                memY= -1;
-                            }
+                            if(memY!=-1 && Math.abs(ey - memY) < MainActivity.dead_zone) ey = memY;
+                            else memY= -1;
 
-                            if(ex + v.getWidth()/2.f <= MainActivity.width && ex - v.getWidth()/2.f >= 0) {
+                            if(ex + v.getWidth()/2.f <= MainActivity.width && ex - v.getWidth()/2.f >= 0)
                                 v.setX(ex - v.getWidth() / 2.f);
-                            }else if(ex + v.getWidth()/2.f > MainActivity.width) {
+                            else if(ex + v.getWidth()/2.f > MainActivity.width)
                                 v.setX(MainActivity.width - v.getWidth());
-                            }else if(ex - v.getWidth()/2.f < 0) {
+                            else if(ex - v.getWidth()/2.f < 0)
                                 v.setX(0);
-                            }
 
-                            if(ey + v.getHeight()/2.f <= MainActivity.height && ey - v.getHeight()/2.f >= 0) {
+                            if(ey + v.getHeight()/2.f <= MainActivity.height && ey - v.getHeight()/2.f >= 0)
                                 v.setY(ey - v.getHeight() / 2.f);
-                            }else if(ey + v.getHeight()/2.f > MainActivity.height) {
+                            else if(ey + v.getHeight()/2.f > MainActivity.height)
                                 v.setY(MainActivity.height - v.getHeight());
-                            }else if(ey - v.getHeight()/2.f < 0) {
+                            else if(ey - v.getHeight()/2.f < 0)
                                 v.setY(0);
-                            }
-                            layout.removeLine();
-                            if(layout.drawLineX(v)){
-                                memX = ex;
-                            }
 
-                            if(layout.drawLineY(v)){
+                            layout.removeLine();
+                            if(layout.drawLineX(v))
+                                memX = ex;
+                            if(layout.drawLineY(v))
                                 memY = ey;
-                            }
 
                             return true;
                         }
@@ -142,13 +131,13 @@ public abstract class Component{
     public void resize(int x, int y){//przyjmuje w pikselach a zapisuje w dp
         if(x>MainActivity.width)
             x=MainActivity.width;
-        if(x<100)
-            x=100;
+        if(x<MainActivity.scale)
+            x = (int) MainActivity.scale * 32;
 
         if(y>MainActivity.height)
             y=MainActivity.height;
-        if(y<100)
-            y=100;
+        if(y<MainActivity.scale)
+            y = (int) MainActivity.scale * 32;
 
         this.sizeX=pxToDp(x);
         this.sizeY=pxToDp(y);

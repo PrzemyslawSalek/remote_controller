@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     public static int width;
     public static float scale;
 
+    //Variables by user control
+    public static int dead_zone = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
