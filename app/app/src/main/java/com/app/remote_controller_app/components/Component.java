@@ -32,8 +32,8 @@ public abstract class Component{
     protected String id;
     protected int sizeX;
     protected int sizeY;
-    protected int posX;
-    protected int posY;
+    protected float posX;
+    protected float posY;
 
     @JsonIgnore
     protected BluetoothService bluetoothService;
@@ -43,7 +43,7 @@ public abstract class Component{
 
 
 
-    public Component(String name, String id, int sizeX, int sizeY, int posX, int posY) {
+    public Component(String name, String id, int sizeX, int sizeY, float posX, float posY) {
         this.name = name;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
@@ -63,26 +63,31 @@ public abstract class Component{
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(dpToPx(sizeX), dpToPx(sizeY));
         view.setLayoutParams(lp);
 
-        view.setX((dpToPx(posX) - view.getWidth()/2));
-        view.setY((dpToPx(posY) - view.getHeight()/2));
+        view.setX((dpToPx(posX) - view.getWidth()/2.f));
+        view.setY((dpToPx(posY) - view.getHeight()/2.f));
 
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 view.setOnTouchListener(new View.OnTouchListener() {
-                    float mem = -1;
+                    float memX = -1;
+                    float memY = -1;
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         float ex = event.getRawX();
                         float ey = event.getRawY();
 
-
-
                         if(event.getAction()==MotionEvent.ACTION_MOVE) {
-                            if(mem!=-1 && Math.abs(ex - mem) < 150) {
-                                ex = mem;
+                            if(memX!=-1 && Math.abs(ex - memX) < 150) {
+                                ex = memX;
                             }else{
-                                mem= -1;
+                                memX= -1;
+                            }
+
+                            if(memY!=-1 && Math.abs(ey - memY) < 150) {
+                                ey = memY;
+                            }else{
+                                memY= -1;
                             }
 
                             if(ex + v.getWidth()/2.f <= MainActivity.width && ex - v.getWidth()/2.f >= 0) {
@@ -100,8 +105,13 @@ public abstract class Component{
                             }else if(ey - v.getHeight()/2.f < 0) {
                                 v.setY(0);
                             }
-                            if(layout.drawLine(v)){
-                                mem = ex;
+                            layout.removeLine();
+                            if(layout.drawLineX(v)){
+                                memX = ex;
+                            }
+
+                            if(layout.drawLineY(v)){
+                                memY = ey;
                             }
 
                             return true;
@@ -155,7 +165,7 @@ public abstract class Component{
         this.posY=pxToDp(y);
     }
 
-    public static int dpToPx(int dp)
+    public static int dpToPx(float dp)
     {
         return Math.round(dp * MainActivity.scale);
     }
@@ -195,7 +205,7 @@ public abstract class Component{
         this.sizeY = sizeY;
     }
 
-    public int getPosX() {
+    public float getPosX() {
         return posX;
     }
 
@@ -203,7 +213,7 @@ public abstract class Component{
         this.posX = posX;
     }
 
-    public int getPosY() {
+    public float getPosY() {
         return posY;
     }
 
