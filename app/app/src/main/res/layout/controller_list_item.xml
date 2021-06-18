@@ -23,6 +23,7 @@
         android:layout_marginTop="-15dp"
         android:layout_marginBottom="43dp"
         android:layout_toEndOf="@+id/imageView_ControllerList"
+        android:maxWidth="225dp"
         android:text="tytul"
         android:textColor="@color/black"
         android:textSize="24sp" />
