@@ -48,6 +48,7 @@ public class SeekBar extends Component implements OutputComponent {
     public View getEditView(Context context, Fragment fragment) {
         android.widget.SeekBar seekBar = new android.widget.SeekBar(context);
 
+
         setAndroidView(seekBar, context);
 
         SeekBar ths = this;

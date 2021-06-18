@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_editMode_to_sliderOptions"
             app:destination="@id/sliderOptions" />
+        <action
+            android:id="@+id/action_editMode_to_textField"
+            app:destination="@id/textField" />
     </fragment>
     <fragment
         android:id="@+id/usageMode"
@@ -86,6 +89,15 @@
         android:label="SliderOptions" >
         <action
             android:id="@+id/action_sliderOptions_to_editMode"
+            app:destination="@id/editMode" />
+    </fragment>
+    <fragment
+        android:id="@+id/textField"
+        android:name="com.app.remote_controller_app.fragments.component_options.TextField"
+        android:label="fragment_text_field"
+        tools:layout="@layout/fragment_text_field" >
+        <action
+            android:id="@+id/action_textField_to_editMode"
             app:destination="@id/editMode" />
     </fragment>
 </navigation>

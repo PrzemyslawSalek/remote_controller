@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.app.remote_controller_app.MainActivity;
 import com.app.remote_controller_app.R;
 import com.app.remote_controller_app.components.Button;
+import com.app.remote_controller_app.components.FieldArea;
 import com.app.remote_controller_app.components.LED;
 import com.app.remote_controller_app.components.SeekBar;
 import com.app.remote_controller_app.components.TextArea;
@@ -76,7 +77,8 @@ public class ComponentSelection extends Fragment {
                 SeekBar sb = new SeekBar("led"+index, "id"+index);
                 ((MainActivity) getActivity() ).addComponentToCurrentController(sb);
             } else if(componentsList.get(position).getName().equals(getString(R.string.component_TextField))) {
-                System.out.println(componentsList.get(position).getName()); //TextField
+                FieldArea f = new FieldArea("editText" + index, "id"+index);
+                ((MainActivity) getActivity() ).addComponentToCurrentController(f);
             }
             getActivity().onBackPressed();
         }

@@ -35,6 +35,7 @@ public class Button extends Component implements OutputComponent {
         super(name, id, 100,100,50,50);
         msg = "hello";
     }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public View getEditView(Context context, Fragment fragment) {
