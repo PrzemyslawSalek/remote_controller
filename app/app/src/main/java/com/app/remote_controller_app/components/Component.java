@@ -62,6 +62,7 @@ public abstract class Component{
     protected void setAndroidView(View view, Context context){
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(dpToPx(sizeX), dpToPx(sizeY));
         view.setLayoutParams(lp);
+        view.bringToFront();
 
         view.setX((dpToPx(posX) - view.getWidth()/2.f));
         view.setY((dpToPx(posY) - view.getHeight()/2.f));
