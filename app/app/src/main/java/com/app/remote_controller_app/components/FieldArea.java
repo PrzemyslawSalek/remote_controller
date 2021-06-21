@@ -24,19 +24,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class FieldArea extends Component implements OutputComponent{
+    private String prefix;
 
     @JsonIgnore
     EditText editText;
 
     @JsonCreator
     public FieldArea(@JsonProperty("name") String name, @JsonProperty("id") String id,
-                  @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
-                  @JsonProperty("posX") int posX, @JsonProperty("posY") int posY, @JsonProperty("layer") float layer){
+                     @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
+                     @JsonProperty("posX") int posX, @JsonProperty("posY") int posY, @JsonProperty("layer") float layer,
+                     @JsonProperty("prefix") String prefix){
         super(name, id, sizeX, sizeY, posX, posY, layer);
+        this.prefix = prefix;
     }
 
     public FieldArea(String name, String id) {
         super(name, id, 100,64,50,50, 0);
+        this.prefix = "";
     }
 
     @Override
@@ -86,7 +90,17 @@ public class FieldArea extends Component implements OutputComponent{
 
     @Override
     public void send() {
-        bluetoothService.send(editText.getText().toString());
-        editText.setText("");
+        if(!editText.getText().toString().isEmpty()) {
+            bluetoothService.send(prefix + editText.getText().toString());
+            editText.setText("");
+        }
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 }

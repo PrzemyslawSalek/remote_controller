@@ -68,5 +68,6 @@
     <string name="loggerMode">Logger mode</string>
     <string name="loggerActive">Logger is active</string>
     <string name="loggerInactive">Logger is inactive</string>
+    <string name="prefix">Prefix</string>
 
 </resources>

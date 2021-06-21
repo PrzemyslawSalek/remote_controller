@@ -54,4 +54,5 @@
     <string name="loggerMode">Tryb loggera</string>
     <string name="loggerActive">Logger jest aktywny</string>
     <string name="loggerInactive">Logger jest nieaktywny</string>
+    <string name="prefix">Przedrostek</string>
 </resources>
