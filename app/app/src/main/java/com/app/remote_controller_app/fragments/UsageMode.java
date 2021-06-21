@@ -58,6 +58,7 @@ public class UsageMode extends Fragment {
         super.onStop();
         ((MainActivity) getActivity()).closeTransmission();
         ((MainActivity) getActivity()).getSupportActionBar().show();
+
     }
 
     @Override

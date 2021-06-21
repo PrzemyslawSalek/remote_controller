@@ -71,7 +71,7 @@ public class LED extends Component implements InputComponent{
     }
 
     @Override
-    public void receive(ArrayList<String> data) {
+    public void receive(Context context, ArrayList<String> data) {
         String method = data.get(0);
         switch (method){
             case "toggle": toggle(); break;

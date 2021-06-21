@@ -341,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
         if (data.size() > 1) {
             String id = data.get(0);
             data.remove(0);
-            currentSelectedController.msgToCommand(id, data);
+            currentSelectedController.msgToCommand(this, id, data);
         }
     }
 

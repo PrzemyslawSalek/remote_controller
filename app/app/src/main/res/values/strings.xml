@@ -66,5 +66,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="colon_layer">Layer</string>
     <string name="loggerMode">Logger mode</string>
+    <string name="loggerActive">Logger is active</string>
+    <string name="loggerInactive">Logger is inactive</string>
 
 </resources>

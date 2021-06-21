@@ -52,4 +52,6 @@
     <string name="label_deleteTextAreaSure">Czy na pewno chcesz usunąć ten obszar tekstowy?</string>
     <string name="colon_layer">Warstwa</string>
     <string name="loggerMode">Tryb loggera</string>
+    <string name="loggerActive">Logger jest aktywny</string>
+    <string name="loggerInactive">Logger jest nieaktywny</string>
 </resources>

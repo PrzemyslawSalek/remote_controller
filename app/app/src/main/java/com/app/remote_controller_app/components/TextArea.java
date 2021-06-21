@@ -24,7 +24,8 @@ import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class TextArea extends Component implements InputComponent{
-    private String logger;
+    private String loggerText;
+    private boolean loggerEnabled;
 
     @JsonIgnore
     android.widget.TextView textView;
@@ -33,13 +34,16 @@ public class TextArea extends Component implements InputComponent{
     public TextArea(@JsonProperty("name") String name, @JsonProperty("id") String id,
                     @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
                     @JsonProperty("posX") int posX, @JsonProperty("posY") int posY, @JsonProperty("layer") float layer,
-                    @JsonProperty("logger") String logger){
+                    @JsonProperty("logger") String loggerText, @JsonProperty("loggerEnabled") boolean loggerEnabled){
         super(name, id, sizeX, sizeY, posX, posY, layer);
-        this.logger = logger;
+        this.loggerText = loggerText;
+        this.loggerEnabled = loggerEnabled;
     }
 
     public TextArea(String name, String id) {
         super(name, id, 100,200,0,0, 0);
+        this.loggerText = "";
+        this.loggerEnabled = false;
     }
 
     @Override
@@ -50,11 +54,11 @@ public class TextArea extends Component implements InputComponent{
         setAndroidView(textView, context);
         setMove(textView, context);
 
-        if(logger!=null)
-            textView.setText("logger active");
+        if(loggerEnabled)
+            textView.setText(R.string.loggerActive);
         else
-            textView.setText("niektywny dupa");
-        
+            textView.setText(R.string.loggerInactive);
+
         textView.setBackgroundColor(Color.GRAY);
 
         TextArea ths = this;
@@ -76,20 +80,24 @@ public class TextArea extends Component implements InputComponent{
         setAndroidView(sc, context);
         sc.setBackgroundColor(Color.GRAY);
 
-        textView.setText(name);
+        if(loggerEnabled)
+            textView.setText(loggerText);
         textView.setBackgroundColor(Color.GRAY);
 
         return sc;
     }
 
     @Override
-    public void receive(ArrayList<String> data) {
+    public void receive(Context context, ArrayList<String> data) {
         String method = data.get(0);
         switch (method){
             case "clear": clear(); break;
             case "write": if(data.size()>1) write(data.get(1)); break;
             case "append" : if(data.size()>1) append(data.get(1)); break;
         }
+
+        loggerText = textView.getText().toString();
+        ((MainActivity) context).updateCurrentSelectedController();
     }
 
     public void clear(){
@@ -103,4 +111,22 @@ public class TextArea extends Component implements InputComponent{
     public void append(String s){
         textView.append(s);
     }
+
+    public String getLoggerText() {
+        return loggerText;
+    }
+
+    public void setLoggerText(String loggerText) {
+        this.loggerText = loggerText;
+    }
+
+    public boolean isLoggerEnabled() {
+        return loggerEnabled;
+    }
+
+    public void setLoggerEnabled(boolean loggerEnabled) {
+        this.loggerEnabled = loggerEnabled;
+    }
 }
+
+

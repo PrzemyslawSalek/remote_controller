@@ -1,5 +1,6 @@
 package com.app.remote_controller_app;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.app.remote_controller_app.components.Component;
@@ -34,10 +35,10 @@ public class Controller {
         this.favoriteMAC = favoriteMAC;
     }
 
-    public void msgToCommand(String id, ArrayList<String> data){
+    public void msgToCommand(Context context, String id, ArrayList<String> data){
         for(Component c : listOfComponents){
             if(c.getId().equals(id) && c instanceof InputComponent){
-                ((InputComponent) c).receive(data);
+                ((InputComponent) c).receive(context, data);
                 break; //ale czy napewno
             }
         }
