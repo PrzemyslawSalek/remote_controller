@@ -34,6 +34,7 @@ public abstract class Component{
     protected int sizeY;
     protected float posX;
     protected float posY;
+    protected float layer;
 
     @JsonIgnore
     protected BluetoothService bluetoothService;
@@ -43,13 +44,14 @@ public abstract class Component{
 
 
 
-    public Component(String name, String id, int sizeX, int sizeY, float posX, float posY) {
+    public Component(String name, String id, int sizeX, int sizeY, float posX, float posY, float layer) {
         this.name = name;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.posX = posX;
         this.posY = posY;
         this.id = id;
+        this.layer = layer;
     }
 
     public abstract View getEditView(Context context, Fragment fragment);
@@ -62,11 +64,13 @@ public abstract class Component{
     protected void setAndroidView(View view, Context context){
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(dpToPx(sizeX), dpToPx(sizeY));
         view.setLayoutParams(lp);
-        view.bringToFront();
+        view.setTranslationZ(layer);
 
         view.setX((dpToPx(posX) - view.getWidth()/2.f));
         view.setY((dpToPx(posY) - view.getHeight()/2.f));
+    }
 
+    protected void setMove(View view, Context context){
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -104,25 +108,21 @@ public abstract class Component{
                             if(layout.drawLineY(v))
                                 memY = ey;
 
-                            return true;
                         }
                         if(event.getAction()==MotionEvent.ACTION_UP){
                             layout.removeLine();
                             move(Math.round(v.getX()), Math.round(v.getY()));
                             ((MainActivity) context).updateCurrentSelectedController();
                             view.setOnTouchListener(null);
-                            return true;
                         }
 
 
-                        return true;
+                        return false;
                     }
                 });
-                return false;
+                return true;
             }
         });
-
-
     }
 
     public void setBluetoothService(BluetoothService bluetoothService) {
@@ -209,5 +209,13 @@ public abstract class Component{
 
     public void setPosY(int posY) {
         this.posY = posY;
+    }
+
+    public float getLayer() {
+        return layer;
+    }
+
+    public void setLayer(float layer) {
+        this.layer = layer;
     }
 }

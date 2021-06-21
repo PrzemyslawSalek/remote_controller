@@ -1,73 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imageView_ControllerList"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_Controller_EditMode"
+        app:layout_constraintEnd_toStartOf="@+id/button_Controller_EditMode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView_ControllerList" />
+
 
     <TextView
         android:id="@+id/textView_ControllerList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView_ControllerList"
-        android:layout_alignBottom="@+id/imageView_ControllerList"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="-15dp"
-        android:layout_marginBottom="43dp"
-        android:layout_toEndOf="@+id/imageView_ControllerList"
+        android:layout_marginStart="8dp"
         android:maxWidth="225dp"
         android:text="tytul"
         android:textColor="@color/black"
-        android:textSize="24sp" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_Controller_EditMode"
+        app:layout_constraintStart_toEndOf="@+id/imageView_ControllerList" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/button_Controller_EditMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView_ControllerList"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@+id/imageView_ControllerList"
-        android:orientation="horizontal">
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="2dp"
+        android:text="@string/action_editMode"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_Controller_UsageMode"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ControllerList" />
 
-        <Button
-            android:id="@+id/button_Controller_EditMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginBottom="2dp"
-            android:text="@string/action_editMode"
-            android:textSize="12sp" />
+    <Button
+        android:id="@+id/button_Controller_UsageMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:text="@string/action_usageMode"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_Controller_EditMode"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton_Controller_Delete" />
 
-        <Button
-            android:id="@+id/button_Controller_UsageMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="2dp"
-            android:text="@string/action_usageMode"
-            android:textSize="12sp" />
+    <ImageButton
+        android:id="@+id/imageButton_Controller_Delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_Controller_UsageMode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_Controller_UsageMode"
+        app:srcCompat="@drawable/ic_opening_delete_24" />
 
-        <ImageButton
-            android:id="@+id/imageButton_Controller_Delete"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            app:srcCompat="@drawable/ic_opening_delete_24" />
 
-    </LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

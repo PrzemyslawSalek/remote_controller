@@ -24,6 +24,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.preference.PreferenceManager;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -61,16 +62,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-//        int resourceId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-//        if (resourceId > 0) {
-//            height = metrics.heightPixels + getResources().getDimensionPixelSize(resourceId);
-//        }else{
-//            height = metrics.heightPixels;
-//        }
 
         height = metrics.heightPixels;
 

@@ -5,8 +5,10 @@ import android.content.Context;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -26,33 +28,40 @@ public class Button extends Component implements OutputComponent {
     public Button(@JsonProperty("name") String name, @JsonProperty("id") String id,
                   @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
                   @JsonProperty("posX") int posX, @JsonProperty("posY") int posY,
-                  @JsonProperty("msg") String msg){
-        super(name, id, sizeX, sizeY, posX, posY);
+                  @JsonProperty("msg") String msg, @JsonProperty("layer") float layer){
+        super(name, id, sizeX, sizeY, posX, posY, layer);
         this.msg = msg;
     }
 
     public Button(String name, String id) {
-        super(name, id, 100,100,50,50);
+        super(name, id, 100,100,50,50, 0);
         msg = "hello";
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View getEditView(Context context, Fragment fragment) {
         android.widget.Button btn = new android.widget.Button(context);
-        setAndroidView(btn, context);
-        btn.setText(name);
-        Button ths = this;
+        ConstraintLayout layout = new ConstraintLayout(context);
+        setAndroidView(layout, context);
+        setMove(layout, context);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        layout.addView(btn);
+        btn.setClickable(false);
+
+        btn.setText(name);
+
+        Button ths = this;
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity) context).setCurrentSelectedComponent(ths);
                 NavHostFragment.findNavController(fragment).navigate(R.id.action_editMode_to_buttonOptions);
             }
         });
+        btn.setEnabled(false);
 
-        return btn;
+        return layout;
     }
 
     @Override

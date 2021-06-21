@@ -24,6 +24,7 @@ import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class TextArea extends Component implements InputComponent{
+    private String logger;
 
     @JsonIgnore
     android.widget.TextView textView;
@@ -31,12 +32,14 @@ public class TextArea extends Component implements InputComponent{
     @JsonCreator
     public TextArea(@JsonProperty("name") String name, @JsonProperty("id") String id,
                     @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
-                    @JsonProperty("posX") int posX, @JsonProperty("posY") int posY){
-        super(name, id, sizeX, sizeY, posX, posY);
+                    @JsonProperty("posX") int posX, @JsonProperty("posY") int posY, @JsonProperty("layer") float layer,
+                    @JsonProperty("logger") String logger){
+        super(name, id, sizeX, sizeY, posX, posY, layer);
+        this.logger = logger;
     }
 
     public TextArea(String name, String id) {
-        super(name, id, 100,200,0,0);
+        super(name, id, 100,200,0,0, 0);
     }
 
     @Override
@@ -45,8 +48,13 @@ public class TextArea extends Component implements InputComponent{
         ScrollView sc = new ScrollView(context);
 
         setAndroidView(textView, context);
+        setMove(textView, context);
 
-        textView.setText(name);
+        if(logger!=null)
+            textView.setText("logger active");
+        else
+            textView.setText("niektywny dupa");
+        
         textView.setBackgroundColor(Color.GRAY);
 
         TextArea ths = this;

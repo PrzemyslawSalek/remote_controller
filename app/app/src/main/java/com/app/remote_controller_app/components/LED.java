@@ -30,14 +30,14 @@ public class LED extends Component implements InputComponent{
     public LED(@JsonProperty("name") String name, @JsonProperty("id") String id,
                @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
                @JsonProperty("posX") int posX, @JsonProperty("posY") int posY,
-               @JsonProperty("color") String color){
-        super(name, id, sizeX, sizeY, posX, posY);
+               @JsonProperty("color") String color, @JsonProperty("layer") float layer){
+        super(name, id, sizeX, sizeY, posX, posY, layer);
         this.color = color;
         is_on = false;
     }
 
     public LED(String name, String id) {
-        super(name, id, 100,100,200,200);
+        super(name, id, 100,100,200,200, 0);
         this.color = "ffff0000";
         is_on = false;
     }
@@ -46,6 +46,7 @@ public class LED extends Component implements InputComponent{
     public View getEditView(Context context, Fragment fragment) {
         LEDComponent led = new LEDComponent(context);
         setAndroidView(led, context);
+        setMove(led, context);
         led.setLEDColor(color);
 
         LED ths = this;

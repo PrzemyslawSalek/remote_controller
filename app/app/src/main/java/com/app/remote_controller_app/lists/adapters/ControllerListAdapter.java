@@ -1,8 +1,10 @@
 package com.app.remote_controller_app.lists.adapters;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +61,8 @@ public class ControllerListAdapter extends ArrayAdapter<Controller> {
         Controller controllerElement = controllerElements.get(position);
 
         textViewName.setText(controllerElement.toString());
-        imageView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.ic_controller_opening));
+        //imageView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.ic_controller_opening));
+        imageView.setImageResource(R.drawable.ic_controller_opening);
 
         // Edit Mode //
         view.findViewById(R.id.button_Controller_EditMode).setOnClickListener(new View.OnClickListener() {

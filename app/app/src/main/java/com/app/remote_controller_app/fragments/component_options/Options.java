@@ -33,6 +33,7 @@ public class Options extends Fragment {
     EditText editText_posX;
     EditText editText_posY;
     EditText editText_name;
+    EditText editLayer;
 
     Component thisComponent;
 
@@ -64,6 +65,9 @@ public class Options extends Fragment {
         //Name
         editText_name = view.findViewById(R.id.editText_name);
         editText_name.setText(thisComponent.getName());
+
+        editLayer = view.findViewById(R.id.editLayer);
+        editLayer.setText(String.valueOf(thisComponent.getLayer()));
 
         setHasOptionsMenu(true);
         return view;
@@ -115,6 +119,7 @@ public class Options extends Fragment {
         thisComponent.resize(Integer.parseInt(editText_sizeX.getText().toString()), Integer.parseInt(editText_sizeY.getText().toString()));
         thisComponent.move(Integer.parseInt(editText_posX.getText().toString()), Integer.parseInt(editText_posY.getText().toString()));
         thisComponent.setName(editText_name.getText().toString());
+        thisComponent.setLayer(Float.parseFloat(editLayer.getText().toString()));
     }
 
 

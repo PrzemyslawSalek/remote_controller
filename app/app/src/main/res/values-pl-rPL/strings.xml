@@ -11,8 +11,8 @@
     <string name="enter_controller_name">Wprowadź Nazwę Pilota</string>
     <string name="opening_addnew">Dodaj Nowy Pilot</string>
     <string name="device_entries">Język urządzenia</string>
-    <string name="action_usageMode">Tryb użycia</string>
-    <string name="action_editMode">Tryb edycji</string>
+    <string name="action_usageMode">Użyj</string>
+    <string name="action_editMode">Edytuj</string>
     <string name="action_delete">Usuń</string>
     <string name="action_sampleButton">Przykładowy przycisk</string>
     <string name="componentSelection">Wybór komponentów</string>
@@ -50,4 +50,6 @@
     <string name="label_deleteSliderSure">Czy na pewno chcesz usunąć ten suwak?</string>
     <string name="label_deleteTextArea">Usuń obszar tekstowy</string>
     <string name="label_deleteTextAreaSure">Czy na pewno chcesz usunąć ten obszar tekstowy?</string>
+    <string name="colon_layer">Warstwa</string>
+    <string name="loggerMode">Tryb loggera</string>
 </resources>

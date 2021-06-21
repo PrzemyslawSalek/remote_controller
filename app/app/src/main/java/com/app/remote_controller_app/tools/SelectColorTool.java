@@ -132,9 +132,9 @@ public class SelectColorTool {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(view);
         if(positiveButton!=null){
-            builder.setPositiveButton("ok", positiveButton);
+            builder.setPositiveButton(R.string.action_ok, positiveButton);
         }
-        builder.setNegativeButton("nieok",null);
+        builder.setNegativeButton(R.string.action_cancel,null);
 
         AlertDialog alert = builder.create();
         alert.show();

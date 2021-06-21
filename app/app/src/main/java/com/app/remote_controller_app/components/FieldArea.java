@@ -31,12 +31,12 @@ public class FieldArea extends Component implements OutputComponent{
     @JsonCreator
     public FieldArea(@JsonProperty("name") String name, @JsonProperty("id") String id,
                   @JsonProperty("sizeX") int sizeX, @JsonProperty("sizeY") int sizeY,
-                  @JsonProperty("posX") int posX, @JsonProperty("posY") int posY){
-        super(name, id, sizeX, sizeY, posX, posY);
+                  @JsonProperty("posX") int posX, @JsonProperty("posY") int posY, @JsonProperty("layer") float layer){
+        super(name, id, sizeX, sizeY, posX, posY, layer);
     }
 
     public FieldArea(String name, String id) {
-        super(name, id, 400,64,50,50);
+        super(name, id, 100,64,50,50, 0);
     }
 
     @Override
@@ -44,6 +44,7 @@ public class FieldArea extends Component implements OutputComponent{
         View view = ((MainActivity) context).getLayoutInflater().inflate(R.layout.text_field_component, null);
         ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.textFieldLayout);
         setAndroidView(layout, context);
+        setMove(layout, context);
 
 
         FieldArea ths = this;
